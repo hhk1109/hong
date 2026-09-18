@@ -1,0 +1,53 @@
+/* ============================================================
+   全局样式 —— 设计变量 + 页面底色
+   ============================================================ */
+:root {
+  --minion-yellow: #ffd90f;
+  --minion-yellow-dark: #f5c400;
+  --minion-blue: #3b6fe0;
+  --minion-blue-dark: #2a55b8;
+  --ink: #3a3a3a;
+  --soft: #7a7a7a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#app {
+  min-height: 100vh;
+}
+
+body {
+  font-family: "Comic Sans MS", "Segoe UI", -apple-system, "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 20% 20%, #fff4b8 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, #fff4b8 0%, transparent 40%),
+    linear-gradient(160deg, #ffe873 0%, #ffd90f 55%, #f7c200 100%);
+  background-attachment: fixed;
+}
+
+/* 共用动画：上下浮动 */
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-8deg);
+  }
+  50% {
+    transform: translateY(-22px) rotate(8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
