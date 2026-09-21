@@ -1,5 +1,6 @@
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted, watch } from 'vue'
+import CaptchaCanvas from './CaptchaCanvas.vue'
 
 const props = defineProps({
   loading: { type: Boolean, default: false }
@@ -7,30 +8,96 @@ const props = defineProps({
 
 const emit = defineEmits(['submit', 'forgot', 'signup'])
 
+/* ---------------- 长度规则 ----------------
+   账号：11 ~ 13 位数字
+   密码：11 位以内
+------------------------------------------- */
+const USERNAME_MIN = 11
+const USERNAME_MAX = 13
+const PASSWORD_MAX = 11
+
 const form = reactive({
   username: '',
   password: '',
+  captcha: '',
   remember: false
 })
 
 const showPassword = ref(false)
-const errors = reactive({ username: '', password: '' })
+const captchaRef = ref(null)
+const errors = reactive({ username: '', password: '', captcha: '' })
 
-/* 记住我：回填上次的用户名 */
+/* 账号只允许数字，且最多 13 位 */
+const usernameFilled = computed(() => form.username.replace(/\D/g, '').length)
+const passwordLen = computed(() => form.password.length)
+
+function onUsernameInput(e) {
+  // maxlength 之外再兜一层：粘贴/输入法也可能带进非数字
+  const digitsOnly = e.target.value.replace(/\D/g, '').slice(0, USERNAME_MAX)
+  form.username = digitsOnly
+  e.target.value = digitsOnly
+}
+
+/* 记住我：回填上次的账号 */
 onMounted(() => {
   const saved = localStorage.getItem('minion:username')
   if (saved) {
-    form.username = saved
+    form.username = saved.replace(/\D/g, '').slice(0, USERNAME_MAX)
     form.remember = true
   }
 })
 
+/* 用户开始修改某一项时，立即清掉该项的旧报错，避免红字挂着不走 */
+watch(
+  () => form.username,
+  () => {
+    if (errors.username) errors.username = ''
+  }
+)
+watch(
+  () => form.password,
+  () => {
+    if (errors.password) errors.password = ''
+  }
+)
+watch(
+  () => form.captcha,
+  () => {
+    if (errors.captcha) errors.captcha = ''
+  }
+)
+
 function validate() {
   errors.username = ''
   errors.password = ''
-  if (!form.username.trim()) errors.username = '请输入香蕉账号'
-  if (!form.password) errors.password = '请输入密码'
-  return !errors.username && !errors.password
+  errors.captcha = ''
+
+  const u = form.username.trim()
+  if (!u) {
+    errors.username = '请输入账号'
+  } else if (!/^\d+$/.test(u)) {
+    errors.username = '账号只能是数字'
+  } else if (u.length < USERNAME_MIN) {
+    errors.username = `账号长度为 ${USERNAME_MIN}~${USERNAME_MAX} 位，还差 ${USERNAME_MIN - u.length} 位`
+  } else if (u.length > USERNAME_MAX) {
+    errors.username = `账号长度不能超过 ${USERNAME_MAX} 位`
+  }
+
+  if (!form.password) {
+    errors.password = '请输入密码'
+  } else if (form.password.length > PASSWORD_MAX) {
+    errors.password = `密码不能超过 ${PASSWORD_MAX} 位，当前 ${form.password.length} 位`
+  }
+
+  if (!form.captcha.trim()) {
+    errors.captcha = '请输入验证码'
+  } else if (captchaRef.value && !captchaRef.value.validate(form.captcha)) {
+    errors.captcha = '验证码不正确'
+    captchaRef.value.refresh()
+    form.captcha = ''
+  }
+
+  return !errors.username && !errors.password && !errors.captcha
 }
 
 function onSubmit() {
@@ -39,6 +106,7 @@ function onSubmit() {
   emit('submit', {
     username: form.username.trim(),
     password: form.password,
+    captcha: form.captcha.trim(),
     remember: form.remember
   })
 }
@@ -46,27 +114,45 @@ function onSubmit() {
 function togglePassword() {
   showPassword.value = !showPassword.value
 }
+
+function onCaptchaChange() {
+  errors.captcha = ''
+  form.captcha = ''
+}
+
+defineExpose({ captchaRef })
 </script>
 
 <template>
   <form autocomplete="off" novalidate @submit.prevent="onSubmit">
+    <!-- 账号：11~13 位数字 -->
     <div class="field">
       <input
-        v-model="form.username"
+        :value="form.username"
         type="text"
-        placeholder="香蕉账号 / 用户名"
-        aria-label="用户名"
+        inputmode="numeric"
+        :maxlength="13"
+        :placeholder="`账号（${11}~${13} 位数字）`"
+        aria-label="账号，11 到 13 位数字"
+        :aria-invalid="!!errors.username"
+        @input="onUsernameInput"
       />
       <span class="icon" aria-hidden="true">🍌</span>
+      <p class="counter" :class="{ warn: usernameFilled > 0 && usernameFilled < 11 }">
+        {{ usernameFilled }}/13
+      </p>
       <p v-if="errors.username" class="error">{{ errors.username }}</p>
     </div>
 
+    <!-- 密码：11 位以内 -->
     <div class="field">
       <input
         v-model="form.password"
         :type="showPassword ? 'text' : 'password'"
-        placeholder="密码（别告诉格鲁！）"
-        aria-label="密码"
+        :maxlength="11"
+        placeholder="密码（11 位以内）"
+        aria-label="密码，最多 11 位"
+        :aria-invalid="!!errors.password"
       />
       <span
         class="icon toggle-pass"
@@ -79,8 +165,27 @@ function togglePassword() {
       >
         {{ showPassword ? '🙈' : '👁️' }}
       </span>
+      <p class="counter" :class="{ warn: passwordLen > 11 }">{{ passwordLen }}/11</p>
       <p v-if="errors.password" class="error">{{ errors.password }}</p>
     </div>
+
+    <!-- 验证码 -->
+    <div class="captcha-row">
+      <div class="field captcha-input-wrap">
+        <input
+          v-model="form.captcha"
+          type="text"
+          :maxlength="4"
+          placeholder="验证码"
+          aria-label="验证码"
+          autocomplete="off"
+          spellcheck="false"
+          :aria-invalid="!!errors.captcha"
+        />
+      </div>
+      <CaptchaCanvas ref="captchaRef" :length="4" :width="108" :height="44" @change="onCaptchaChange" />
+    </div>
+    <p v-if="errors.captcha" class="error captcha-error">{{ errors.captcha }}</p>
 
     <div class="remember">
       <label>
@@ -112,7 +217,7 @@ form {
 
 .field input {
   width: 100%;
-  padding: 14px 44px 14px 16px;
+  padding: 14px 72px 14px 16px;
   border: 2px solid #ececec;
   border-radius: 16px;
   font-size: 1rem;
@@ -127,6 +232,11 @@ form {
   border-color: var(--minion-yellow);
   box-shadow: 0 0 0 4px rgba(255, 217, 15, 0.25);
   background: #fff;
+}
+
+.field input[aria-invalid="true"] {
+  border-color: #f0a3a3;
+  background: #fffafa;
 }
 
 .field .icon {
@@ -148,10 +258,54 @@ form {
   transform: translateY(-50%) scale(1.15);
 }
 
+/* 字数计数器 */
+.counter {
+  position: absolute;
+  right: 46px;
+  top: 22px;
+  transform: translateY(-50%);
+  font-size: 0.72rem;
+  color: #b9b9b9;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+.counter.warn {
+  color: #e8a33d;
+}
+
 .error {
   color: #e05b5b;
   font-size: 0.78rem;
   margin: 6px 4px 0;
+}
+
+/* ---------------- 验证码一行 ---------------- */
+.captcha-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.captcha-input-wrap {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-bottom: 16px;
+}
+
+.captcha-input-wrap input {
+  padding: 14px 16px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.captcha-row :deep(.captcha) {
+  margin-top: 2px;
+}
+
+.captcha-error {
+  margin: -12px 4px 14px;
 }
 
 .remember {
@@ -160,7 +314,7 @@ form {
   justify-content: space-between;
   font-size: 0.85rem;
   color: var(--soft);
-  margin: -2px 2px 18px;
+  margin: 0 2px 18px;
 }
 
 .remember label {
