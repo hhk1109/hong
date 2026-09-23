@@ -1,0 +1,14 @@
+com\minion\common\BizException.class
+com\minion\entity\User.class
+com\minion\config\WebConfig.class
+com\minion\controller\CaptchaController.class
+com\minion\service\AuthService.class
+com\minion\common\GlobalExceptionHandler.class
+com\minion\controller\AuthController.class
+com\minion\mapper\UserMapper.class
+com\minion\service\CaptchaStore$Entry.class
+com\minion\common\Result.class
+com\minion\dto\LoginRequest.class
+com\minion\MinionApplication.class
+com\minion\dto\RegisterRequest.class
+com\minion\service\CaptchaStore.class
