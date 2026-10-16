@@ -1,0 +1,10 @@
+START 
+STEP1-vars 
+STEP2-mvn-ok  
+STEP3-mysql-ok  
+STEP4-sql-ok  
+STEP5-target-ok  
+STEP6-port-occupied  
+STEP7-javaw-launched 
+STEP8-8081-up  
+DONE 

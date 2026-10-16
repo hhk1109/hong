@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>星露谷物语 · 首页</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Zpix&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/home.css" />
+  <script defer src="./assets/home.js"></script>
+</head>
+<body>
+
+  <!-- ===== 导航栏（木牌风格） ===== -->
+  <nav class="sd-nav">
+    <a class="nav-logo" href="home.html">🌾 星露谷</a>
+    <ul class="nav-menu">
+      <li><a class="nav-link active" data-page="首页" href="#">🏠 首页</a></li>
+      <li><a class="nav-link" data-page="农场" href="#">🚜 农场</a></li>
+      <li><a class="nav-link" data-page="作物图鉴" href="#">🌱 作物图鉴</a></li>
+      <li><a class="nav-link" data-page="牧场" href="#">🐮 牧场</a></li>
+      <li><a class="nav-link" data-page="钓鱼" href="#">🎣 钓鱼</a></li>
+      <li><a class="nav-link" data-page="矿洞" href="#">⛏️ 矿洞</a></li>
+    </ul>
+    <div class="nav-user" id="navUser">
+      <!-- 由 home.js 填充：农夫名牌 / 退出按钮，或访客的登录按钮 -->
+    </div>
+  </nav>
+
+  <!-- ===== 天空横幅 + 欢迎语 ===== -->
+  <header class="sky">
+    <div class="sun"></div>
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+    <div class="cloud c3"></div>
+    <div class="hill h1"></div>
+    <div class="hill h2"></div>
+
+    <div class="sd-panel welcome" id="welcomePanel">
+      <!-- 由 home.js 填充欢迎语（登录后）或访客提示 -->
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- ===== 搜索栏 ===== -->
+    <section class="sd-panel search-panel">
+      <h2 class="panel-title">🔎 图鉴搜索</h2>
+      <form id="searchForm" class="search-row" autocomplete="off">
+        <input id="searchInput" class="sd-input" type="text"
+               placeholder="搜索作物、动物、鱼类、物品…" maxlength="20" />
+        <button type="submit" class="sd-btn">搜索</button>
+      </form>
+      <p class="search-tip" id="searchTip">输入关键词，翻一翻你的农场图鉴吧～</p>
+    </section>
+
+    <!-- ===== 结果 / 速览 ===== -->
+    <section class="sd-panel result-panel">
+      <h2 class="panel-title" id="resultTitle">🌟 图鉴速览</h2>
+      <div class="grid" id="resultGrid"></div>
+    </section>
+
+    <!-- ===== 快捷信息卡（演示数据） ===== -->
+    <section class="quick-grid">
+      <div class="sd-card"><span class="card-icon">☀️</span><h3>今日天气</h3><p>晴，适合浇水和钓鱼</p></div>
+      <div class="sd-card"><span class="card-icon">🍂</span><h3>季节 · 日期</h3><p>秋 · 第 16 天（演示）</p></div>
+      <div class="sd-card"><span class="card-icon">📺</span><h3>电视预告</h3><p>明天记得收「生活小窍门」</p></div>
+      <div class="sd-card"><span class="card-icon">🔔</span><h3>待办提醒</h3><p>检查洒水器 · 收鸡蛋 · 给宠物喂食</p></div>
+    </section>
+
+    <p class="dev-note">🛠️ 农场 / 作物图鉴 / 牧场 / 钓鱼 / 矿洞等页面尚在开垦中——当前仅完成首页。</p>
+  </main>
+
+  <!-- ===== 草地页脚 ===== -->
+  <footer class="grass">
+    <p>🌾 星露谷 · 鹈鹕镇档案 · 用像素与善意种地</p>
+  </footer>
+
+  <!-- 轻提示 -->
+  <div id="toast" class="toast"></div>
+
+</body>
+</html>

@@ -1,0 +1,280 @@
+logging.pattern.console=2026-10-16 15:40:02  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 1080 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 15:40:02  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 15:40:03  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 59279 (http)
+logging.pattern.console=2026-10-16 15:40:03  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 15:40:03  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 15:40:03  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 15:40:03  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1154 ms
+logging.pattern.console=2026-10-16 15:40:04  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 15:40:04  WARN o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext.refresh 635:Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+logging.pattern.console=2026-10-16 15:40:04  INFO o.s.b.a.logging.ConditionEvaluationReportLogger.logMessage 82:
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+logging.pattern.console=2026-10-16 15:40:04  ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter.report 40:
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 59279 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 59279 or configure this application to listen on another port.
+
+logging.pattern.console=2026-10-16 15:40:31  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 7972 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 15:40:31  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 15:40:32  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 15:40:32  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 15:40:32  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 15:40:32  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 15:40:32  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1160 ms
+logging.pattern.console=2026-10-16 15:40:33  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 15:40:33  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 15:40:33  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.52 seconds (process running for 2.936)
+logging.pattern.console=2026-10-16 15:50:59  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 10552 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 15:50:59  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 15:51:00  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 15:51:00  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 15:51:00  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 15:51:00  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 15:51:00  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1200 ms
+logging.pattern.console=2026-10-16 15:51:01  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 15:51:01  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 15:51:01  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.687 seconds (process running for 3.327)
+logging.pattern.console=2026-10-16 15:51:13  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 15:51:13  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 15:51:13  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-10-16 15:51:49  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-10-16 15:51:49  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@312bd3cf
+logging.pattern.console=2026-10-16 15:51:49  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+logging.pattern.console=2026-10-16 15:54:28  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 10404 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 15:54:28  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 15:54:30  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 15:54:30  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 15:54:30  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 15:54:30  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 15:54:30  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1128 ms
+logging.pattern.console=2026-10-16 15:54:30  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 15:54:30  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 15:54:30  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.475 seconds (process running for 2.965)
+logging.pattern.console=2026-10-16 15:54:47  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 15:54:47  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 15:54:47  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-10-16 15:56:56  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 4608 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 15:56:56  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 15:56:57  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 15:56:57  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 15:56:57  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 15:56:57  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 15:56:57  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1119 ms
+logging.pattern.console=2026-10-16 15:56:58  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 15:56:58  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 15:56:58  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.452 seconds (process running for 2.847)
+logging.pattern.console=2026-10-16 15:56:59  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 15:56:59  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 15:56:59  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-10-16 16:00:26  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 8804 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 16:00:26  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 16:00:27  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 16:00:27  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 16:00:27  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 16:00:27  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 16:00:27  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1272 ms
+logging.pattern.console=2026-10-16 16:00:27  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 16:00:28  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 16:00:28  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.74 seconds (process running for 3.17)
+logging.pattern.console=2026-10-16 16:00:29  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:00:29  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:00:29  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-10-16 16:02:57  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 5988 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 16:02:57  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 16:03:57  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 5748 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 16:03:57  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 16:03:58  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 16:03:58  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 16:03:58  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 16:03:58  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 16:03:58  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1064 ms
+logging.pattern.console=2026-10-16 16:03:58  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 16:03:59  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 16:03:59  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.337 seconds (process running for 2.717)
+logging.pattern.console=2026-10-16 16:04:00  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:04:00  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:04:00  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-10-16 16:04:32  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 5656 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 16:04:32  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 16:04:33  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 16:04:33  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 16:04:33  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 16:04:33  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 16:04:33  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1019 ms
+logging.pattern.console=2026-10-16 16:04:33  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 16:04:33  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 16:04:33  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.252 seconds (process running for 2.624)
+logging.pattern.console=2026-10-16 16:04:34  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:04:34  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:04:34  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-10-16 16:05:04  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-10-16 16:05:04  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@697a42a0
+logging.pattern.console=2026-10-16 16:05:04  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+logging.pattern.console=2026-10-16 16:07:02  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 7284 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 16:07:02  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 16:07:03  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 16:07:03  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 16:07:03  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 16:07:03  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 16:07:03  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 991 ms
+logging.pattern.console=2026-10-16 16:07:04  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 16:07:04  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 16:07:04  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.2 seconds (process running for 2.571)
+logging.pattern.console=2026-10-16 16:07:05  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:07:05  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:07:05  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-10-16 16:07:22  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-10-16 16:07:23  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@38c1aa70
+logging.pattern.console=2026-10-16 16:07:23  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+logging.pattern.console=2026-10-16 16:09:17  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 3900 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 16:09:17  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 16:09:18  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 16:09:18  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 16:09:18  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 16:09:18  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 16:09:18  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 995 ms
+logging.pattern.console=2026-10-16 16:09:18  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 16:09:19  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 16:09:19  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.227 seconds (process running for 2.613)
+logging.pattern.console=2026-10-16 16:09:20  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:09:20  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:09:20  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-10-16 16:09:36  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-10-16 16:09:36  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1063d8bb
+logging.pattern.console=2026-10-16 16:09:36  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+logging.pattern.console=2026-10-16 16:13:50  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 5892 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 16:13:50  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 16:13:51  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 16:13:51  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 16:13:51  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 16:13:51  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 16:13:51  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 989 ms
+logging.pattern.console=2026-10-16 16:13:52  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 16:13:52  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 16:13:52  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.128 seconds (process running for 2.469)
+logging.pattern.console=2026-10-16 16:13:52  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:13:52  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:13:52  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 0 ms
+logging.pattern.console=2026-10-16 16:15:02  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 6048 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 16:15:02  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 16:15:03  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 16:15:03  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 16:15:03  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 16:15:03  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 16:15:03  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 988 ms
+logging.pattern.console=2026-10-16 16:15:04  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 16:15:04  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 16:15:04  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.118 seconds (process running for 2.524)
+logging.pattern.console=2026-10-16 16:15:05  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:15:05  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:15:05  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-10-16 16:15:13  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-10-16 16:15:13  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6ad6a182
+logging.pattern.console=2026-10-16 16:15:13  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+logging.pattern.console=2026-10-16 16:31:34  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 9708 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 16:31:34  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 16:31:35  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 16:31:35  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 16:31:35  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 16:31:35  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 16:31:35  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1076 ms
+logging.pattern.console=2026-10-16 16:31:35  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 16:31:36  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 16:31:36  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.349 seconds (process running for 2.747)
+logging.pattern.console=2026-10-16 16:31:51  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:31:51  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:31:51  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 0 ms
+logging.pattern.console=2026-10-16 16:31:52  WARN o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException 480:Failure in @ExceptionHandler com.fenglin.springboottest.common.GlobalExceptionHandler#handleOther(Exception)
+org.springframework.http.converter.HttpMessageNotWritableException: No converter for [class com.fenglin.springboottest.common.Result] with preset Content-Type 'text/javascript'
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.writeWithMessageConverters(AbstractMessageConverterMethodProcessor.java:365)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor.handleReturnValue(RequestResponseBodyMethodProcessor.java:208)
+	at org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite.handleReturnValue(HandlerMethodReturnValueHandlerComposite.java:78)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:136)
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException(ExceptionHandlerExceptionResolver.java:471)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver.doResolveException(AbstractHandlerMethodExceptionResolver.java:73)
+	at org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.resolveException(AbstractHandlerExceptionResolver.java:182)
+	at org.springframework.web.servlet.handler.HandlerExceptionResolverComposite.resolveException(HandlerExceptionResolverComposite.java:80)
+	at org.springframework.web.servlet.DispatcherServlet.processHandlerException(DispatcherServlet.java:1359)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1161)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+logging.pattern.console=2026-10-16 16:31:52  INFO org.apache.coyote.http11.Http11Processor.log 170:Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target [/api/search?keyword=0xe70x8e0x890xe70xb10xb3 ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:478)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:271)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+logging.pattern.console=2026-10-16 16:32:21  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-10-16 16:32:21  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7b0609af
+logging.pattern.console=2026-10-16 16:32:21  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+logging.pattern.console=2026-10-16 16:37:48  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 12176 (C:\Users\Administrator\Desktop\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Desktop\hong-main\springBootTest-backend)
+logging.pattern.console=2026-10-16 16:37:48  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-10-16 16:37:49  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-10-16 16:37:49  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-10-16 16:37:49  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-10-16 16:37:49  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-10-16 16:37:49  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1251 ms
+logging.pattern.console=2026-10-16 16:37:49  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-10-16 16:37:50  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-10-16 16:37:50  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.74 seconds (process running for 3.236)
+logging.pattern.console=2026-10-16 16:37:51  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:37:51  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-10-16 16:37:51  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-10-16 16:38:06  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-10-16 16:38:06  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@316de26e
+logging.pattern.console=2026-10-16 16:38:06  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
