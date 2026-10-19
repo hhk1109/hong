@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>星露谷 · 首页</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Zpix&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --parchment: #fdf6e0;
+      --parchment-2: #fff8e8;
+      --parchment-3: #fdf3c8;
+      --green: #57a047;
+      --green-deep: #3da336;
+      --green-dark: #2e7d32;
+      --green-light: #8fe87f;
+      --gold: #e8952a;
+      --gold-2: #f4a42a;
+      --gold-deep: #c07820;
+      --brown: #5a3a1e;
+      --brown-2: #6b4e2a;
+      --brown-soft: #8a6a3a;
+      --pink: #ff8fa3;
+      --red: #e84545;
+      --line: #c99a2a;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: "Zpix", "Press Start 2P", "Microsoft YaHei", sans-serif;
+      color: var(--brown);
+      background:
+        radial-gradient(circle at 20% 10%, #fffdf3 0%, transparent 40%),
+        radial-gradient(circle at 80% 0%, #fdf0cf 0%, transparent 45%),
+        linear-gradient(160deg, var(--parchment) 0%, var(--parchment-3) 100%);
+      image-rendering: pixelated;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ===================== 导航栏 ===================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 12px 26px;
+      background: linear-gradient(180deg, var(--green-deep), var(--green-dark));
+      border-bottom: 4px solid var(--gold);
+      box-shadow: 0 4px 0 rgba(90, 58, 30, 0.35), 0 8px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Press Start 2P", "Zpix", sans-serif;
+      color: #fff8e8;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 0 var(--brown);
+      white-space: nowrap;
+    }
+    .brand .leaf { font-size: 22px; }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      margin-left: 10px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      padding: 8px 14px;
+      font-size: 13px;
+      color: #fff8e8;
+      border: 3px solid transparent;
+      border-radius: 8px;
+      background: rgba(255, 248, 232, 0.08);
+      transition: all 0.12s steps(2);
+    }
+    .nav-links a:hover {
+      background: var(--gold);
+      border-color: var(--brown);
+      color: var(--brown);
+    }
+    .nav-links a.active {
+      background: var(--gold);
+      border-color: var(--brown);
+      color: var(--brown);
+      box-shadow: inset 0 0 0 2px #fff8e8;
+    }
+
+    .nav-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .farmer-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: var(--parchment-2);
+      border: 3px solid var(--gold-deep);
+      border-radius: 999px;
+      color: var(--brown);
+      font-size: 12px;
+    }
+    .farmer-chip .avatar {
+      width: 26px; height: 26px;
+      display: grid; place-items: center;
+      background: var(--green-light);
+      border: 2px solid var(--green-dark);
+      border-radius: 50%;
+      font-size: 15px;
+    }
+    .btn-logout {
+      cursor: pointer;
+      padding: 8px 14px;
+      font-family: inherit;
+      font-size: 12px;
+      color: #fff8e8;
+      background: var(--red);
+      border: 3px solid var(--brown);
+      border-radius: 8px;
+      box-shadow: 0 3px 0 var(--brown);
+    }
+    .btn-logout:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--brown); }
+
+    /* ===================== 搜索区 ===================== */
+    .search-section {
+      max-width: 880px;
+      margin: 34px auto 10px;
+      padding: 0 18px;
+    }
+    .search-card {
+      background: linear-gradient(180deg, var(--parchment-2), var(--parchment-3));
+      border: 4px solid var(--gold);
+      border-radius: 14px;
+      padding: 20px 22px;
+      box-shadow: 0 6px 0 rgba(90, 58, 30, 0.25), 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+    .search-title {
+      font-family: "Press Start 2P", "Zpix", sans-serif;
+      font-size: 12px;
+      color: var(--green-dark);
+      margin: 0 0 14px;
+      text-shadow: 1px 1px 0 #fff8e8;
+    }
+    .search-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .search-input {
+      flex: 1 1 260px;
+      min-width: 0;
+      padding: 14px 16px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--brown);
+      background: #fffdf6;
+      border: 3px solid var(--brown-2);
+      border-radius: 10px;
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--green-deep); box-shadow: 0 0 0 3px rgba(87, 160, 71, 0.25); }
+    .search-input::placeholder { color: #b39b6e; }
+    .search-btn {
+      cursor: pointer;
+      padding: 14px 22px;
+      font-family: "Press Start 2P", "Zpix", sans-serif;
+      font-size: 11px;
+      color: #fff8e8;
+      background: linear-gradient(180deg, var(--green), var(--green-deep));
+      border: 3px solid var(--brown);
+      border-radius: 10px;
+      box-shadow: 0 4px 0 var(--brown);
+      white-space: nowrap;
+    }
+    .search-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--brown); }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+    .chip {
+      cursor: pointer;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: var(--brown);
+      background: #fffdf6;
+      border: 3px solid var(--line);
+      border-radius: 999px;
+    }
+    .chip.active { background: var(--gold); border-color: var(--brown); color: var(--brown); }
+
+    /* ===================== 主体 ===================== */
+    .welcome {
+      max-width: 1100px;
+      margin: 26px auto 6px;
+      padding: 0 18px;
+      font-size: 18px;
+      color: var(--brown-2);
+    }
+    .welcome b { color: var(--green-dark); }
+
+    .grid {
+      max-width: 1100px;
+      margin: 18px auto 60px;
+      padding: 0 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: linear-gradient(180deg, #fffdf6, var(--parchment-2));
+      border: 4px solid var(--gold-deep);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 5px 0 rgba(90, 58, 30, 0.22);
+      transition: transform 0.12s steps(2);
+    }
+    .card:hover { transform: translateY(-4px); }
+    .card .icon {
+      width: 56px; height: 56px;
+      display: grid; place-items: center;
+      font-size: 30px;
+      background: var(--green-light);
+      border: 3px solid var(--green-dark);
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+    .card .name { font-size: 15px; color: var(--brown); margin-bottom: 4px; }
+    .card .tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      color: #fff8e8;
+      background: var(--green-deep);
+      margin-bottom: 8px;
+    }
+    .card .desc { font-size: 12px; color: #9a7a4a; line-height: 1.6; }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 40px;
+      color: #b39b6e;
+      font-size: 14px;
+    }
+
+    /* ===================== 页脚 ===================== */
+    .footer {
+      text-align: center;
+      padding: 22px;
+      font-size: 12px;
+      color: #9a7a4a;
+      border-top: 3px dashed var(--line);
+    }
+
+    /* 顶部小彩旗装饰 */
+    .bunting {
+      height: 10px;
+      background:
+        repeating-linear-gradient(90deg,
+          var(--red) 0 14px, var(--gold) 14px 28px,
+          var(--green) 28px 42px, var(--pink) 42px 56px);
+      opacity: 0.85;
+    }
+
+    @media (max-width: 640px) {
+      .brand { font-size: 11px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bunting"></div>
+
+  <!-- 导航栏 -->
+  <header class="navbar">
+    <div class="brand"><span class="leaf">🌾</span> STARDEW 星露谷</div>
+    <nav class="nav-links">
+      <a href="home.html" class="active">首页</a>
+      <a href="#" data-page="作物图鉴">作物图鉴</a>
+      <a href="#" data-page="社区中心">社区中心</a>
+      <a href="#" data-page="背包">背包</a>
+      <a href="#" data-page="设置">设置</a>
+    </nav>
+    <div class="nav-right">
+      <div class="farmer-chip">
+        <span class="avatar">🧑‍🌾</span>
+        <span id="farmerName">尊敬的农夫</span>
+      </div>
+      <button class="btn-logout" id="logoutBtn">退出</button>
+    </div>
+  </header>
+
+  <!-- 搜索栏 -->
+  <section class="search-section">
+    <div class="search-card">
+      <h2 class="search-title">🔍 搜索星露谷百科</h2>
+      <div class="search-row">
+        <input id="searchInput" class="search-input" type="text"
+               placeholder="搜索作物、动物、村民…（例如：草莓 / 鸡 / 阿比盖尔）" />
+        <button class="search-btn" id="searchBtn">搜 索</button>
+      </div>
+      <div class="chips" id="chips">
+        <span class="chip active" data-cat="all">全部</span>
+        <span class="chip" data-cat="crop">作物</span>
+        <span class="chip" data-cat="animal">动物</span>
+        <span class="chip" data-cat="villager">村民</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 欢迎语 -->
+  <div class="welcome" id="welcome">欢迎来到星露谷，<b>尊敬的农夫</b>！今天也要努力种田哦～ 🌞</div>
+
+  <!-- 物品网格 -->
+  <main class="grid" id="grid"></main>
+
+  <footer class="footer">星露谷 · 首页 Demo ｜ 仅前端展示，搜索为本地过滤，未接入后端接口</footer>
+
+  <script>
+    // ===== 示例数据（前端静态，未调用后端）=====
+    const ITEMS = [
+      { icon: "🍓", name: "草莓", cat: "crop", desc: "春季作物，可多次收获，镇长的最爱。" },
+      { icon: "🫐", name: "蓝莓", cat: "crop", desc: "夏季作物，产量高，制作果酱一流。" },
+      { icon: "🌽", name: "玉米", cat: "crop", desc: "夏秋两季均可种植，烘烤后更香甜。" },
+      { icon: "🎃", name: "南瓜", cat: "crop", desc: "秋季作物，万圣节必备，售价可观。" },
+      { icon: "🍒", name: "樱桃", cat: "crop", desc: "多年生果树，春季稳定产出。" },
+      { icon: "🍺", name: "啤酒花", cat: "crop", desc: "夏季攀藤作物，用于酿制淡啤酒。" },
+      { icon: "🍞", name: "远古水果", cat: "crop", desc: "传说作物，酿成酒价值连城。" },
+      { icon: "🐔", name: "鸡", cat: "animal", desc: "每天产蛋，金色母鸡更珍贵。" },
+      { icon: "🐄", name: "奶牛", cat: "animal", desc: "产出牛奶，可制作奶酪。" },
+      { icon: "🐑", name: "羊", cat: "animal", desc: "产出羊毛，梳毛后制成布料。" },
+      { icon: "🐖", name: "猪", cat: "animal", desc: "松露猎手，林间觅得松露。" },
+      { icon: "🐎", name: "马", cat: "animal", desc: "牧场好伙伴，提升移动速度。" },
+      { icon: "👧", name: "阿比盖尔", cat: "villager", desc: "鹈鹕镇少女，热爱矿物与冒险。" },
+      { icon: "🧔", name: "塞巴斯蒂安", cat: "villager", desc: "镇上的程序员，钟爱雨天。" },
+      { icon: "👵", name: "艾芙琳", cat: "villager", desc: "和蔼的祖母，擅长烘焙。" },
+      { icon: "🧑‍🌾", name: "镇长刘易斯", cat: "villager", desc: "鹈鹕镇镇长，关心小镇发展。" }
+    ];
+
+    const CAT_LABEL = { crop: "作物", animal: "动物", villager: "村民" };
+    const grid = document.getElementById("grid");
+    const input = document.getElementById("searchInput");
+    let currentCat = "all";
+
+    function render(list) {
+      grid.innerHTML = "";
+      if (!list.length) {
+        grid.innerHTML = '<div class="empty">🌾 没有找到相关条目，换个关键词试试？</div>';
+        return;
+      }
+      list.forEach(it => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML =
+          '<div class="icon">' + it.icon + '</div>' +
+          '<div class="name">' + it.name + '</div>' +
+          '<span class="tag">' + (CAT_LABEL[it.cat] || it.cat) + '</span>' +
+          '<div class="desc">' + it.desc + '</div>';
+        grid.appendChild(card);
+      });
+    }
+
+    function filter() {
+      const q = input.value.trim().toLowerCase();
+      const res = ITEMS.filter(it => {
+        const okCat = currentCat === "all" || it.cat === currentCat;
+        const okQ = !q || it.name.toLowerCase().includes(q) || (CAT_LABEL[it.cat] || "").includes(q);
+        return okCat && okQ;
+      });
+      render(res);
+    }
+
+    document.getElementById("searchBtn").addEventListener("click", filter);
+    input.addEventListener("input", filter);
+    input.addEventListener("keydown", e => { if (e.key === "Enter") filter(); });
+
+    document.getElementById("chips").addEventListener("click", e => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      currentCat = chip.dataset.cat;
+      filter();
+    });
+
+    // 其他导航项（页面尚未生成）
+    document.querySelectorAll(".nav-links a[data-page]").forEach(a => {
+      a.addEventListener("click", e => {
+        e.preventDefault();
+        alert("「" + a.dataset.page + "」页面暂未开放，敬请期待～");
+      });
+    });
+
+    // ===== 登录态：显示农夫名 / 退出 =====
+    function applyFarmer() {
+      try {
+        const raw = localStorage.getItem("stardew_farmer");
+        if (raw) {
+          const f = JSON.parse(raw);
+          const name = f.farmerName || f.account || "农夫";
+          document.getElementById("farmerName").textContent = name;
+          document.getElementById("welcome").innerHTML =
+            "欢迎回到星露谷，<b>" + name + "</b>！今天也要努力种田哦～ 🌞";
+        }
+      } catch (e) { /* 忽略，使用默认文案 */ }
+    }
+    applyFarmer();
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("stardew_farmer");
+      location.href = "index.html#/login";
+    });
+
+    // 初始渲染
+    filter();
+  </script>
+</body>
+</html>
