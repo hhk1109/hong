@@ -5,34 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>星露谷物语 · 登录</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Zpix&display=swap" rel="stylesheet" />
-  <script>
-    /* 登录成功后跳转首页：
-       拦截 /api/auth/login 的响应，code===200 时延迟 1 秒跳 home.html
-       （延迟是为了让“早上好，农夫！”的问候语先露个脸）。
-       说明：本钩子只读响应副本，不影响登录页自身的逻辑与存储（stardew_farmer）。 */
-    (function () {
-      var _fetch = window.fetch;
-      if (typeof _fetch !== 'function') return;
-      window.fetch = function (input, init) {
-        var url = '';
-        if (typeof input === 'string') url = input;
-        else if (input && input.url) url = input.url;
-        var p = _fetch.apply(this, arguments);
-        if (url.indexOf('auth/login') !== -1) {
-          p.then(function (res) {
-            try {
-              res.clone().json().then(function (j) {
-                if (j && j.code === 200) {
-                  setTimeout(function () { window.location.href = 'home.html'; }, 1000);
-                }
-              }).catch(function () {});
-            } catch (e) {}
-          }).catch(function () {});
-        }
-        return p;
-      };
-    })();
-  </script>
   <script defer src="./assets/index.js"></script>
 </head>
 <body>

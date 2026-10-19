@@ -2,9 +2,7 @@ START
 STEP1-vars 
 STEP2-mvn-ok  
 STEP3-mysql-ok  
-STEP4-sql-ok  
-STEP5-target-ok  
-STEP6-port-occupied  
+STEP4-sql-fail  
+STEP5-target-missing  
+STEP6-port-free  
 STEP7-javaw-launched 
-STEP8-8081-up  
-DONE 
