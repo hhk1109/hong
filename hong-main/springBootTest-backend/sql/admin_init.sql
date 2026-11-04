@@ -49,7 +49,7 @@ INSERT INTO `item` (`icon`, `name`, `cat`, `description`, `sort_order`, `enabled
 SELECT t.`icon`, t.`name`, t.`cat`, t.`description`, t.`sort_order`, 1
 FROM (
     SELECT '🍓' AS `icon`, '草莓' AS `name`, 'crop' AS `cat`, '春季作物，可多次收获，镇长的最爱。' AS `description`, 1 AS `sort_order`
-    UNION ALL SELECT '🫐', '蓝莓', 'crop', '夏季作物，产量高，制作果酱一流。', 2
+    UNION ALL SELECT '🍇', '蓝莓', 'crop', '夏季作物，产量高，制作果酱一流。', 2
     UNION ALL SELECT '🌽', '玉米', 'crop', '夏秋两季均可种植，烘烤后更香甜。', 3
     UNION ALL SELECT '🎃', '南瓜', 'crop', '秋季作物，万圣节必备，售价可观。', 4
     UNION ALL SELECT '🍒', '樱桃', 'crop', '多年生果树，春季稳定产出。', 5
