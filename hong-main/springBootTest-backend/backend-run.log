@@ -1,0 +1,102 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.4.5)
+
+2026-11-04 08:44:56  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 3316 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\hong\hong-main\springBootTest-backend)
+2026-11-04 08:44:56  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+2026-11-04 08:44:57  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+2026-11-04 08:44:57  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+2026-11-04 08:44:57  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+2026-11-04 08:44:57  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+2026-11-04 08:44:57  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1075 ms
+Logging initialized using 'class org.apache.ibatis.logging.stdout.StdOutImpl' adapter.
+Get /192.168.137.1 network interface 
+Get network interface info: name:ethernet_32776 (VMware Virtual Ethernet Adapter for VMnet8)
+Initialization Sequence datacenterId:0 workerId:21
+ _ _   |_  _ _|_. ___ _ |    _ 
+| | |\/|_)(_| | |_\  |_)||_|_\ 
+     /               |         
+                        3.5.9 
+2026-11-04 08:44:57  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+2026-11-04 08:44:58  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+2026-11-04 08:44:58  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.359 seconds (process running for 2.746)
+2026-11-04 08:45:32  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-04 08:45:32  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+2026-11-04 08:45:32  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d0b622c] was not registered for synchronization because synchronization is not active
+2026-11-04 08:45:32  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+2026-11-04 08:45:32  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5f68b176
+2026-11-04 08:45:32  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+JDBC Connection [HikariProxyConnection@1368780472 wrapping com.mysql.cj.jdbc.ConnectionImpl@5f68b176] will not be managed by Spring
+==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (account = ? OR email = ?)
+==> Parameters: testfarmer(String), test@stardew.test(String)
+<==    Columns: total
+<==        Row: 0
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d0b622c]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@67a55afb] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@964069578 wrapping com.mysql.cj.jdbc.ConnectionImpl@5f68b176] will not be managed by Spring
+==>  Preparing: INSERT INTO user ( account, password, farmer_name, farm_name, email, animal, create_time, update_time ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: testfarmer(String), $2a$10$lA3P1/zpfyQvD8ajHjFe0eIcCn6H5ozRLCA2FuoZBv/5hmdu7zmRS(String), testfarmer(String), 鹈鹕镇农场(String), test@stardew.test(String), dog(String), 2026-11-04T08:45:32.747964900(LocalDateTime), 2026-11-04T08:45:32.747964900(LocalDateTime)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@67a55afb]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@461ad74c] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@481127105 wrapping com.mysql.cj.jdbc.ConnectionImpl@5f68b176] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,create_time,update_time FROM user WHERE (account = ? OR email = ?)
+==> Parameters: testfarmer(String), testfarmer(String)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, create_time, update_time
+<==        Row: 1, testfarmer, $2a$10$lA3P1/zpfyQvD8ajHjFe0eIcCn6H5ozRLCA2FuoZBv/5hmdu7zmRS, testfarmer, 鹈鹕镇农场, test@stardew.test, dog, 2026-11-04 08:45:33, 2026-11-04 08:45:33
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@461ad74c]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3422286] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@226876574 wrapping com.mysql.cj.jdbc.ConnectionImpl@5f68b176] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,create_time,update_time FROM user WHERE (account = ? OR email = ?)
+==> Parameters: testfarmer(String), testfarmer(String)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, create_time, update_time
+<==        Row: 1, testfarmer, $2a$10$lA3P1/zpfyQvD8ajHjFe0eIcCn6H5ozRLCA2FuoZBv/5hmdu7zmRS, testfarmer, 鹈鹕镇农场, test@stardew.test, dog, 2026-11-04 08:45:33, 2026-11-04 08:45:33
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3422286]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@37ac1c83] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@963376134 wrapping com.mysql.cj.jdbc.ConnectionImpl@5f68b176] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,create_time,update_time FROM user WHERE (account = ? OR email = ?)
+==> Parameters: testfarmer(String), testfarmer(String)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, create_time, update_time
+<==        Row: 1, testfarmer, $2a$10$lA3P1/zpfyQvD8ajHjFe0eIcCn6H5ozRLCA2FuoZBv/5hmdu7zmRS, testfarmer, 鹈鹕镇农场, test@stardew.test, dog, 2026-11-04 08:45:33, 2026-11-04 08:45:33
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@37ac1c83]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@515f8fa2] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1408423950 wrapping com.mysql.cj.jdbc.ConnectionImpl@5f68b176] will not be managed by Spring
+==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (account = ? OR email = ?)
+==> Parameters: 123(String), 2531255532@qq.com(String)
+<==    Columns: total
+<==        Row: 0
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@515f8fa2]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@73a8bbe0] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1579620520 wrapping com.mysql.cj.jdbc.ConnectionImpl@5f68b176] will not be managed by Spring
+==>  Preparing: INSERT INTO user ( account, password, farmer_name, farm_name, email, animal, create_time, update_time ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: 123(String), $2a$10$ZDPVfGkbVliy4sgURTLXGuM3ZSdB32khRZLzEa.BB4UHd3luvquB.(String), 123(String), 123(String), 2531255532@qq.com(String), ? 奶牛(String), 2026-11-04T08:51:13.306229500(LocalDateTime), 2026-11-04T08:51:13.306229500(LocalDateTime)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@73a8bbe0]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2581b356] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@385882218 wrapping com.mysql.cj.jdbc.ConnectionImpl@5f68b176] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,create_time,update_time FROM user WHERE (account = ? OR email = ?)
+==> Parameters: 123(String), 123(String)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, create_time, update_time
+<==        Row: 2, 123, $2a$10$ZDPVfGkbVliy4sgURTLXGuM3ZSdB32khRZLzEa.BB4UHd3luvquB., 123, 123, 2531255532@qq.com, ? 奶牛, 2026-11-04 08:51:13, 2026-11-04 08:51:13
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2581b356]
