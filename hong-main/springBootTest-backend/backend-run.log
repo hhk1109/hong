@@ -8,49 +8,42 @@
 
  :: Spring Boot ::                (v3.4.5)
 
-2026-11-04 08:59:21  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 10568 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\hong\hong-main\springBootTest-backend)
-2026-11-04 08:59:21  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
-2026-11-04 08:59:22  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
-2026-11-04 08:59:22  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
-2026-11-04 08:59:22  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
-2026-11-04 08:59:22  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
-2026-11-04 08:59:22  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 972 ms
+2026-11-04 09:55:47  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 1852 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\hong\hong-main\springBootTest-backend)
+2026-11-04 09:55:47  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+2026-11-04 09:55:48  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+2026-11-04 09:55:48  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+2026-11-04 09:55:48  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+2026-11-04 09:55:48  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+2026-11-04 09:55:48  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1134 ms
 Logging initialized using 'class org.apache.ibatis.logging.stdout.StdOutImpl' adapter.
 Get /192.168.137.1 network interface 
 Get network interface info: name:ethernet_32776 (VMware Virtual Ethernet Adapter for VMnet8)
-Initialization Sequence datacenterId:0 workerId:8
+Initialization Sequence datacenterId:0 workerId:20
  _ _   |_  _ _|_. ___ _ |    _ 
 | | |\/|_)(_| | |_\  |_)||_|_\ 
      /               |         
                         3.5.9 
-2026-11-04 08:59:23  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
-2026-11-04 08:59:23  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
-2026-11-04 08:59:23  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.242 seconds (process running for 2.623)
+2026-11-04 09:55:49  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+2026-11-04 09:55:49  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+2026-11-04 09:55:49  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.545 seconds (process running for 2.949)
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64f4f12] was not registered for synchronization because synchronization is not active
-2026-11-04 08:59:23  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
-2026-11-04 08:59:23  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@26ca12a2
-2026-11-04 08:59:23  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
-JDBC Connection [HikariProxyConnection@1713589007 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6870cfac] was not registered for synchronization because synchronization is not active
+2026-11-04 09:55:49  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+2026-11-04 09:55:49  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e151e1f
+2026-11-04 09:55:49  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+JDBC Connection [HikariProxyConnection@888984210 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
 ==>  Preparing: SELECT COUNT( * ) AS total FROM admin_user WHERE (username = ?)
 ==> Parameters: admin(String)
 <==    Columns: total
-<==        Row: 0
+<==        Row: 1
 <==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64f4f12]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6870cfac]
+2026-11-04 09:56:07  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-04 09:56:07  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+2026-11-04 09:56:07  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@40016ce1] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@239902985 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
-==>  Preparing: INSERT INTO admin_user ( username, password, nickname, create_time, update_time ) VALUES ( ?, ?, ?, ?, ? )
-==> Parameters: admin(String), $2a$10$gXwPwq6HksBFdo79CznNEeuhGyMCkYQSIeI5tp1Wb30ZTwTRPxIvS(String), 镇长(String), 2026-11-04T08:59:23.887085200(LocalDateTime), 2026-11-04T08:59:23.887085200(LocalDateTime)
-<==    Updates: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@40016ce1]
-2026-11-04 09:03:09  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-11-04 09:03:09  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
-2026-11-04 09:03:09  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 0 ms
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b004dd8] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@1934778646 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@8e29a0c] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2062391581 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
 ==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
 ==> Parameters: 1(Integer)
 <==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
@@ -70,168 +63,91 @@ JDBC Connection [HikariProxyConnection@1934778646 wrapping com.mysql.cj.jdbc.Con
 <==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
 <==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
 <==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==      Total: 16
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b004dd8]
+<==        Row: 39, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 35, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 40, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 36, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 37, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 41, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 42, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 38, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@8e29a0c]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46aa639e] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@88245219 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f54a92a] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@972229449 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
 ==>  Preparing: SELECT id,username,password,nickname,create_time,update_time FROM admin_user WHERE (username = ?)
 ==> Parameters: admin(String)
 <==    Columns: id, username, password, nickname, create_time, update_time
 <==        Row: 1, admin, $2a$10$gXwPwq6HksBFdo79CznNEeuhGyMCkYQSIeI5tp1Wb30ZTwTRPxIvS, 镇长, 2026-11-04 08:59:24, 2026-11-04 08:59:24
 <==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46aa639e]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f54a92a]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7321ecb8] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@2112228524 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
-==>  Preparing: SELECT id,username,password,nickname,create_time,update_time FROM admin_user WHERE (username = ?)
-==> Parameters: admin(String)
-<==    Columns: id, username, password, nickname, create_time, update_time
-<==        Row: 1, admin, $2a$10$gXwPwq6HksBFdo79CznNEeuhGyMCkYQSIeI5tp1Wb30ZTwTRPxIvS, 镇长, 2026-11-04 08:59:24, 2026-11-04 08:59:24
-<==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7321ecb8]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@ee8e737] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@1903344311 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
-==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
-==> Parameters: 
-<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
-<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==      Total: 16
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@ee8e737]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@e8042de] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@1149066202 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d292363] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@855486552 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
 ==>  Preparing: INSERT INTO item ( icon, name, cat, description, sort_order, enabled, create_time, update_time ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-==> Parameters: ?(String), 蜂蜜(String), crop(String), 测试新增条目(String), 99(Integer), 1(Integer), 2026-11-04T09:03:25.265952600(LocalDateTime), 2026-11-04T09:03:25.265952600(LocalDateTime)
+==> Parameters: ?(String), 分类验证(String), fish(String), tmp(String), 1(Integer), 1(Integer), 2026-11-04T09:56:08.588562600(LocalDateTime), 2026-11-04T09:56:08.588562600(LocalDateTime)
 <==    Updates: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@e8042de]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d292363]
+2026-11-04 09:56:08  INFO org.apache.coyote.http11.Http11Processor.log 170:Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target [/api/admin/items?keyword=0xe50x880x860xe70xb10xbb0xe90xaa0x8c0xe80xaf0x81 ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:478)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:271)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4c5e3eda] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1117374753 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
+==>  Preparing: SELECT id,username,password,nickname,create_time,update_time FROM admin_user WHERE (username = ?)
+==> Parameters: admin(String)
+<==    Columns: id, username, password, nickname, create_time, update_time
+<==        Row: 1, admin, $2a$10$gXwPwq6HksBFdo79CznNEeuhGyMCkYQSIeI5tp1Wb30ZTwTRPxIvS, 镇长, 2026-11-04 08:59:24, 2026-11-04 08:59:24
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4c5e3eda]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a4c80a0] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2080184669 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (name LIKE ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: %分类验证%(String)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 43, ?, 分类验证, fish, tmp, 1, 1, 2026-11-04 09:56:09, 2026-11-04 09:56:09
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a4c80a0]
 Creating a new SqlSession
 SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64ca6e48] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@1779272865 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
-==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
-==> Parameters: 1(Integer)
-<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
-<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 32, ?, 蜂蜜, crop, 测试新增条目, 99, 1, 2026-11-04 09:03:25, 2026-11-04 09:03:25
-<==      Total: 17
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64ca6e48]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1ac8cd12] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@1254625874 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
+JDBC Connection [HikariProxyConnection@1779272865 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
 ==>  Preparing: SELECT id,username,password,nickname,create_time,update_time FROM admin_user WHERE (username = ?)
 ==> Parameters: admin(String)
 <==    Columns: id, username, password, nickname, create_time, update_time
 <==        Row: 1, admin, $2a$10$gXwPwq6HksBFdo79CznNEeuhGyMCkYQSIeI5tp1Wb30ZTwTRPxIvS, 镇长, 2026-11-04 08:59:24, 2026-11-04 08:59:24
 <==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1ac8cd12]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64ca6e48]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5390219] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@952601063 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@338d3e6f] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1051806036 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
 ==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE id=?
-==> Parameters: 32(Long)
+==> Parameters: 43(Long)
 <==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
-<==        Row: 32, ?, 蜂蜜, crop, 测试新增条目, 99, 1, 2026-11-04 09:03:25, 2026-11-04 09:03:25
+<==        Row: 43, ?, 分类验证, fish, tmp, 1, 1, 2026-11-04 09:56:09, 2026-11-04 09:56:09
 <==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5390219]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@338d3e6f]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75e62918] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@511056900 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
-==>  Preparing: UPDATE item SET icon=?, name=?, cat=?, description=?, sort_order=?, enabled=?, create_time=?, update_time=? WHERE id=?
-==> Parameters: ?(String), 蜂蜜(String), crop(String), 测试新增条目(String), 99(Integer), 0(Integer), 2026-11-04T09:03:25(LocalDateTime), 2026-11-04T09:03:25(LocalDateTime), 32(Long)
-<==    Updates: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@75e62918]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@61496c0d] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@609827318 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
-==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
-==> Parameters: 1(Integer)
-<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
-<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==      Total: 16
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@61496c0d]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@709335c6] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@694812558 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
-==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE id=?
-==> Parameters: 32(Long)
-<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
-<==        Row: 32, ?, 蜂蜜, crop, 测试新增条目, 99, 0, 2026-11-04 09:03:25, 2026-11-04 09:03:25
-<==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@709335c6]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@51b07684] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@2070731895 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3e538490] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1174478658 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
 ==>  Preparing: DELETE FROM item WHERE id=?
-==> Parameters: 32(Long)
+==> Parameters: 43(Long)
 <==    Updates: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@51b07684]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3e538490]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@330294] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@421658677 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
-==>  Preparing: SELECT id,username,password,nickname,create_time,update_time FROM admin_user WHERE (username = ?)
-==> Parameters: Admin(String)
-<==    Columns: id, username, password, nickname, create_time, update_time
-<==        Row: 1, admin, $2a$10$gXwPwq6HksBFdo79CznNEeuhGyMCkYQSIeI5tp1Wb30ZTwTRPxIvS, 镇长, 2026-11-04 08:59:24, 2026-11-04 08:59:24
-<==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@330294]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b30869a] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@473896346 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
-==>  Preparing: SELECT id,username,password,nickname,create_time,update_time FROM admin_user WHERE (username = ?)
-==> Parameters: Admin(String)
-<==    Columns: id, username, password, nickname, create_time, update_time
-<==        Row: 1, admin, $2a$10$gXwPwq6HksBFdo79CznNEeuhGyMCkYQSIeI5tp1Wb30ZTwTRPxIvS, 镇长, 2026-11-04 08:59:24, 2026-11-04 08:59:24
-<==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b30869a]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7e40eb29] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@574359982 wrapping com.mysql.cj.jdbc.ConnectionImpl@26ca12a2] will not be managed by Spring
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f8b422d] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1878703452 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
 ==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
 ==> Parameters: 1(Integer)
 <==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
@@ -251,5 +167,13 @@ JDBC Connection [HikariProxyConnection@574359982 wrapping com.mysql.cj.jdbc.Conn
 <==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
 <==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
 <==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==      Total: 16
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7e40eb29]
+<==        Row: 39, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 35, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 40, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 36, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 37, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 41, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 42, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 38, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f8b422d]

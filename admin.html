@@ -215,6 +215,8 @@
         <option value="crop">作物</option>
         <option value="animal">动物</option>
         <option value="villager">村民</option>
+        <option value="fish">鱼类</option>
+        <option value="ore">矿石</option>
       </select>
       <button class="btn-add" id="addBtn">＋ 新增条目</button>
     </div>
@@ -226,7 +228,7 @@
           <th>名称</th>
           <th style="width:90px">分类</th>
           <th>描述</th>
-          <th style="width:70px">排序</th>
+          <th style="width:70px">售价/排序</th>
           <th style="width:80px">状态</th>
           <th style="width:230px">操作</th>
         </tr>
@@ -256,6 +258,8 @@
             <option value="crop">作物</option>
             <option value="animal">动物</option>
             <option value="villager">村民</option>
+            <option value="fish">鱼类</option>
+            <option value="ore">矿石</option>
           </select>
         </div>
       </div>
@@ -265,7 +269,7 @@
       </div>
       <div class="field-row">
         <div class="field">
-          <label>排序值（越小越靠前）</label>
+          <label>售价 / 排序（金币数值，越小越靠前）</label>
           <input type="number" id="fSort" min="0" max="9999" value="999" />
         </div>
         <div class="field">
@@ -288,7 +292,7 @@
     let token = localStorage.getItem(TOKEN_KEY);
     if (!token) { location.replace("/admin"); }
 
-    const CAT_LABEL = { crop: "作物", animal: "动物", villager: "村民" };
+    const CAT_LABEL = { crop: "作物", animal: "动物", villager: "村民", fish: "鱼类", ore: "矿石" };
     let allItems = [];
     let editingId = null; // null = 新增
 

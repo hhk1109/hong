@@ -66,3 +66,32 @@ FROM (
     UNION ALL SELECT '🧑‍🌾', '镇长刘易斯', 'villager', '鹈鹕镇镇长，关心小镇发展。', 16
 ) AS t
 WHERE NOT EXISTS (SELECT 1 FROM `item`);
+
+-- 钓鱼玩法的鱼类目录（sort_order = 售价，后台管理可调）
+-- 幂等：按名称逐条插入，已存在则跳过
+INSERT INTO `item` (`icon`, `name`, `cat`, `description`, `sort_order`, `enabled`)
+SELECT '🐟', '鲈鱼', 'fish', '鹈鹕河里最常见的鱼，新手渔夫的起点。', 40, 1
+WHERE NOT EXISTS (SELECT 1 FROM `item` WHERE `name` = '鲈鱼');
+INSERT INTO `item` (`icon`, `name`, `cat`, `description`, `sort_order`, `enabled`)
+SELECT '🐠', '虹鳟', 'fish', '色彩斑斓的鳟鱼，在山间溪流中出没。', 65, 1
+WHERE NOT EXISTS (SELECT 1 FROM `item` WHERE `name` = '虹鳟');
+INSERT INTO `item` (`icon`, `name`, `cat`, `description`, `sort_order`, `enabled`)
+SELECT '🐡', '鲶鱼', 'fish', '力气很大的深水鱼，咬钩时鱼竿都在颤抖。', 120, 1
+WHERE NOT EXISTS (SELECT 1 FROM `item` WHERE `name` = '鲶鱼');
+INSERT INTO `item` (`icon`, `name`, `cat`, `description`, `sort_order`, `enabled`)
+SELECT '🦈', '传说之鱼', 'fish', '只在月圆之夜现身的深海巨物，渔夫的终极梦想。', 500, 1
+WHERE NOT EXISTS (SELECT 1 FROM `item` WHERE `name` = '传说之鱼');
+
+-- 矿洞玩法的矿石目录（sort_order = 售价，后台管理可调）
+INSERT INTO `item` (`icon`, `name`, `cat`, `description`, `sort_order`, `enabled`)
+SELECT '🔶', '铜矿石', 'ore', '矿洞浅层最常见的矿石，熔炼后用途广泛。', 25, 1
+WHERE NOT EXISTS (SELECT 1 FROM `item` WHERE `name` = '铜矿石');
+INSERT INTO `item` (`icon`, `name`, `cat`, `description`, `sort_order`, `enabled`)
+SELECT '🔷', '铁矿石', 'ore', '埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。', 60, 1
+WHERE NOT EXISTS (SELECT 1 FROM `item` WHERE `name` = '铁矿石');
+INSERT INTO `item` (`icon`, `name`, `cat`, `description`, `sort_order`, `enabled`)
+SELECT '🥇', '金矿石', 'ore', '深层矿脉中泛着金光，价值不菲。', 150, 1
+WHERE NOT EXISTS (SELECT 1 FROM `item` WHERE `name` = '金矿石');
+INSERT INTO `item` (`icon`, `name`, `cat`, `description`, `sort_order`, `enabled`)
+SELECT '💎', '钻石', 'ore', '矿洞最深处才可能见到的稀世珍宝。', 400, 1
+WHERE NOT EXISTS (SELECT 1 FROM `item` WHERE `name` = '钻石');

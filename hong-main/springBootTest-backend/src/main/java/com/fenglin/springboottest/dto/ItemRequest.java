@@ -18,7 +18,7 @@ public class ItemRequest {
     private String name;
 
     @NotBlank(message = "分类不能为空")
-    @Pattern(regexp = "crop|animal|villager", message = "分类只能是 crop / animal / villager")
+    @Pattern(regexp = "crop|animal|villager|fish|ore", message = "分类只能是 crop / animal / villager / fish / ore")
     private String cat;
 
     @Size(max = 255, message = "描述过长")
