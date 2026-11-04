@@ -56,6 +56,18 @@ function serveStatic(req, res) {
     return;
   }
 
+  // 后台管理系统：/admin（登录页）与 /admin/dashboard（管理面板）
+  if (urlPath === "/admin" || urlPath === "/admin-login.html") {
+    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-cache" });
+    fs.createReadStream(path.join(PROJECT_ROOT, "admin-login.html")).pipe(res);
+    return;
+  }
+  if (urlPath === "/admin/dashboard" || urlPath === "/admin.html") {
+    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-cache" });
+    fs.createReadStream(path.join(PROJECT_ROOT, "admin.html")).pipe(res);
+    return;
+  }
+
   // SPA 兜底：未知路径一律回 index.html（vue-router history 模式）
   let filePath = path.normalize(path.join(ROOT, urlPath));
   if (!filePath.startsWith(ROOT) || !fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
@@ -105,4 +117,6 @@ server.listen(PORT, "0.0.0.0", () => {
   console.log(`[frontend] 静态服务已启动: http://localhost:${PORT}`);
   console.log(`[frontend] /api 代理到后端: ${API_TARGET}`);
   console.log(`[frontend] 登录后首页: http://localhost:${PORT}/home`);
+  console.log(`[frontend] 后台管理登录: http://localhost:${PORT}/admin`);
+  console.log(`[frontend] 后台管理面板: http://localhost:${PORT}/admin/dashboard`);
 });
