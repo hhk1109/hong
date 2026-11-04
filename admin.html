@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>星露谷 · 后台管理系统</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Zpix&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --parchment: #fdf6e0; --parchment-2: #fff8e8; --parchment-3: #fdf3c8;
+      --green: #57a047; --green-deep: #3da336; --green-dark: #2e7d32; --green-light: #8fe87f;
+      --gold: #e8952a; --gold-2: #f4a42a; --gold-deep: #c07820;
+      --brown: #5a3a1e; --brown-2: #6b4e2a; --pink: #ff8fa3; --red: #e84545;
+      --line: #c99a2a;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; min-height: 100%;
+      font-family: "Zpix", "Press Start 2P", "Microsoft YaHei", sans-serif;
+      color: var(--brown);
+      background:
+        radial-gradient(circle at 20% 10%, #fffdf3 0%, transparent 40%),
+        radial-gradient(circle at 80% 0%, #fdf0cf 0%, transparent 45%),
+        linear-gradient(160deg, var(--parchment) 0%, var(--parchment-3) 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .navbar {
+      position: sticky; top: 0; z-index: 20;
+      display: flex; align-items: center; gap: 18px;
+      padding: 12px 26px;
+      background: linear-gradient(180deg, #4a3a5e, #3e3050);
+      border-bottom: 4px solid var(--gold);
+      box-shadow: 0 4px 0 rgba(90, 58, 30, .35);
+      color: #fff8e8;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-family: "Press Start 2P", "Zpix", sans-serif;
+      font-size: 13px; letter-spacing: 1px;
+      text-shadow: 2px 2px 0 var(--brown); white-space: nowrap;
+    }
+    .nav-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+    .admin-chip {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 12px; background: var(--parchment-2);
+      border: 3px solid var(--gold-deep); border-radius: 999px;
+      color: var(--brown); font-size: 12px;
+    }
+    .btn-nav {
+      cursor: pointer; padding: 8px 14px;
+      font-family: inherit; font-size: 12px;
+      color: #fff8e8; background: var(--green-deep);
+      border: 3px solid var(--brown); border-radius: 8px;
+      box-shadow: 0 3px 0 var(--brown);
+    }
+    .btn-nav.red { background: var(--red); }
+    .btn-nav:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--brown); }
+
+    .container { max-width: 1100px; margin: 26px auto 60px; padding: 0 18px; }
+
+    .toolbar {
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+      background: linear-gradient(180deg, var(--parchment-2), var(--parchment-3));
+      border: 4px solid var(--gold); border-radius: 14px;
+      padding: 16px 18px;
+      box-shadow: 0 5px 0 rgba(90, 58, 30, .22);
+      margin-bottom: 20px;
+    }
+    .toolbar .search-input {
+      flex: 1 1 220px; min-width: 0;
+      padding: 11px 14px; font-family: inherit; font-size: 14px;
+      color: var(--brown); background: #fffdf6;
+      border: 3px solid var(--brown-2); border-radius: 10px; outline: none;
+    }
+    .toolbar .search-input:focus { border-color: var(--green-deep); }
+    .toolbar select {
+      padding: 11px 12px; font-family: inherit; font-size: 13px;
+      color: var(--brown); background: #fffdf6;
+      border: 3px solid var(--brown-2); border-radius: 10px; outline: none; cursor: pointer;
+    }
+    .btn-add {
+      cursor: pointer; padding: 11px 18px;
+      font-family: "Press Start 2P", "Zpix", sans-serif; font-size: 11px;
+      color: #fff8e8; background: linear-gradient(180deg, var(--green), var(--green-deep));
+      border: 3px solid var(--brown); border-radius: 10px;
+      box-shadow: 0 4px 0 var(--brown); white-space: nowrap;
+    }
+    .btn-add:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--brown); }
+
+    .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+    .stat {
+      flex: 1 1 150px; background: #fffdf6;
+      border: 3px solid var(--line); border-radius: 12px;
+      padding: 12px 16px; text-align: center;
+    }
+    .stat .num { font-size: 22px; color: var(--green-dark); }
+    .stat .label { font-size: 12px; color: #9a7a4a; }
+
+    table {
+      width: 100%; border-collapse: separate; border-spacing: 0;
+      background: #fffdf6; border: 4px solid var(--gold-deep); border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 0 rgba(90, 58, 30, .22);
+    }
+    th, td { padding: 12px 14px; font-size: 13px; text-align: left; vertical-align: middle; }
+    thead th {
+      background: linear-gradient(180deg, var(--green-deep), var(--green-dark));
+      color: #fff8e8; font-size: 12px; letter-spacing: 1px;
+    }
+    tbody tr { border-top: 2px dashed var(--line); }
+    tbody tr:hover { background: var(--parchment-2); }
+    td .item-icon { font-size: 22px; }
+    .tag {
+      display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 6px;
+      color: #fff8e8; background: var(--green-deep);
+    }
+    .tag.animal { background: var(--gold-deep); }
+    .tag.villager { background: #a05fc4; }
+    .badge {
+      display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 6px;
+      color: #fff8e8; background: var(--green-dark);
+    }
+    .badge.off { background: #b39b6e; }
+    .desc-cell { max-width: 300px; color: #9a7a4a; font-size: 12px; }
+    .actions { display: flex; gap: 6px; flex-wrap: wrap; }
+    .btn-mini {
+      cursor: pointer; padding: 6px 10px; font-family: inherit; font-size: 12px;
+      border: 2px solid var(--brown); border-radius: 8px;
+      color: var(--brown); background: var(--parchment-2);
+      box-shadow: 0 2px 0 var(--brown); white-space: nowrap;
+    }
+    .btn-mini:active { transform: translateY(2px); box-shadow: none; }
+    .btn-mini.warn { background: var(--gold-2); }
+    .btn-mini.danger { background: var(--red); color: #fff8e8; }
+    .empty-row { text-align: center; color: #b39b6e; padding: 30px; }
+
+    /* 弹窗表单 */
+    .mask {
+      position: fixed; inset: 0; z-index: 50;
+      display: none; place-items: center;
+      background: rgba(43, 36, 64, .55);
+    }
+    .mask.open { display: grid; }
+    .modal {
+      width: min(480px, 92vw);
+      background: linear-gradient(180deg, var(--parchment-2), var(--parchment-3));
+      border: 4px solid var(--gold); border-radius: 14px;
+      padding: 22px 24px;
+      box-shadow: 0 8px 0 rgba(90, 58, 30, .35);
+    }
+    .modal h3 { margin: 0 0 14px; font-size: 16px; color: var(--green-dark); }
+    .modal .field { margin-bottom: 12px; }
+    .modal .field label { display: block; font-size: 12px; margin-bottom: 5px; }
+    .modal .field input, .modal .field select, .modal .field textarea {
+      width: 100%; padding: 10px 12px; font-family: inherit; font-size: 13px;
+      color: var(--brown); background: #fffdf6;
+      border: 3px solid var(--brown-2); border-radius: 8px; outline: none;
+    }
+    .modal .field textarea { resize: vertical; min-height: 64px; }
+    .modal .field-row { display: flex; gap: 10px; }
+    .modal .field-row .field { flex: 1; }
+    .modal .check { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+    .modal .check input { width: 18px; height: 18px; }
+    .modal .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 16px; }
+    .btn-cancel {
+      cursor: pointer; padding: 10px 16px; font-family: inherit; font-size: 13px;
+      color: var(--brown); background: #eee1bd;
+      border: 3px solid var(--brown); border-radius: 8px;
+    }
+    .btn-save {
+      cursor: pointer; padding: 10px 18px;
+      font-family: "Press Start 2P", "Zpix", sans-serif; font-size: 11px;
+      color: #fff8e8; background: linear-gradient(180deg, var(--green), var(--green-deep));
+      border: 3px solid var(--brown); border-radius: 8px;
+      box-shadow: 0 3px 0 var(--brown);
+    }
+    .btn-save:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--brown); }
+
+    .toast {
+      position: fixed; left: 50%; top: 26px; transform: translate(-50%, -16px);
+      padding: 10px 18px; font-size: 13px; color: var(--brown);
+      background: var(--gold-2); border: 3px solid var(--brown); border-radius: 10px;
+      opacity: 0; pointer-events: none; transition: all .25s ease; z-index: 99;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    .footer { text-align: center; padding: 22px; font-size: 12px; color: #9a7a4a; border-top: 3px dashed var(--line); }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand"><span>🏛️</span> STARDEW 后台管理</div>
+    <div class="nav-right">
+      <div class="admin-chip"><span>👮</span><span id="adminName">管理员</span></div>
+      <button class="btn-nav" onclick="location.href='/home'">🏠 查看首页</button>
+      <button class="btn-nav red" id="logoutBtn">退出登录</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="stats" id="stats">
+      <div class="stat"><div class="num" id="statTotal">0</div><div class="label">条目总数</div></div>
+      <div class="stat"><div class="num" id="statVisible">0</div><div class="label">首页可见</div></div>
+      <div class="stat"><div class="num" id="statHidden">0</div><div class="label">已隐藏</div></div>
+      <div class="stat"><div class="num" id="statCrops">0</div><div class="label">作物 / 动物 / 村民</div></div>
+    </div>
+
+    <div class="toolbar">
+      <input class="search-input" id="kwInput" type="text" placeholder="按名称搜索条目…" />
+      <select id="catSelect">
+        <option value="">全部分类</option>
+        <option value="crop">作物</option>
+        <option value="animal">动物</option>
+        <option value="villager">村民</option>
+      </select>
+      <button class="btn-add" id="addBtn">＋ 新增条目</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:60px">图标</th>
+          <th>名称</th>
+          <th style="width:90px">分类</th>
+          <th>描述</th>
+          <th style="width:70px">排序</th>
+          <th style="width:80px">状态</th>
+          <th style="width:230px">操作</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <tr><td colspan="7" class="empty-row">加载中…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 新增/编辑弹窗 -->
+  <div class="mask" id="mask">
+    <div class="modal">
+      <h3 id="modalTitle">新增条目</h3>
+      <div class="field">
+        <label>图标（emoji）</label>
+        <input type="text" id="fIcon" maxlength="8" placeholder="例如 🍓" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>名称</label>
+          <input type="text" id="fName" maxlength="32" placeholder="例如 草莓" />
+        </div>
+        <div class="field">
+          <label>分类</label>
+          <select id="fCat">
+            <option value="crop">作物</option>
+            <option value="animal">动物</option>
+            <option value="villager">村民</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>描述（首页卡片展示文案）</label>
+        <textarea id="fDesc" maxlength="200" placeholder="一句话介绍这个条目…"></textarea>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>排序值（越小越靠前）</label>
+          <input type="number" id="fSort" min="0" max="9999" value="999" />
+        </div>
+        <div class="field">
+          <label>首页可见</label>
+          <div class="check" style="padding:10px 0"><input type="checkbox" id="fEnabled" checked /> 在首页展示</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="cancelBtn">取消</button>
+        <button class="btn-save" id="saveBtn">保 存</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <footer class="footer">星露谷 · 后台管理系统 ｜ 管理首页展示的全部图鉴数据（作物 / 动物 / 村民）</footer>
+
+  <script>
+    const TOKEN_KEY = "stardew_admin_token";
+    let token = localStorage.getItem(TOKEN_KEY);
+    if (!token) { location.replace("/admin"); }
+
+    const CAT_LABEL = { crop: "作物", animal: "动物", villager: "村民" };
+    let allItems = [];
+    let editingId = null; // null = 新增
+
+    const toastEl = document.getElementById("toast");
+    let toastTimer = null;
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2600);
+    }
+
+    document.getElementById("adminName").textContent =
+      localStorage.getItem("stardew_admin_username") || "管理员";
+
+    async function api(path, options = {}) {
+      const res = await fetch("/api" + path, {
+        headers: { "Content-Type": "application/json", "X-Admin-Token": token },
+        ...options
+      });
+      if (res.status === 401) {
+        localStorage.removeItem(TOKEN_KEY);
+        toast("登录已过期，请重新登录");
+        setTimeout(() => location.replace("/admin"), 800);
+        throw new Error("unauthorized");
+      }
+      const body = await res.json();
+      if (!res.ok || body.code !== 200) throw new Error(body.message || "请求失败");
+      return body.data;
+    }
+
+    function load() {
+      const kw = document.getElementById("kwInput").value.trim();
+      const cat = document.getElementById("catSelect").value;
+      const query = "?keyword=" + encodeURIComponent(kw) + "&cat=" + encodeURIComponent(cat);
+      api("/admin/items" + query).then(list => {
+        allItems = list;
+        render();
+      }).catch(e => { if (e.message !== "unauthorized") toast("🚜 " + e.message); });
+    }
+
+    function render() {
+      const tbody = document.getElementById("tbody");
+      if (!allItems.length) {
+        tbody.innerHTML = '<tr><td colspan="7" class="empty-row">🌾 暂无条目，点击「新增条目」添加</td></tr>';
+      } else {
+        tbody.innerHTML = allItems.map(it => `
+          <tr>
+            <td class="item-icon">${esc(it.icon)}</td>
+            <td>${esc(it.name)}</td>
+            <td><span class="tag ${esc(it.cat)}">${CAT_LABEL[it.cat] || it.cat}</span></td>
+            <td class="desc-cell">${esc(it.description)}</td>
+            <td>${it.sortOrder}</td>
+            <td><span class="badge ${it.enabled ? "" : "off"}">${it.enabled ? "首页可见" : "已隐藏"}</span></td>
+            <td>
+              <div class="actions">
+                <button class="btn-mini" onclick="openEdit(${it.id})">编辑</button>
+                <button class="btn-mini warn" onclick="toggleEnabled(${it.id}, ${it.enabled})">${it.enabled ? "隐藏" : "显示"}</button>
+                <button class="btn-mini danger" onclick="removeItem(${it.id}, '${esc(it.name)}')">删除</button>
+              </div>
+            </td>
+          </tr>`).join("");
+      }
+      // 统计
+      const total = allItems.length;
+      const visible = allItems.filter(i => i.enabled).length;
+      document.getElementById("statTotal").textContent = total;
+      document.getElementById("statVisible").textContent = visible;
+      document.getElementById("statHidden").textContent = total - visible;
+      const crops = allItems.filter(i => i.cat === "crop").length;
+      const animals = allItems.filter(i => i.cat === "animal").length;
+      const villagers = allItems.filter(i => i.cat === "villager").length;
+      document.getElementById("statCrops").textContent = crops + " / " + animals + " / " + villagers;
+    }
+
+    function esc(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+
+    // ===== 弹窗 =====
+    function openModal(isEdit, item) {
+      editingId = isEdit ? item.id : null;
+      document.getElementById("modalTitle").textContent = isEdit ? "编辑条目 · " + item.name : "新增条目";
+      document.getElementById("fIcon").value = item ? item.icon : "";
+      document.getElementById("fName").value = item ? item.name : "";
+      document.getElementById("fCat").value = item ? item.cat : "crop";
+      document.getElementById("fDesc").value = item ? item.description : "";
+      document.getElementById("fSort").value = item ? item.sortOrder : 999;
+      document.getElementById("fEnabled").checked = item ? !!item.enabled : true;
+      document.getElementById("mask").classList.add("open");
+    }
+    function closeModal() { document.getElementById("mask").classList.remove("open"); }
+
+    // 表格行「编辑」按钮入口（内联 onclick 调用）：按 id 找到条目并打开编辑弹窗
+    function openEdit(id) {
+      const item = allItems.find(i => Number(i.id) === Number(id));
+      if (!item) { toast("⚠️ 条目已不存在，请刷新列表"); return; }
+      openModal(true, item);
+    }
+
+    document.getElementById("addBtn").addEventListener("click", () => openModal(false, null));
+    document.getElementById("cancelBtn").addEventListener("click", closeModal);
+    document.getElementById("mask").addEventListener("click", e => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+
+    document.getElementById("saveBtn").addEventListener("click", async () => {
+      const req = {
+        icon: document.getElementById("fIcon").value.trim(),
+        name: document.getElementById("fName").value.trim(),
+        cat: document.getElementById("fCat").value,
+        description: document.getElementById("fDesc").value.trim(),
+        sortOrder: parseInt(document.getElementById("fSort").value, 10) || 999,
+        enabled: document.getElementById("fEnabled").checked ? 1 : 0
+      };
+      if (!req.icon) { toast("✋ 图标不能为空"); return; }
+      if (!req.name) { toast("✋ 名称不能为空"); return; }
+      try {
+        if (editingId == null) {
+          await api("/admin/items", { method: "POST", body: JSON.stringify(req) });
+          toast("🎉 新增成功，首页已同步");
+        } else {
+          await api("/admin/items/" + editingId, { method: "PUT", body: JSON.stringify(req) });
+          toast("✅ 保存成功，首页已同步");
+        }
+        closeModal();
+        load();
+      } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
+    });
+
+    async function toggleEnabled(id, current) {
+      const item = allItems.find(i => i.id === id);
+      if (!item) return;
+      try {
+        await api("/admin/items/" + id, {
+          method: "PUT",
+          body: JSON.stringify({
+            icon: item.icon, name: item.name, cat: item.cat,
+            description: item.description, sortOrder: item.sortOrder,
+            enabled: current ? 0 : 1
+          })
+        });
+        toast(current ? "已隐藏，首页不再展示" : "已恢复展示");
+        load();
+      } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
+    }
+
+    async function removeItem(id, name) {
+      if (!confirm("确定删除条目「" + name + "」吗？删除后首页将不再展示。")) return;
+      try {
+        await api("/admin/items/" + id, { method: "DELETE" });
+        toast("🗑️ 已删除「" + name + "」");
+        load();
+      } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      try { await api("/admin/auth/logout", { method: "POST" }); } catch (e) {}
+      localStorage.removeItem(TOKEN_KEY);
+      localStorage.removeItem("stardew_admin_username");
+      location.replace("/admin");
+    });
+
+    document.getElementById("kwInput").addEventListener("input", load);
+    document.getElementById("catSelect").addEventListener("change", load);
+
+    load();
+  </script>
+</body>
+</html>

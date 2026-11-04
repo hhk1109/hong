@@ -135,6 +135,20 @@
       box-shadow: 0 3px 0 var(--brown);
     }
     .btn-logout:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--brown); }
+    .btn-admin {
+      cursor: pointer;
+      padding: 8px 14px;
+      font-family: inherit;
+      font-size: 12px;
+      color: #fff8e8;
+      background: #4a3a5e;
+      border: 3px solid var(--brown);
+      border-radius: 8px;
+      box-shadow: 0 3px 0 var(--brown);
+      white-space: nowrap;
+    }
+    .btn-admin:hover { background: var(--gold); color: var(--brown); }
+    .btn-admin:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--brown); }
 
     /* ===================== 搜索区 ===================== */
     .search-section {
@@ -305,6 +319,7 @@
         <span class="avatar">🧑‍🌾</span>
         <span id="farmerName">尊敬的农夫</span>
       </div>
+      <a class="btn-admin" href="/admin" title="进入后台管理系统">🏛️ 后台管理</a>
       <button class="btn-logout" id="logoutBtn">退出</button>
     </div>
   </header>
@@ -333,33 +348,49 @@
   <!-- 物品网格 -->
   <main class="grid" id="grid"></main>
 
-  <footer class="footer">星露谷 · 首页 Demo ｜ 仅前端展示，搜索为本地过滤，未接入后端接口</footer>
+  <footer class="footer">星露谷 · 首页 ｜ 图鉴数据由后台管理系统统一维护（点击导航栏「后台管理」进入）</footer>
 
   <script>
-    // ===== 示例数据（前端静态，未调用后端）=====
-    const ITEMS = [
-      { icon: "🍓", name: "草莓", cat: "crop", desc: "春季作物，可多次收获，镇长的最爱。" },
-      { icon: "🫐", name: "蓝莓", cat: "crop", desc: "夏季作物，产量高，制作果酱一流。" },
-      { icon: "🌽", name: "玉米", cat: "crop", desc: "夏秋两季均可种植，烘烤后更香甜。" },
-      { icon: "🎃", name: "南瓜", cat: "crop", desc: "秋季作物，万圣节必备，售价可观。" },
-      { icon: "🍒", name: "樱桃", cat: "crop", desc: "多年生果树，春季稳定产出。" },
-      { icon: "🍺", name: "啤酒花", cat: "crop", desc: "夏季攀藤作物，用于酿制淡啤酒。" },
-      { icon: "🍞", name: "远古水果", cat: "crop", desc: "传说作物，酿成酒价值连城。" },
-      { icon: "🐔", name: "鸡", cat: "animal", desc: "每天产蛋，金色母鸡更珍贵。" },
-      { icon: "🐄", name: "奶牛", cat: "animal", desc: "产出牛奶，可制作奶酪。" },
-      { icon: "🐑", name: "羊", cat: "animal", desc: "产出羊毛，梳毛后制成布料。" },
-      { icon: "🐖", name: "猪", cat: "animal", desc: "松露猎手，林间觅得松露。" },
-      { icon: "🐎", name: "马", cat: "animal", desc: "牧场好伙伴，提升移动速度。" },
-      { icon: "👧", name: "阿比盖尔", cat: "villager", desc: "鹈鹕镇少女，热爱矿物与冒险。" },
-      { icon: "🧔", name: "塞巴斯蒂安", cat: "villager", desc: "镇上的程序员，钟爱雨天。" },
-      { icon: "👵", name: "艾芙琳", cat: "villager", desc: "和蔼的祖母，擅长烘焙。" },
-      { icon: "🧑‍🌾", name: "镇长刘易斯", cat: "villager", desc: "鹈鹕镇镇长，关心小镇发展。" }
+    // ===== 展示数据：优先从后端接口加载（后台管理可维护），失败时回退本地静态数据 =====
+    const FALLBACK_ITEMS = [
+      { icon: "🍓", name: "草莓", cat: "crop", description: "春季作物，可多次收获，镇长的最爱。" },
+      { icon: "🫐", name: "蓝莓", cat: "crop", description: "夏季作物，产量高，制作果酱一流。" },
+      { icon: "🌽", name: "玉米", cat: "crop", description: "夏秋两季均可种植，烘烤后更香甜。" },
+      { icon: "🎃", name: "南瓜", cat: "crop", description: "秋季作物，万圣节必备，售价可观。" },
+      { icon: "🍒", name: "樱桃", cat: "crop", description: "多年生果树，春季稳定产出。" },
+      { icon: "🍺", name: "啤酒花", cat: "crop", description: "夏季攀藤作物，用于酿制淡啤酒。" },
+      { icon: "🍞", name: "远古水果", cat: "crop", description: "传说作物，酿成酒价值连城。" },
+      { icon: "🐔", name: "鸡", cat: "animal", description: "每天产蛋，金色母鸡更珍贵。" },
+      { icon: "🐄", name: "奶牛", cat: "animal", description: "产出牛奶，可制作奶酪。" },
+      { icon: "🐑", name: "羊", cat: "animal", description: "产出羊毛，梳毛后制成布料。" },
+      { icon: "🐖", name: "猪", cat: "animal", description: "松露猎手，林间觅得松露。" },
+      { icon: "🐎", name: "马", cat: "animal", description: "牧场好伙伴，提升移动速度。" },
+      { icon: "👧", name: "阿比盖尔", cat: "villager", description: "鹈鹕镇少女，热爱矿物与冒险。" },
+      { icon: "🧔", name: "塞巴斯蒂安", cat: "villager", description: "镇上的程序员，钟爱雨天。" },
+      { icon: "👵", name: "艾芙琳", cat: "villager", description: "和蔼的祖母，擅长烘焙。" },
+      { icon: "🧑‍🌾", name: "镇长刘易斯", cat: "villager", description: "鹈鹕镇镇长，关心小镇发展。" }
     ];
+    let ITEMS = [];
 
     const CAT_LABEL = { crop: "作物", animal: "动物", villager: "村民" };
     const grid = document.getElementById("grid");
     const input = document.getElementById("searchInput");
     let currentCat = "all";
+
+    async function loadItems() {
+      try {
+        const res = await fetch("/api/items");
+        const body = await res.json();
+        if (res.ok && body.code === 200 && Array.isArray(body.data) && body.data.length) {
+          ITEMS = body.data;
+        } else {
+          ITEMS = FALLBACK_ITEMS;
+        }
+      } catch (e) {
+        ITEMS = FALLBACK_ITEMS; // 后端未启动时兜底
+      }
+      filter();
+    }
 
     function render(list) {
       grid.innerHTML = "";
@@ -374,7 +405,7 @@
           '<div class="icon">' + it.icon + '</div>' +
           '<div class="name">' + it.name + '</div>' +
           '<span class="tag">' + (CAT_LABEL[it.cat] || it.cat) + '</span>' +
-          '<div class="desc">' + it.desc + '</div>';
+          '<div class="desc">' + (it.description || it.desc || "") + '</div>';
         grid.appendChild(card);
       });
     }
@@ -383,7 +414,10 @@
       const q = input.value.trim().toLowerCase();
       const res = ITEMS.filter(it => {
         const okCat = currentCat === "all" || it.cat === currentCat;
-        const okQ = !q || it.name.toLowerCase().includes(q) || (CAT_LABEL[it.cat] || "").includes(q);
+        const text = (it.description || "") + " " + (it.name || "");
+        const okQ = !q || it.name.toLowerCase().includes(q)
+          || (CAT_LABEL[it.cat] || "").includes(q)
+          || text.toLowerCase().includes(q);
         return okCat && okQ;
       });
       render(res);
@@ -430,8 +464,8 @@
       location.href = "/login";
     });
 
-    // 初始渲染
-    filter();
+    // 初始渲染：从后端加载展示数据
+    loadItems();
   </script>
 </body>
 </html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>星露谷 · 后台管理登录</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Zpix&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --parchment: #fdf6e0; --parchment-2: #fff8e8; --parchment-3: #fdf3c8;
+      --green: #57a047; --green-deep: #3da336; --green-dark: #2e7d32; --green-light: #8fe87f;
+      --gold: #e8952a; --gold-2: #f4a42a; --gold-deep: #c07820;
+      --brown: #5a3a1e; --brown-2: #6b4e2a; --pink: #ff8fa3; --red: #e84545;
+      --line: #c99a2a; --night: #2b2440; --night-2: #352c4e;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; min-height: 100%;
+      font-family: "Zpix", "Press Start 2P", "Microsoft YaHei", sans-serif;
+      color: #fff8e8;
+      background:
+        radial-gradient(circle at 20% 10%, #3a3155 0%, transparent 45%),
+        radial-gradient(circle at 80% 0%, #2f2847 0%, transparent 45%),
+        linear-gradient(165deg, var(--night) 0%, #1f1b33 100%);
+    }
+    .moon {
+      position: fixed; top: 10%; right: 12%;
+      width: 64px; height: 64px; border-radius: 50%;
+      background: #fdf3c8; box-shadow: 0 0 40px 12px rgba(253, 243, 200, .35);
+    }
+    .wrap { max-width: 420px; margin: 12vh auto 0; padding: 0 18px; position: relative; }
+    .panel {
+      background: linear-gradient(180deg, var(--parchment-2), var(--parchment-3));
+      border: 4px solid var(--gold); border-radius: 14px;
+      padding: 28px 26px;
+      box-shadow: 0 8px 0 rgba(90, 58, 30, .35), 0 16px 32px rgba(0, 0, 0, .4);
+      color: var(--brown); text-align: center;
+    }
+    .logo { font-family: "Press Start 2P", "Zpix", sans-serif; font-size: 13px; color: var(--green-dark); }
+    .title { font-size: 22px; margin: 10px 0 4px; }
+    .subtitle { font-size: 12px; color: #9a7a4a; margin-bottom: 18px; }
+    .divider { height: 0; border-top: 3px dashed var(--line); margin: 14px 0 18px; }
+    .field { text-align: left; margin-bottom: 14px; }
+    .field label { display: block; font-size: 12px; margin-bottom: 6px; }
+    .field input {
+      width: 100%; padding: 12px 14px;
+      font-family: inherit; font-size: 14px; color: var(--brown);
+      background: #fffdf6; border: 3px solid var(--brown-2); border-radius: 10px; outline: none;
+    }
+    .field input:focus { border-color: var(--green-deep); box-shadow: 0 0 0 3px rgba(87, 160, 71, .25); }
+    .btn {
+      width: 100%; cursor: pointer; margin-top: 6px;
+      padding: 14px; font-family: "Press Start 2P", "Zpix", sans-serif; font-size: 12px;
+      color: #fff8e8; background: linear-gradient(180deg, var(--green), var(--green-deep));
+      border: 3px solid var(--brown); border-radius: 10px;
+      box-shadow: 0 4px 0 var(--brown);
+    }
+    .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--brown); }
+    .btn:disabled { opacity: .6; cursor: wait; }
+    .toast {
+      position: fixed; left: 50%; top: 26px; transform: translate(-50%, -16px);
+      padding: 10px 18px; font-size: 13px; color: var(--brown);
+      background: var(--gold-2); border: 3px solid var(--brown); border-radius: 10px;
+      opacity: 0; pointer-events: none; transition: all .25s ease; z-index: 99;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .back { display: inline-block; margin-top: 16px; font-size: 12px; color: #cfc6a6; }
+    .back:hover { color: #fff8e8; }
+    .credit { margin-top: 26px; text-align: center; font-size: 11px; color: #8a80a8; }
+  </style>
+</head>
+<body>
+  <div class="moon"></div>
+
+  <div class="wrap">
+    <div class="panel">
+      <div class="logo">★ STARDEW VALLEY ★</div>
+      <div class="title">后台管理</div>
+      <div class="subtitle">— 镇长办公室 · 凭证登录 —</div>
+      <div class="divider"></div>
+      <form id="loginForm">
+        <div class="field">
+          <label for="username">👮 管理员账号</label>
+          <input type="text" id="username" autocomplete="username" placeholder="请输入管理员账号…" />
+        </div>
+        <div class="field">
+          <label for="password">🗝️ 管理密码</label>
+          <input type="password" id="password" autocomplete="current-password" placeholder="请输入密码…" />
+        </div>
+        <button class="btn" type="submit" id="submitBtn">进 入 管 理 处</button>
+      </form>
+    </div>
+    <div class="credit">ConcernedApe Fan-made Admin · 后台仅限管理员登录，不提供注册</div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // 已登录则直接进入管理台
+    if (localStorage.getItem("stardew_admin_token")) {
+      location.replace("/admin/dashboard");
+    }
+
+    const toastEl = document.getElementById("toast");
+    let toastTimer = null;
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2600);
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", async e => {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      if (!username) { toast("✋ 管理员账号不能为空"); return; }
+      if (!password) { toast("🔒 管理密码不能为空"); return; }
+
+      const btn = document.getElementById("submitBtn");
+      btn.disabled = true; btn.textContent = "验 证 凭 证 中 …";
+      try {
+        const res = await fetch("/api/admin/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password })
+        });
+        const body = await res.json();
+        if (!res.ok || body.code !== 200) {
+          toast("🚫 " + (body.message || "登录失败"));
+          return;
+        }
+        localStorage.setItem("stardew_admin_token", body.data.token);
+        localStorage.setItem("stardew_admin_username", body.data.username);
+        toast("✅ 登录成功，正在进入管理处…");
+        setTimeout(() => location.replace("/admin/dashboard"), 600);
+      } catch (err) {
+        toast("🚜 连不上管理服务器，后端启动了吗？");
+      } finally {
+        btn.disabled = false; btn.textContent = "进 入 管 理 处";
+      }
+    });
+  </script>
+</body>
+</html>
