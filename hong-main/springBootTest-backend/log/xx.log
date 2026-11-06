@@ -339,3 +339,302 @@ java.lang.IllegalArgumentException: Invalid character found in the request targe
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
+logging.pattern.console=2026-11-06 15:38:56  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 9116 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\hong\hong-main\springBootTest-backend)
+logging.pattern.console=2026-11-06 15:38:56  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-11-06 15:38:57  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-11-06 15:38:57  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-11-06 15:38:57  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-11-06 15:38:57  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-11-06 15:38:57  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1067 ms
+logging.pattern.console=2026-11-06 15:38:58  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-11-06 15:38:58  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-11-06 15:38:58  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.746 seconds (process running for 3.378)
+logging.pattern.console=2026-11-06 15:38:58  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-11-06 15:38:59  INFO o.s.b.a.logging.ConditionEvaluationReportLogger.logMessage 82:
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+logging.pattern.console=2026-11-06 15:38:59  ERROR org.springframework.boot.SpringApplication.reportFailure 858:Application run failed
+org.mybatis.spring.MyBatisSystemException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+### The error may exist in com/fenglin/springboottest/mapper/AdminUserMapper.java (best guess)
+### The error may involve com.fenglin.springboottest.mapper.AdminUserMapper.selectCount
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:99)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:347)
+	at jdk.proxy2/jdk.proxy2.$Proxy68.selectOne(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:154)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:87)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:152)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy2/jdk.proxy2.$Proxy71.selectCount(Unknown Source)
+	at com.fenglin.springboottest.service.impl.AdminServiceImpl.run(AdminServiceImpl.java:47)
+	at org.springframework.boot.SpringApplication.lambda$callRunner$4(SpringApplication.java:785)
+	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:82)
+	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60)
+	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:86)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:797)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:785)
+	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:773)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:773)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351)
+	at com.fenglin.springboottest.SpringBootTestApplication.main(SpringBootTestApplication.java:12)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:102)
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:64)
+	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:40)
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+### The error may exist in com/fenglin/springboottest/mapper/AdminUserMapper.java (best guess)
+### The error may involve com.fenglin.springboottest.mapper.AdminUserMapper.selectCount
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:156)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:75)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333)
+	... 32 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:77)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:64)
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348)
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:64)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154)
+	... 38 common frames omitted
+Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'stardew'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:837)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:420)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:238)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:98)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81)
+	... 48 common frames omitted
+logging.pattern.console=2026-11-06 15:38:59  INFO o.s.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully 54:Commencing graceful shutdown. Waiting for active requests to complete
+logging.pattern.console=2026-11-06 15:39:00  INFO o.s.boot.web.embedded.tomcat.GracefulShutdown.doShutdown 76:Graceful shutdown complete
+logging.pattern.console=2026-11-06 15:41:04  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 1108 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\hong\hong-main\springBootTest-backend)
+logging.pattern.console=2026-11-06 15:41:04  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-11-06 15:41:05  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-11-06 15:41:05  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-11-06 15:41:05  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-11-06 15:41:05  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-11-06 15:41:05  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1107 ms
+logging.pattern.console=2026-11-06 15:41:06  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-11-06 15:41:06  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-11-06 15:41:06  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.426 seconds (process running for 2.928)
+logging.pattern.console=2026-11-06 15:41:06  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-11-06 15:41:07  INFO o.s.b.a.logging.ConditionEvaluationReportLogger.logMessage 82:
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+logging.pattern.console=2026-11-06 15:41:07  ERROR org.springframework.boot.SpringApplication.reportFailure 858:Application run failed
+org.mybatis.spring.MyBatisSystemException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+### The error may exist in com/fenglin/springboottest/mapper/AdminUserMapper.java (best guess)
+### The error may involve com.fenglin.springboottest.mapper.AdminUserMapper.selectCount
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:99)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:347)
+	at jdk.proxy2/jdk.proxy2.$Proxy68.selectOne(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:154)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperMethod.execute(MybatisMapperMethod.java:87)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy$PlainMethodInvoker.invoke(MybatisMapperProxy.java:152)
+	at com.baomidou.mybatisplus.core.override.MybatisMapperProxy.invoke(MybatisMapperProxy.java:89)
+	at jdk.proxy2/jdk.proxy2.$Proxy71.selectCount(Unknown Source)
+	at com.fenglin.springboottest.service.impl.AdminServiceImpl.run(AdminServiceImpl.java:47)
+	at org.springframework.boot.SpringApplication.lambda$callRunner$4(SpringApplication.java:785)
+	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:82)
+	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60)
+	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:86)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:797)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:785)
+	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:773)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:510)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:773)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1362)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1351)
+	at com.fenglin.springboottest.SpringBootTestApplication.main(SpringBootTestApplication.java:12)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:102)
+	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:64)
+	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:40)
+Caused by: org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+### The error may exist in com/fenglin/springboottest/mapper/AdminUserMapper.java (best guess)
+### The error may involve com.fenglin.springboottest.mapper.AdminUserMapper.selectCount
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:156)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:75)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333)
+	... 32 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:77)
+	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:64)
+	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348)
+	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89)
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:64)
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336)
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110)
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154)
+	... 38 common frames omitted
+Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'stardew'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:112)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:837)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:420)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:238)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:98)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81)
+	... 48 common frames omitted
+logging.pattern.console=2026-11-06 15:41:07  INFO o.s.boot.web.embedded.tomcat.GracefulShutdown.shutDownGracefully 54:Commencing graceful shutdown. Waiting for active requests to complete
+logging.pattern.console=2026-11-06 15:41:07  INFO o.s.boot.web.embedded.tomcat.GracefulShutdown.doShutdown 76:Graceful shutdown complete
+logging.pattern.console=2026-11-06 15:42:35  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 4120 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\hong\hong-main\springBootTest-backend)
+logging.pattern.console=2026-11-06 15:42:35  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-11-06 15:42:36  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-11-06 15:42:36  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-11-06 15:42:36  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-11-06 15:42:36  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-11-06 15:42:36  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 976 ms
+logging.pattern.console=2026-11-06 15:42:37  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-11-06 15:42:37  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-11-06 15:42:37  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.161 seconds (process running for 2.502)
+logging.pattern.console=2026-11-06 15:42:37  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-11-06 15:42:37  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e151e1f
+logging.pattern.console=2026-11-06 15:42:37  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+logging.pattern.console=2026-11-06 15:42:55  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-11-06 15:42:55  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-11-06 15:42:55  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-11-06 16:13:58  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 11300 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\hong\hong-main\springBootTest-backend)
+logging.pattern.console=2026-11-06 16:13:58  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-11-06 16:14:00  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-11-06 16:14:00  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-11-06 16:14:00  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-11-06 16:14:00  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-11-06 16:14:00  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1148 ms
+logging.pattern.console=2026-11-06 16:14:00  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-11-06 16:14:00  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-11-06 16:14:00  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.555 seconds (process running for 2.97)
+logging.pattern.console=2026-11-06 16:14:01  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-11-06 16:14:01  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@439d545c
+logging.pattern.console=2026-11-06 16:14:01  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+logging.pattern.console=2026-11-06 16:16:49  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 5476 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\hong\hong-main\springBootTest-backend)
+logging.pattern.console=2026-11-06 16:16:49  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-11-06 16:16:50  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-11-06 16:16:50  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-11-06 16:16:50  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-11-06 16:16:50  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-11-06 16:16:50  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1199 ms
+logging.pattern.console=2026-11-06 16:16:51  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-11-06 16:16:51  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-11-06 16:16:51  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.651 seconds (process running for 3.058)
+logging.pattern.console=2026-11-06 16:16:51  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-11-06 16:16:51  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36211bbc
+logging.pattern.console=2026-11-06 16:16:51  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+logging.pattern.console=2026-11-06 16:17:21  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-11-06 16:17:21  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-11-06 16:17:21  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-11-06 16:22:16  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 2816 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\hong\hong-main\springBootTest-backend)
+logging.pattern.console=2026-11-06 16:22:16  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-11-06 16:22:17  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-11-06 16:22:17  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-11-06 16:22:17  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-11-06 16:22:17  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-11-06 16:22:17  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 976 ms
+logging.pattern.console=2026-11-06 16:22:18  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-11-06 16:22:18  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-11-06 16:22:18  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.175 seconds (process running for 2.552)
+logging.pattern.console=2026-11-06 16:22:18  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-11-06 16:22:18  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3c60c681
+logging.pattern.console=2026-11-06 16:22:18  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+logging.pattern.console=2026-11-06 16:22:54  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-11-06 16:22:54  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-11-06 16:22:54  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-11-06 16:31:33  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 7488 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\hong\hong-main\springBootTest-backend)
+logging.pattern.console=2026-11-06 16:31:33  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-11-06 16:31:34  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-11-06 16:31:34  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-11-06 16:31:34  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-11-06 16:31:34  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-11-06 16:31:34  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1022 ms
+logging.pattern.console=2026-11-06 16:31:34  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-11-06 16:31:35  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-11-06 16:31:35  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.277 seconds (process running for 2.67)
+logging.pattern.console=2026-11-06 16:31:35  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-11-06 16:31:35  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2cbe455c
+logging.pattern.console=2026-11-06 16:31:35  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+logging.pattern.console=2026-11-06 16:32:00  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-11-06 16:32:00  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-11-06 16:32:00  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+logging.pattern.console=2026-11-06 16:40:36  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 10360 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\hong\hong-main\springBootTest-backend)
+logging.pattern.console=2026-11-06 16:40:36  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+logging.pattern.console=2026-11-06 16:40:37  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+logging.pattern.console=2026-11-06 16:40:37  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+logging.pattern.console=2026-11-06 16:40:37  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+logging.pattern.console=2026-11-06 16:40:37  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+logging.pattern.console=2026-11-06 16:40:37  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1370 ms
+logging.pattern.console=2026-11-06 16:40:38  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+logging.pattern.console=2026-11-06 16:40:38  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+logging.pattern.console=2026-11-06 16:40:38  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 3.092 seconds (process running for 3.593)
+logging.pattern.console=2026-11-06 16:40:38  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+logging.pattern.console=2026-11-06 16:40:38  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@589dfa6f
+logging.pattern.console=2026-11-06 16:40:38  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+logging.pattern.console=2026-11-06 16:41:08  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+logging.pattern.console=2026-11-06 16:41:08  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+logging.pattern.console=2026-11-06 16:41:08  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms

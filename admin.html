@@ -292,6 +292,12 @@
     let token = localStorage.getItem(TOKEN_KEY);
     if (!token) { location.replace("/admin"); }
 
+    // 角色兜底拦截：普通用户（role=1）无权进入后台管理台
+    try {
+      const f = JSON.parse(localStorage.getItem("stardew_farmer") || "{}");
+      if (f.role === 1) { location.replace("/home"); }
+    } catch (e) { /* 忽略 */ }
+
     const CAT_LABEL = { crop: "作物", animal: "动物", villager: "村民", fish: "鱼类", ore: "矿石" };
     let allItems = [];
     let editingId = null; // null = 新增

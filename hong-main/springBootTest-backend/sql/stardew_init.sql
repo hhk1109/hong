@@ -22,6 +22,7 @@ CREATE TABLE `user` (
     `farm_name`   VARCHAR(64)  DEFAULT NULL            COMMENT '农场名',
     `email`       VARCHAR(128) DEFAULT NULL            COMMENT '邮箱',
     `animal`      VARCHAR(64)  DEFAULT NULL            COMMENT '宠物 / 动物',
+    `role`        TINYINT      NOT NULL DEFAULT 1       COMMENT '权限：0-管理员，1-普通用户（默认）',
     `create_time` DATETIME     DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` DATETIME     DEFAULT CURRENT_TIMESTAMP
                                ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -36,3 +37,25 @@ CREATE TABLE `user` (
 -- 如需测试登录，可取消下面两行注释后执行：
 -- INSERT INTO `user` (`account`, `password`, `farmer_name`, `farm_name`, `email`, `animal`)
 -- VALUES ('link', '$2a$10$N9qo8uLOickgx2ZMRZoMy.MrqoH6F5lOZ0b8z9B1kF1wQZ1wQZ1wQ', 'Link', '鹈鹕镇农场', 'link@stardew.test', 'dog');
+
+-- 初始管理员（权限 0）：账号 admin / 密码 admin123，明文存储
+-- 幂等：仅在库中无 role=0 账号时插入
+INSERT INTO `user` (`account`, `password`, `farmer_name`, `farm_name`, `email`, `animal`, `role`)
+SELECT 'admin', 'admin123', '镇长', '星露谷管理农场', 'admin@stardew.test', '🐱', 0
+FROM DUAL
+WHERE NOT EXISTS (SELECT 1 FROM `user` WHERE `role` = 0);
+
+-- 用户游戏进度表（背包 + 社区中心收集包），按账号维度存储
+-- bag / bundles 以 JSON 字符串保存
+CREATE TABLE IF NOT EXISTS `user_progress` (
+    `id`          BIGINT       NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `account`     VARCHAR(64)  NOT NULL                COMMENT '用户登录账号（对应 user.account）',
+    `bag`         JSON         DEFAULT NULL            COMMENT '背包：{"物品名": 数量}',
+    `bundles`     JSON         DEFAULT NULL            COMMENT '社区中心收集包：{"bundleId": ["物品名", ...]}',
+    `update_time` DATETIME     DEFAULT CURRENT_TIMESTAMP
+                               ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uk_account` (`account`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT = '用户游戏进度表';

@@ -12,6 +12,8 @@ public class UserVO {
     private String farmName;
     private String email;
     private String animal;
+    private Integer role;
+    private String token;
 
     public static UserVO fromEntity(com.fenglin.springboottest.entity.User u) {
         UserVO vo = new UserVO();
@@ -21,6 +23,7 @@ public class UserVO {
         vo.setFarmName(u.getFarmName());
         vo.setEmail(u.getEmail());
         vo.setAnimal(u.getAnimal());
+        vo.setRole(u.getRole());
         return vo;
     }
 
@@ -70,5 +73,21 @@ public class UserVO {
 
     public void setAnimal(String animal) {
         this.animal = animal;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

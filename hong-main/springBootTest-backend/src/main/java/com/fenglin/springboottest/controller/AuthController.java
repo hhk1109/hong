@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class AuthController {
     /**
      * 登录
      * 请求体：{ "account": "农夫名或邮箱", "password": "密码" }
-     * 返回：{ "code": 200, "data": { farmerName, ... }, "message": "ok" }
+     * 返回：{ "code": 200, "data": { farmerName, ..., token }, "message": "ok" }
      */
     @PostMapping("/login")
     public Result<UserVO> login(@Valid @RequestBody LoginRequest req) {
@@ -41,5 +42,14 @@ public class AuthController {
     public Result<Void> register(@Valid @RequestBody RegisterRequest req) {
         userService.register(req);
         return Result.success(null, "注册成功，去登录吧～");
+    }
+
+    /**
+     * 登出（令牌失效）
+     */
+    @PostMapping("/logout")
+    public Result<Void> logout(@RequestHeader(value = "X-User-Token", required = false) String token) {
+        userService.logout(token);
+        return Result.success(null, "已退出登录");
     }
 }

@@ -1,29 +1,14 @@
 -- ============================================================
 -- 星露谷 · 后台管理系统数据库初始化脚本
 -- 数据库：stardew（复用现有库）
--- 说明：新增 admin_user（管理员）与 item（首页展示条目）两张表，
---       并把首页原有 16 条静态展示数据导入 item 表。
+-- 说明：初始化 item（首页展示条目）表，并导入图鉴数据。
+--       后台管理员身份已并入 user 表（role=0 即为管理员），
+--       默认管理员（admin / admin123）由后端首次启动时自动创建，无需本脚本维护。
 -- 执行方式（本地 MySQL，root / 123456）：
 --   "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -uroot -p123456 < admin_init.sql
--- 默认管理员账号在应用首次启动时由后端自动创建：admin / admin123
 -- ============================================================
 
 USE `stardew`;
-
--- 管理员表（后台登录使用，无注册功能）
-CREATE TABLE IF NOT EXISTS `admin_user` (
-    `id`          BIGINT       NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `username`    VARCHAR(64)  NOT NULL                COMMENT '管理员账号',
-    `password`    VARCHAR(100) NOT NULL                COMMENT '密码，BCrypt 加密存储',
-    `nickname`    VARCHAR(64)  DEFAULT NULL            COMMENT '显示昵称',
-    `create_time` DATETIME     DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `update_time` DATETIME     DEFAULT CURRENT_TIMESTAMP
-                               ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `uk_admin_username` (`username`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  COMMENT = '后台管理员表';
 
 -- 首页展示条目表（作物 / 动物 / 村民图鉴）
 CREATE TABLE IF NOT EXISTS `item` (
