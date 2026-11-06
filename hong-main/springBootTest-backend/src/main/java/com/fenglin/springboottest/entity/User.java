@@ -38,6 +38,9 @@ public class User implements Serializable {
     /** 宠物 / 动物 */
     private String animal;
 
+    /** 权限：0-管理员，1-普通用户（默认） */
+    private Integer role;
+
     /** 创建时间 */
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
@@ -100,6 +103,14 @@ public class User implements Serializable {
 
     public void setAnimal(String animal) {
         this.animal = animal;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
     }
 
     public LocalDateTime getCreateTime() {

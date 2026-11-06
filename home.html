@@ -25,6 +25,7 @@
       --pink: #ff8fa3;
       --red: #e84545;
       --line: #c99a2a;
+      --blue: #4a90d9;
     }
 
     * { box-sizing: border-box; }
@@ -85,6 +86,7 @@
       border-radius: 8px;
       background: rgba(255, 248, 232, 0.08);
       transition: all 0.12s steps(2);
+      cursor: pointer;
     }
     .nav-links a:hover {
       background: var(--gold);
@@ -150,17 +152,55 @@
     .btn-admin:hover { background: var(--gold); color: var(--brown); }
     .btn-admin:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--brown); }
 
-    /* ===================== 搜索区 ===================== */
-    .search-section {
-      max-width: 880px;
-      margin: 34px auto 10px;
+    /* ===================== 通用布局 ===================== */
+    .page { display: none; }
+    .page.active { display: block; animation: fadeIn 0.18s steps(3); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    .section-title {
+      max-width: 1100px;
+      margin: 30px auto 4px;
       padding: 0 18px;
+      font-family: "Press Start 2P", "Zpix", sans-serif;
+      font-size: 13px;
+      color: var(--green-dark);
+      text-shadow: 1px 1px 0 #fff8e8;
     }
+    .section-sub {
+      max-width: 1100px;
+      margin: 4px auto 18px;
+      padding: 0 18px;
+      font-size: 12px;
+      color: #9a7a4a;
+      line-height: 1.6;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 22px;
+      font-size: 12px;
+      color: #9a7a4a;
+      border-top: 3px dashed var(--line);
+      margin-top: 30px;
+    }
+
+    .bunting {
+      height: 10px;
+      background:
+        repeating-linear-gradient(90deg,
+          var(--red) 0 14px, var(--gold) 14px 28px,
+          var(--green) 28px 42px, var(--pink) 42px 56px);
+      opacity: 0.85;
+    }
+
+    /* ===================== 搜索区 ===================== */
     .search-card {
+      max-width: 880px;
+      margin: 26px auto 10px;
+      padding: 20px 22px;
       background: linear-gradient(180deg, var(--parchment-2), var(--parchment-3));
       border: 4px solid var(--gold);
       border-radius: 14px;
-      padding: 20px 22px;
       box-shadow: 0 6px 0 rgba(90, 58, 30, 0.25), 0 12px 24px rgba(0, 0, 0, 0.12);
     }
     .search-title {
@@ -170,11 +210,7 @@
       margin: 0 0 14px;
       text-shadow: 1px 1px 0 #fff8e8;
     }
-    .search-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+    .search-row { display: flex; gap: 10px; flex-wrap: wrap; }
     .search-input {
       flex: 1 1 260px;
       min-width: 0;
@@ -203,12 +239,7 @@
     }
     .search-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--brown); }
 
-    .chips {
-      display: flex;
-      gap: 8px;
-      margin-top: 14px;
-      flex-wrap: wrap;
-    }
+    .chips { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
     .chip {
       cursor: pointer;
       padding: 6px 12px;
@@ -220,31 +251,77 @@
     }
     .chip.active { background: var(--gold); border-color: var(--brown); color: var(--brown); }
 
-    /* ===================== 主体 ===================== */
+    /* ===================== 首页 Dashboard ===================== */
     .welcome {
       max-width: 1100px;
-      margin: 26px auto 6px;
+      margin: 30px auto 6px;
       padding: 0 18px;
       font-size: 18px;
       color: var(--brown-2);
     }
     .welcome b { color: var(--green-dark); }
 
+    .stats {
+      max-width: 1100px;
+      margin: 20px auto;
+      padding: 0 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .stat-card {
+      background: linear-gradient(180deg, #fffdf6, var(--parchment-2));
+      border: 4px solid var(--gold-deep);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 5px 0 rgba(90, 58, 30, 0.22);
+      text-align: center;
+    }
+    .stat-card .big { font-size: 30px; color: var(--green-dark); font-weight: bold; }
+    .stat-card .label { font-size: 12px; color: #9a7a4a; margin-top: 6px; }
+    .progress-wrap { margin-top: 10px; height: 12px; background: #ecd9a8; border: 2px solid var(--gold-deep); border-radius: 999px; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--green-light), var(--green-deep)); width: 0%; transition: width 0.4s steps(8); }
+
+    .module-grid {
+      max-width: 1100px;
+      margin: 10px auto 40px;
+      padding: 0 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 18px;
+    }
+    .module-card {
+      cursor: pointer;
+      background: linear-gradient(180deg, #fffdf6, var(--parchment-2));
+      border: 4px solid var(--gold-deep);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 5px 0 rgba(90, 58, 30, 0.22);
+      transition: transform 0.12s steps(2);
+    }
+    .module-card:hover { transform: translateY(-4px); border-color: var(--green-deep); }
+    .module-card .m-icon { font-size: 34px; margin-bottom: 10px; }
+    .module-card .m-name { font-size: 16px; color: var(--brown); margin-bottom: 6px; }
+    .module-card .m-desc { font-size: 12px; color: #9a7a4a; line-height: 1.6; }
+
+    /* ===================== 图鉴网格 ===================== */
     .grid {
       max-width: 1100px;
-      margin: 18px auto 60px;
+      margin: 0 auto 40px;
       padding: 0 18px;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
       gap: 18px;
     }
     .card {
+      cursor: pointer;
       background: linear-gradient(180deg, #fffdf6, var(--parchment-2));
       border: 4px solid var(--gold-deep);
       border-radius: 14px;
       padding: 16px;
       box-shadow: 0 5px 0 rgba(90, 58, 30, 0.22);
       transition: transform 0.12s steps(2);
+      position: relative;
     }
     .card:hover { transform: translateY(-4px); }
     .card .icon {
@@ -267,33 +344,148 @@
       margin-bottom: 8px;
     }
     .card .desc { font-size: 12px; color: #9a7a4a; line-height: 1.6; }
-
-    .empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 40px;
-      color: #b39b6e;
-      font-size: 14px;
+    .card .owned-badge {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: var(--gold);
+      color: var(--brown);
+      border: 2px solid var(--brown);
+      border-radius: 999px;
+      font-size: 11px;
+      padding: 2px 8px;
     }
+    .empty { grid-column: 1 / -1; text-align: center; padding: 40px; color: #b39b6e; font-size: 14px; }
 
-    /* ===================== 页脚 ===================== */
-    .footer {
-      text-align: center;
+    /* ===================== 社区中心 ===================== */
+    .bundle-grid {
+      max-width: 1100px;
+      margin: 0 auto 40px;
+      padding: 0 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 18px;
+    }
+    .bundle {
+      background: linear-gradient(180deg, #fffdf6, var(--parchment-2));
+      border: 4px solid var(--gold-deep);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 5px 0 rgba(90, 58, 30, 0.22);
+    }
+    .bundle.done { border-color: var(--green-deep); box-shadow: 0 5px 0 rgba(46, 125, 50, 0.3); }
+    .bundle-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .bundle-head .b-icon { font-size: 26px; }
+    .bundle-head .b-title { font-size: 15px; color: var(--brown); }
+    .bundle-desc { font-size: 12px; color: #9a7a4a; margin-bottom: 12px; line-height: 1.6; }
+    .slot {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      background: #fffdf6;
+      border: 3px solid var(--line);
+      border-radius: 10px;
+    }
+    .slot.filled { border-color: var(--green-deep); background: #eafbe6; }
+    .slot .s-icon { font-size: 22px; width: 30px; text-align: center; }
+    .slot .s-name { font-size: 13px; color: var(--brown); flex: 1; }
+    .slot .s-check { color: var(--green-dark); font-size: 14px; font-weight: bold; }
+    .slot .donate-btn {
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 11px;
+      padding: 6px 10px;
+      color: #fff8e8;
+      background: linear-gradient(180deg, var(--green), var(--green-deep));
+      border: 2px solid var(--brown);
+      border-radius: 8px;
+      box-shadow: 0 2px 0 var(--brown);
+    }
+    .slot .donate-btn:disabled { background: #c9bda0; border-color: #9a8a66; box-shadow: none; cursor: not-allowed; }
+    .slot .donate-btn:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 0 0 var(--brown); }
+    .bundle-progress { margin-top: 10px; font-size: 12px; color: var(--brown-2); }
+
+    /* ===================== 背包 ===================== */
+    .bag-grid {
+      max-width: 1100px;
+      margin: 0 auto 40px;
+      padding: 0 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .bag-item {
+      background: linear-gradient(180deg, #fffdf6, var(--parchment-2));
+      border: 4px solid var(--gold-deep);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 5px 0 rgba(90, 58, 30, 0.22);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .bag-item .b-icon { font-size: 28px; width: 44px; height: 44px; display: grid; place-items: center; background: var(--green-light); border: 3px solid var(--green-dark); border-radius: 10px; }
+    .bag-item .b-info { flex: 1; }
+    .bag-item .b-name { font-size: 14px; color: var(--brown); }
+    .bag-item .b-count { font-size: 12px; color: #9a7a4a; }
+    .bag-item .remove-btn {
+      cursor: pointer; font-family: inherit; font-size: 11px; padding: 6px 9px;
+      color: #fff8e8; background: var(--red); border: 2px solid var(--brown);
+      border-radius: 8px; box-shadow: 0 2px 0 var(--brown);
+    }
+    .bag-item .remove-btn:active { transform: translateY(2px); box-shadow: 0 0 0 var(--brown); }
+
+    /* ===================== 设置 ===================== */
+    .settings-card {
+      max-width: 640px;
+      margin: 10px auto 40px;
       padding: 22px;
-      font-size: 12px;
-      color: #9a7a4a;
-      border-top: 3px dashed var(--line);
+      background: linear-gradient(180deg, var(--parchment-2), var(--parchment-3));
+      border: 4px solid var(--gold);
+      border-radius: 14px;
+      box-shadow: 0 6px 0 rgba(90, 58, 30, 0.25);
     }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: 13px; color: var(--brown-2); margin-bottom: 6px; }
+    .field input {
+      width: 100%; padding: 12px 14px; font-family: inherit; font-size: 14px;
+      color: var(--brown); background: #fffdf6; border: 3px solid var(--brown-2);
+      border-radius: 10px; outline: none;
+    }
+    .field input:focus { border-color: var(--green-deep); box-shadow: 0 0 0 3px rgba(87,160,71,0.25); }
+    .btn {
+      cursor: pointer; font-family: inherit; font-size: 13px; padding: 12px 18px;
+      color: #fff8e8; background: linear-gradient(180deg, var(--green), var(--green-deep));
+      border: 3px solid var(--brown); border-radius: 10px; box-shadow: 0 3px 0 var(--brown);
+      margin-right: 10px; margin-top: 4px;
+    }
+    .btn:active { transform: translateY(3px); box-shadow: 0 0 0 var(--brown); }
+    .btn.warn { background: var(--red); }
+    .btn.ghost { background: #8a6a3a; }
+    .saved-tip { font-size: 12px; color: var(--green-dark); margin-top: 10px; min-height: 16px; }
 
-    /* 顶部小彩旗装饰 */
-    .bunting {
-      height: 10px;
-      background:
-        repeating-linear-gradient(90deg,
-          var(--red) 0 14px, var(--gold) 14px 28px,
-          var(--green) 28px 42px, var(--pink) 42px 56px);
-      opacity: 0.85;
+    /* ===================== 弹窗 ===================== */
+    .modal-mask {
+      position: fixed; inset: 0; z-index: 50;
+      background: rgba(90, 58, 30, 0.45);
+      display: none; align-items: center; justify-content: center; padding: 20px;
     }
+    .modal-mask.show { display: flex; }
+    .modal {
+      width: 100%; max-width: 360px;
+      background: linear-gradient(180deg, var(--parchment-2), var(--parchment-3));
+      border: 4px solid var(--gold-deep);
+      border-radius: 16px; padding: 22px;
+      box-shadow: 0 10px 0 rgba(90,58,30,0.3), 0 18px 36px rgba(0,0,0,0.3);
+    }
+    .modal .m-icon { font-size: 48px; text-align: center; margin-bottom: 10px; }
+    .modal .m-name { text-align: center; font-size: 18px; color: var(--brown); margin-bottom: 4px; }
+    .modal .m-tag { display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 6px; color: #fff8e8; background: var(--green-deep); margin: 0 auto 12px; display: block; width: max-content; }
+    .modal .m-desc { font-size: 13px; color: #9a7a4a; line-height: 1.7; margin-bottom: 16px; text-align: center; }
+    .modal .m-owned { font-size: 12px; color: var(--brown-2); text-align: center; margin-bottom: 14px; }
+    .modal-actions { display: flex; gap: 10px; }
+    .modal-actions .btn { flex: 1; margin: 0; text-align: center; }
 
     @media (max-width: 640px) {
       .brand { font-size: 11px; }
@@ -307,48 +499,122 @@
   <!-- 导航栏 -->
   <header class="navbar">
     <div class="brand"><span class="leaf">🌾</span> STARDEW 星露谷</div>
-    <nav class="nav-links">
-      <a href="home.html" class="active">首页</a>
-      <a href="#" data-page="作物图鉴">作物图鉴</a>
-      <a href="#" data-page="社区中心">社区中心</a>
-      <a href="#" data-page="背包">背包</a>
-      <a href="#" data-page="设置">设置</a>
+    <nav class="nav-links" id="navLinks">
+      <a data-page="home" class="active">首页</a>
+      <a data-page="codex">作物图鉴</a>
+      <a data-page="community">社区中心</a>
+      <a data-page="bag">背包</a>
+      <a data-page="settings">设置</a>
     </nav>
     <div class="nav-right">
       <div class="farmer-chip">
         <span class="avatar">🧑‍🌾</span>
         <span id="farmerName">尊敬的农夫</span>
       </div>
-      <a class="btn-admin" href="/admin" title="进入后台管理系统">🏛️ 后台管理</a>
+      <a class="btn-admin" id="adminBtn" href="/admin" title="进入后台管理系统">🏛️ 后台管理</a>
       <button class="btn-logout" id="logoutBtn">退出</button>
     </div>
   </header>
 
-  <!-- 搜索栏 -->
-  <section class="search-section">
-    <div class="search-card">
-      <h2 class="search-title">🔍 搜索星露谷百科</h2>
-      <div class="search-row">
-        <input id="searchInput" class="search-input" type="text"
-               placeholder="搜索作物、动物、村民…（例如：草莓 / 鸡 / 阿比盖尔）" />
-        <button class="search-btn" id="searchBtn">搜 索</button>
+  <main id="app">
+    <!-- ============ 首页 Dashboard ============ -->
+    <section id="page-home" class="page active">
+      <div class="welcome" id="welcome">欢迎来到星露谷，<b>尊敬的农夫</b>！今天也要努力种田哦～ 🌞</div>
+
+      <div class="stats">
+        <div class="stat-card">
+          <div class="big" id="statCodex">0</div>
+          <div class="label">图鉴总数</div>
+        </div>
+        <div class="stat-card">
+          <div class="big" id="statBag">0</div>
+          <div class="label">已收集物种</div>
+        </div>
+        <div class="stat-card">
+          <div class="big" id="statBundlePct">0%</div>
+          <div class="label">社区中心进度</div>
+          <div class="progress-wrap"><div class="progress-bar" id="statBundleBar"></div></div>
+        </div>
       </div>
-      <div class="chips" id="chips">
-        <span class="chip active" data-cat="all">全部</span>
-        <span class="chip" data-cat="crop">作物</span>
-        <span class="chip" data-cat="animal">动物</span>
-        <span class="chip" data-cat="villager">村民</span>
+
+      <div class="section-title">🧭 功能模块</div>
+      <div class="section-sub">点击下方模块卡片，进入对应功能；各模块数据相互联动（详见文末说明）。</div>
+      <div class="module-grid" id="moduleGrid"></div>
+    </section>
+
+    <!-- ============ 作物图鉴 Codex ============ -->
+    <section id="page-codex" class="page">
+      <div class="search-card">
+        <h2 class="search-title">🔍 星露谷百科 · 作物图鉴</h2>
+        <div class="search-row">
+          <input id="searchInput" class="search-input" type="text"
+                 placeholder="搜索作物、动物、村民、鱼类、矿石…（例如：草莓 / 鸡 / 阿比盖尔）" />
+          <button class="search-btn" id="searchBtn">搜 索</button>
+        </div>
+        <div class="chips" id="chips">
+          <span class="chip active" data-cat="all">全部</span>
+          <span class="chip" data-cat="crop">作物</span>
+          <span class="chip" data-cat="animal">动物</span>
+          <span class="chip" data-cat="villager">村民</span>
+          <span class="chip" data-cat="fish">钓鱼</span>
+          <span class="chip" data-cat="ore">矿石</span>
+        </div>
       </div>
-    </div>
-  </section>
+      <main class="grid" id="grid"></main>
+    </section>
 
-  <!-- 欢迎语 -->
-  <div class="welcome" id="welcome">欢迎来到星露谷，<b>尊敬的农夫</b>！今天也要努力种田哦～ 🌞</div>
+    <!-- ============ 社区中心 Community ============ -->
+    <section id="page-community" class="page">
+      <div class="section-title">🏠 社区中心</div>
+      <div class="section-sub">
+        将背包中拥有的物品捐赠到对应的「收集包」即可点亮插槽。集齐一个收集包，社区中心便恢复一分光彩。
+        捐赠会消耗背包中的对应物品，请先到「作物图鉴」收集心仪物种。
+      </div>
+      <div class="bundle-grid" id="bundleGrid"></div>
+    </section>
 
-  <!-- 物品网格 -->
-  <main class="grid" id="grid"></main>
+    <!-- ============ 背包 Bag ============ -->
+    <section id="page-bag" class="page">
+      <div class="section-title">🎒 我的背包</div>
+      <div class="section-sub">这里记录了你在星露谷收集到的所有物种。可在此移除物品，或前往「社区中心」用于捐赠。</div>
+      <main class="bag-grid" id="bagGrid"></main>
+    </section>
 
-  <footer class="footer">星露谷 · 首页 ｜ 图鉴数据由后台管理系统统一维护（点击导航栏「后台管理」进入）</footer>
+    <!-- ============ 设置 Settings ============ -->
+    <section id="page-settings" class="page">
+      <div class="section-title">⚙️ 设置</div>
+      <div class="section-sub">管理你的农夫资料与本地游戏进度。</div>
+      <div class="settings-card">
+        <div class="field">
+          <label>农夫名</label>
+          <input id="setFarmerName" type="text" placeholder="你的名字" />
+        </div>
+        <div class="field">
+          <label>农场名</label>
+          <input id="setFarmName" type="text" placeholder="你的农场" />
+        </div>
+        <button class="btn" id="saveProfileBtn">保存资料</button>
+        <div class="saved-tip" id="profileTip"></div>
+
+        <hr style="border:none;border-top:3px dashed var(--line);margin:20px 0;" />
+
+        <div class="field">
+          <label>本地进度管理</label>
+          <button class="btn ghost" id="exportBtn">导出进度</button>
+          <button class="btn warn" id="resetBagBtn">清空背包</button>
+          <button class="btn warn" id="resetBundleBtn">重置社区中心</button>
+        </div>
+        <div class="saved-tip" id="dataTip"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">星露谷 · 首页 ｜ 图鉴数据由后台管理系统统一维护（点击导航栏「后台管理」进入）｜ 背包与社区中心进度按账号保存在后端（浏览器本地作离线缓存）</footer>
+
+  <!-- 物品详情弹窗 -->
+  <div class="modal-mask" id="modalMask">
+    <div class="modal" id="modalBox"></div>
+  </div>
 
   <script>
     // ===== 展示数据：优先从后端接口加载（后台管理可维护），失败时回退本地静态数据 =====
@@ -368,86 +634,331 @@
       { icon: "👧", name: "阿比盖尔", cat: "villager", description: "鹈鹕镇少女，热爱矿物与冒险。" },
       { icon: "🧔", name: "塞巴斯蒂安", cat: "villager", description: "镇上的程序员，钟爱雨天。" },
       { icon: "👵", name: "艾芙琳", cat: "villager", description: "和蔼的祖母，擅长烘焙。" },
-      { icon: "🧑‍🌾", name: "镇长刘易斯", cat: "villager", description: "鹈鹕镇镇长，关心小镇发展。" }
+      { icon: "🧑‍🌾", name: "镇长刘易斯", cat: "villager", description: "鹈鹕镇镇长，关心小镇发展。" },
+      { icon: "🐟", name: "鲈鱼", cat: "fish", description: "鹈鹕河里最常见的鱼，新手渔夫的起点。" },
+      { icon: "🐠", name: "虹鳟", cat: "fish", description: "色彩斑斓的鳟鱼，在山间溪流中出没。" },
+      { icon: "🐡", name: "鲶鱼", cat: "fish", description: "力气很大的深水鱼，咬钩时鱼竿都在颤抖。" },
+      { icon: "🦈", name: "传说之鱼", cat: "fish", description: "只在月圆之夜现身的深海巨物，渔夫的终极梦想。" },
+      { icon: "🔶", name: "铜矿石", cat: "ore", description: "矿洞浅层最常见的矿石，熔炼后用途广泛。" },
+      { icon: "🔷", name: "铁矿石", cat: "ore", description: "埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。" },
+      { icon: "🥇", name: "金矿石", cat: "ore", description: "深层矿脉中泛着金光，价值不菲。" },
+      { icon: "💎", name: "钻石", cat: "ore", description: "矿洞最深处才可能见到的稀世珍宝。" }
     ];
-    let ITEMS = [];
 
-    const CAT_LABEL = { crop: "作物", animal: "动物", villager: "村民" };
-    const grid = document.getElementById("grid");
-    const input = document.getElementById("searchInput");
-    let currentCat = "all";
+    // ===== 社区中心收集包定义 =====
+    const BUNDLES = [
+      { id: "spring",  icon: "🌸", title: "春之收获包", desc: "献上春季的馈赠，唤醒沉睡的社区中心。", need: ["草莓", "樱桃"] },
+      { id: "summer",  icon: "☀️", title: "夏之盛宴包", desc: "夏日丰饶，果蔬满仓。", need: ["蓝莓", "啤酒花", "玉米"] },
+      { id: "autumn",  icon: "🍂", title: "秋之丰收包", desc: "金秋时节，谷仓飘香。", need: ["南瓜", "远古水果"] },
+      { id: "animal",  icon: "🐮", title: "牧场情谊包", desc: "来自动物们的温柔陪伴。", need: ["鸡", "奶牛", "羊"] },
+      { id: "fish",    icon: "🎣", title: "深海渔获包", desc: "江河湖海的礼物。", need: ["鲈鱼", "虹鳟", "鲶鱼", "传说之鱼"] },
+      { id: "mine",    icon: "💎", title: "矿洞宝藏包", desc: "地心深处闪耀的珍宝。", need: ["铜矿石", "铁矿石", "金矿石", "钻石"] }
+    ];
 
+    const CAT_LABEL = { crop: "作物", animal: "动物", villager: "村民", fish: "钓鱼", ore: "矿石" };
+
+    // ===== 进度持久化：localStorage 作离线缓存，同时与后端按账号同步 =====
+    const LS_BAG = "stardew_bag";        // { 名称: 数量 }
+    const LS_BUNDLE = "stardew_bundles"; // { bundleId: [已捐赠名称...] }
+    const LS_FARMER = "stardew_farmer";
+
+    function getAccount() {
+      try { return (JSON.parse(localStorage.getItem(LS_FARMER) || "{}").account) || ""; }
+      catch (e) { return ""; }
+    }
+    function getToken() {
+      try { return (JSON.parse(localStorage.getItem(LS_FARMER) || "{}").token) || ""; }
+      catch (e) { return ""; }
+    }
+    function loadBag() {
+      try { return JSON.parse(localStorage.getItem(LS_BAG)) || {}; } catch (e) { return {}; }
+    }
+    function loadBundles() {
+      try { return JSON.parse(localStorage.getItem(LS_BUNDLE)) || {}; } catch (e) { return {}; }
+    }
+    // 写本地缓存
+    function cacheBag() { localStorage.setItem(LS_BAG, JSON.stringify(state.bag)); }
+    function cacheBundles() { localStorage.setItem(LS_BUNDLE, JSON.stringify(state.bundles)); }
+    // 同步到后端（带用户令牌，按令牌账号存取），失败不阻塞，仅保留本地缓存
+    function syncProgress() {
+      const account = getAccount();
+      const token = getToken();
+      if (!account || !token) return;
+      fetch("/api/progress", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", "X-User-Token": token },
+        body: JSON.stringify({ account: account, bag: state.bag, bundles: state.bundles })
+      }).catch(() => {});
+    }
+    // 统一持久化：先写本地缓存，再同步后端
+    function saveBag() { cacheBag(); syncProgress(); }
+    function saveBundles() { cacheBundles(); syncProgress(); }
+
+    const state = {
+      items: [],
+      bag: loadBag(),
+      bundles: loadBundles(),
+      currentCat: "all",
+      searchQ: ""
+    };
+
+    // 启动时从后端拉取该账号进度（后端优先），覆盖本地缓存
+    async function loadProgress() {
+      const account = getAccount();
+      const token = getToken();
+      if (!account || !token) return;
+      try {
+        const res = await fetch("/api/progress?account=" + encodeURIComponent(account), {
+          headers: { "X-User-Token": token }
+        });
+        const body = await res.json();
+        if (res.ok && body.code === 200 && body.data) {
+          if (body.data.bag && typeof body.data.bag === "object") state.bag = body.data.bag;
+          if (body.data.bundles && typeof body.data.bundles === "object") state.bundles = body.data.bundles;
+          cacheBag(); cacheBundles();
+        }
+      } catch (e) { /* 后端不可达，沿用本地缓存 */ }
+    }
+
+    // ===== 数据加载 =====
     async function loadItems() {
       try {
         const res = await fetch("/api/items");
         const body = await res.json();
         if (res.ok && body.code === 200 && Array.isArray(body.data) && body.data.length) {
-          ITEMS = body.data;
+          state.items = body.data;
         } else {
-          ITEMS = FALLBACK_ITEMS;
+          state.items = FALLBACK_ITEMS;
         }
       } catch (e) {
-        ITEMS = FALLBACK_ITEMS; // 后端未启动时兜底
+        state.items = FALLBACK_ITEMS;
       }
-      filter();
     }
 
-    function render(list) {
+    function itemByName(name) {
+      return state.items.find(it => it.name === name);
+    }
+
+    // ===== 路由（hash 切换页面） =====
+    const PAGES = ["home", "codex", "community", "bag", "settings"];
+    function go(page) {
+      if (!PAGES.includes(page)) page = "home";
+      location.hash = page;
+    }
+    function route() {
+      const page = (location.hash || "#home").replace("#", "");
+      const active = PAGES.includes(page) ? page : "home";
+      PAGES.forEach(p => {
+        document.getElementById("page-" + p).classList.toggle("active", p === active);
+      });
+      document.querySelectorAll("#navLinks a").forEach(a => {
+        a.classList.toggle("active", a.dataset.page === active);
+      });
+      if (active === "home") renderHome();
+      if (active === "codex") renderCodex();
+      if (active === "community") renderCommunity();
+      if (active === "bag") renderBag();
+      if (active === "settings") renderSettings();
+    }
+    window.addEventListener("hashchange", route);
+
+    // ===== 渲染：首页 =====
+    const MODULES = [
+      { page: "codex", icon: "📖", name: "作物图鉴", desc: "浏览全部作物、动物、村民、鱼类与矿石，点击收集入背包。" },
+      { page: "community", icon: "🏠", name: "社区中心", desc: "用背包物品完成收集包捐赠，复兴小镇。" },
+      { page: "bag", icon: "🎒", name: "背包", desc: "管理你收集到的物种，可移除或用于捐赠。" },
+      { page: "settings", icon: "⚙️", name: "设置", desc: "编辑农夫资料，导出或重置本地进度。" }
+    ];
+    function renderHome() {
+      const ownedCount = Object.keys(state.bag).filter(k => state.bag[k] > 0).length;
+      const totalSlots = BUNDLES.reduce((s, b) => s + b.need.length, 0);
+      const filledSlots = BUNDLES.reduce((s, b) => s + ((state.bundles[b.id] || []).length), 0);
+      const pct = totalSlots ? Math.round(filledSlots / totalSlots * 100) : 0;
+
+      document.getElementById("statCodex").textContent = state.items.length;
+      document.getElementById("statBag").textContent = ownedCount;
+      document.getElementById("statBundlePct").textContent = pct + "%";
+      document.getElementById("statBundleBar").style.width = pct + "%";
+
+      const grid = document.getElementById("moduleGrid");
       grid.innerHTML = "";
-      if (!list.length) {
-        grid.innerHTML = '<div class="empty">🌾 没有找到相关条目，换个关键词试试？</div>';
-        return;
-      }
-      list.forEach(it => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML =
-          '<div class="icon">' + it.icon + '</div>' +
-          '<div class="name">' + it.name + '</div>' +
-          '<span class="tag">' + (CAT_LABEL[it.cat] || it.cat) + '</span>' +
-          '<div class="desc">' + (it.description || it.desc || "") + '</div>';
-        grid.appendChild(card);
+      MODULES.forEach(m => {
+        const el = document.createElement("div");
+        el.className = "module-card";
+        el.innerHTML =
+          '<div class="m-icon">' + m.icon + '</div>' +
+          '<div class="m-name">' + m.name + '</div>' +
+          '<div class="m-desc">' + m.desc + '</div>';
+        el.addEventListener("click", () => go(m.page));
+        grid.appendChild(el);
       });
     }
 
-    function filter() {
-      const q = input.value.trim().toLowerCase();
-      const res = ITEMS.filter(it => {
-        const okCat = currentCat === "all" || it.cat === currentCat;
+    // ===== 渲染：作物图鉴 =====
+    function renderCodex() {
+      const grid = document.getElementById("grid");
+      const q = state.searchQ.trim().toLowerCase();
+      const list = state.items.filter(it => {
+        const okCat = state.currentCat === "all" || it.cat === state.currentCat;
         const text = (it.description || "") + " " + (it.name || "");
         const okQ = !q || it.name.toLowerCase().includes(q)
           || (CAT_LABEL[it.cat] || "").includes(q)
           || text.toLowerCase().includes(q);
         return okCat && okQ;
       });
-      render(res);
+      grid.innerHTML = "";
+      if (!list.length) {
+        grid.innerHTML = '<div class="empty">🌾 没有找到相关条目，换个关键词试试？</div>';
+        return;
+      }
+      list.forEach(it => {
+        const owned = state.bag[it.name] || 0;
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML =
+          (owned > 0 ? '<span class="owned-badge">×' + owned + '</span>' : '') +
+          '<div class="icon">' + it.icon + '</div>' +
+          '<div class="name">' + it.name + '</div>' +
+          '<span class="tag">' + (CAT_LABEL[it.cat] || it.cat) + '</span>' +
+          '<div class="desc">' + (it.description || "") + '</div>';
+        card.addEventListener("click", () => openModal(it));
+        grid.appendChild(card);
+      });
     }
 
-    document.getElementById("searchBtn").addEventListener("click", filter);
-    input.addEventListener("input", filter);
-    input.addEventListener("keydown", e => { if (e.key === "Enter") filter(); });
-
-    document.getElementById("chips").addEventListener("click", e => {
-      const chip = e.target.closest(".chip");
-      if (!chip) return;
-      document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
-      chip.classList.add("active");
-      currentCat = chip.dataset.cat;
-      filter();
-    });
-
-    // 其他导航项（页面尚未生成）
-    document.querySelectorAll(".nav-links a[data-page]").forEach(a => {
-      a.addEventListener("click", e => {
-        e.preventDefault();
-        alert("「" + a.dataset.page + "」页面暂未开放，敬请期待～");
+    // ===== 物品详情弹窗 =====
+    function openModal(it) {
+      const owned = state.bag[it.name] || 0;
+      const box = document.getElementById("modalBox");
+      box.innerHTML =
+        '<div class="m-icon">' + it.icon + '</div>' +
+        '<div class="m-name">' + it.name + '</div>' +
+        '<span class="m-tag">' + (CAT_LABEL[it.cat] || it.cat) + '</span>' +
+        '<div class="m-desc">' + (it.description || "暂无描述") + '</div>' +
+        '<div class="m-owned">背包持有：' + owned + ' 个</div>' +
+        '<div class="modal-actions">' +
+          '<button class="btn" id="modalAdd">＋ 收集</button>' +
+          '<button class="btn warn" id="modalRemove"' + (owned > 0 ? '' : ' disabled') + '>－ 移除</button>' +
+        '</div>';
+      document.getElementById("modalMask").classList.add("show");
+      document.getElementById("modalAdd").addEventListener("click", () => {
+        addToBag(it.name); closeModal(); renderCodex(); renderHome(); renderBag();
       });
+      const rm = document.getElementById("modalRemove");
+      if (rm) rm.addEventListener("click", () => {
+        removeFromBag(it.name, 1); closeModal(); renderCodex(); renderHome(); renderBag();
+      });
+    }
+    function closeModal() { document.getElementById("modalMask").classList.remove("show"); }
+    document.getElementById("modalMask").addEventListener("click", e => {
+      if (e.target.id === "modalMask") closeModal();
     });
 
-    // ===== 登录态：显示农夫名 / 退出 =====
+    // ===== 背包操作 =====
+    function addToBag(name) {
+      state.bag[name] = (state.bag[name] || 0) + 1;
+      saveBag();
+    }
+    function removeFromBag(name, n) {
+      if (!state.bag[name]) return;
+      state.bag[name] -= (n || 1);
+      if (state.bag[name] <= 0) delete state.bag[name];
+      saveBag();
+    }
+
+    // ===== 渲染：社区中心 =====
+    function renderCommunity() {
+      const grid = document.getElementById("bundleGrid");
+      grid.innerHTML = "";
+      BUNDLES.forEach(b => {
+        const filled = state.bundles[b.id] || [];
+        const done = filled.length === b.need.length;
+        const card = document.createElement("div");
+        card.className = "bundle" + (done ? " done" : "");
+        let slots = "";
+        b.need.forEach(name => {
+          const isFilled = filled.includes(name);
+          const owned = state.bag[name] || 0;
+          const it = itemByName(name);
+          const icon = it ? it.icon : "❔";
+          slots +=
+            '<div class="slot' + (isFilled ? ' filled' : '') + '">' +
+              '<span class="s-icon">' + icon + '</span>' +
+              '<span class="s-name">' + name + (isFilled ? '（已捐赠）' : '') + '</span>' +
+              (isFilled
+                ? '<span class="s-check">✓</span>'
+                : '<button class="donate-btn" data-bundle="' + b.id + '" data-name="' + name + '"' + (owned > 0 ? '' : ' disabled') + '>捐赠</button>') +
+            '</div>';
+        });
+        card.innerHTML =
+          '<div class="bundle-head"><span class="b-icon">' + b.icon + '</span>' +
+          '<span class="b-title">' + b.title + (done ? ' ✅' : '') + '</span></div>' +
+          '<div class="bundle-desc">' + b.desc + '</div>' +
+          slots +
+          '<div class="bundle-progress">进度：' + filled.length + ' / ' + b.need.length + '</div>';
+        grid.appendChild(card);
+      });
+      grid.querySelectorAll(".donate-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const bid = btn.dataset.bundle, name = btn.dataset.name;
+          if ((state.bag[name] || 0) <= 0) return;
+          removeFromBag(name, 1);
+          if (!state.bundles[bid]) state.bundles[bid] = [];
+          if (!state.bundles[bid].includes(name)) state.bundles[bid].push(name);
+          saveBundles();
+          renderCommunity(); renderBag(); renderHome();
+        });
+      });
+    }
+
+    // ===== 渲染：背包 =====
+    function renderBag() {
+      const grid = document.getElementById("bagGrid");
+      const entries = Object.keys(state.bag).filter(k => state.bag[k] > 0)
+        .map(k => ({ name: k, count: state.bag[k], it: itemByName(k) }));
+      grid.innerHTML = "";
+      if (!entries.length) {
+        grid.innerHTML = '<div class="empty">🎒 背包还是空的，去「作物图鉴」收集物种吧！</div>';
+        return;
+      }
+      entries.forEach(e => {
+        const icon = e.it ? e.it.icon : "❔";
+        const el = document.createElement("div");
+        el.className = "bag-item";
+        el.innerHTML =
+          '<div class="b-icon">' + icon + '</div>' +
+          '<div class="b-info"><div class="b-name">' + e.name + '</div>' +
+          '<div class="b-count">持有 ×' + e.count + '</div></div>' +
+          '<button class="remove-btn" data-name="' + e.name + '">移除</button>';
+        grid.appendChild(el);
+      });
+      grid.querySelectorAll(".remove-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          removeFromBag(btn.dataset.name, 1);
+          renderBag(); renderCodex(); renderHome();
+        });
+      });
+    }
+
+    // ===== 渲染：设置 =====
+    function renderSettings() {
+      let f = {};
+      try { f = JSON.parse(localStorage.getItem(LS_FARMER)) || {}; } catch (e) {}
+      document.getElementById("setFarmerName").value = f.farmerName || f.account || "";
+      document.getElementById("setFarmName").value = f.farmName || "";
+    }
+
+    // ===== 登录态：显示农夫名 / 退出 / 权限控制 =====
+    // 权限约定（与后端一致）：role === 0 为管理员，role === 1 为普通用户（默认）
+    function getRole() {
+      try {
+        const f = JSON.parse(localStorage.getItem(LS_FARMER) || "{}");
+        return (f.role === 0) ? 0 : 1; // 缺省按普通用户处理
+      } catch (e) { return 1; }
+    }
     function applyFarmer() {
       try {
-        const raw = localStorage.getItem("stardew_farmer");
+        const raw = localStorage.getItem(LS_FARMER);
         if (raw) {
           const f = JSON.parse(raw);
           const name = f.farmerName || f.account || "农夫";
@@ -455,17 +966,101 @@
           document.getElementById("welcome").innerHTML =
             "欢迎回到星露谷，<b>" + name + "</b>！今天也要努力种田哦～ 🌞";
         }
-      } catch (e) { /* 忽略，使用默认文案 */ }
+      } catch (e) { /* 忽略 */ }
+      // 权限控制：仅管理员（role=0）可见「后台管理」按钮
+      const adminBtn = document.getElementById("adminBtn");
+      if (adminBtn) adminBtn.style.display = (getRole() === 0) ? "" : "none";
     }
-    applyFarmer();
 
     document.getElementById("logoutBtn").addEventListener("click", () => {
-      localStorage.removeItem("stardew_farmer");
+      const token = getToken();
+      if (token) {
+        fetch("/api/auth/logout", {
+          method: "POST",
+          headers: { "X-User-Token": token }
+        }).catch(() => {});
+      }
+      localStorage.removeItem(LS_FARMER);
       location.href = "/login";
     });
 
-    // 初始渲染：从后端加载展示数据
-    loadItems();
+    // ===== 导航 / 搜索 绑定 =====
+    document.querySelectorAll("#navLinks a").forEach(a => {
+      a.addEventListener("click", e => { e.preventDefault(); go(a.dataset.page); });
+    });
+
+    document.getElementById("searchBtn").addEventListener("click", () => {
+      state.searchQ = document.getElementById("searchInput").value;
+      if (!document.getElementById("page-codex").classList.contains("active")) go("codex");
+      else renderCodex();
+    });
+    document.getElementById("searchInput").addEventListener("input", e => {
+      state.searchQ = e.target.value; renderCodex();
+    });
+    document.getElementById("searchInput").addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        state.searchQ = e.target.value;
+        if (!document.getElementById("page-codex").classList.contains("active")) go("codex");
+        else renderCodex();
+      }
+    });
+    document.getElementById("chips").addEventListener("click", e => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      document.querySelectorAll("#chips .chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      state.currentCat = chip.dataset.cat;
+      renderCodex();
+    });
+
+    // ===== 设置：保存资料 / 数据管理 =====
+    document.getElementById("saveProfileBtn").addEventListener("click", () => {
+      let f = {};
+      try { f = JSON.parse(localStorage.getItem(LS_FARMER)) || {}; } catch (e) {}
+      f.farmerName = document.getElementById("setFarmerName").value.trim() || f.farmerName;
+      f.farmName = document.getElementById("setFarmName").value.trim();
+      localStorage.setItem(LS_FARMER, JSON.stringify(f));
+      applyFarmer();
+      document.getElementById("profileTip").textContent = "✅ 资料已保存";
+      setTimeout(() => document.getElementById("profileTip").textContent = "", 2000);
+    });
+
+    document.getElementById("exportBtn").addEventListener("click", () => {
+      const data = { farmer: JSON.parse(localStorage.getItem(LS_FARMER) || "{}"), bag: state.bag, bundles: state.bundles };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "stardew-progress.json"; a.click();
+      URL.revokeObjectURL(url);
+      document.getElementById("dataTip").textContent = "📦 进度已导出";
+      setTimeout(() => document.getElementById("dataTip").textContent = "", 2000);
+    });
+
+    document.getElementById("resetBagBtn").addEventListener("click", () => {
+      if (!confirm("确定清空背包中所有物品？此操作不可撤销。")) return;
+      state.bag = {};
+      saveBag();
+      renderBag(); renderCodex(); renderHome();
+      document.getElementById("dataTip").textContent = "🧹 背包已清空";
+      setTimeout(() => document.getElementById("dataTip").textContent = "", 2000);
+    });
+
+    document.getElementById("resetBundleBtn").addEventListener("click", () => {
+      if (!confirm("确定重置社区中心所有收集包进度？已捐赠物品不会退回背包。")) return;
+      state.bundles = {};
+      saveBundles();
+      renderCommunity(); renderHome();
+      document.getElementById("dataTip").textContent = "🔄 社区中心已重置";
+      setTimeout(() => document.getElementById("dataTip").textContent = "", 2000);
+    });
+
+    // ===== 启动 =====
+    (async function init() {
+      applyFarmer();
+      await loadItems();
+      await loadProgress(); // 拉取该账号在后端保存的背包 / 社区中心进度
+      route();
+    })();
   </script>
 </body>
 </html>

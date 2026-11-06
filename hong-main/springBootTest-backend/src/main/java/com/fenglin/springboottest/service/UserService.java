@@ -23,4 +23,27 @@ public interface UserService {
      * @param req 注册请求
      */
     void register(RegisterRequest req);
+
+    /**
+     * 为指定账号签发访问令牌（明文简单令牌，有效期 2 小时，访问自动续期）
+     *
+     * @param account 登录账号
+     * @return 令牌字符串
+     */
+    String createToken(String account);
+
+    /**
+     * 校验令牌，有效则返回对应账号，否则返回 null
+     *
+     * @param token 令牌
+     * @return 账号
+     */
+    String validateToken(String token);
+
+    /**
+     * 令牌失效（登出）
+     *
+     * @param token 令牌
+     */
+    void logout(String token);
 }
