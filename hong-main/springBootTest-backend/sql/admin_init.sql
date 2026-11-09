@@ -1,11 +1,14 @@
 -- ============================================================
 -- 星露谷 · 后台管理系统数据库初始化脚本
 -- 数据库：stardew（复用现有库）
--- 说明：初始化 item（首页展示条目）表，并导入图鉴数据。
+-- 说明：初始化 item（首页展示条目）、bundle（社区中心收集包）表并导入数据，
+--       并为 user 表补充 status（账号状态）列。
 --       后台管理员身份已并入 user 表（role=0 即为管理员），
 --       默认管理员（admin / admin123）由后端首次启动时自动创建，无需本脚本维护。
 -- 执行方式（本地 MySQL，root / 123456）：
 --   "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -uroot -p123456 < admin_init.sql
+-- 注意：末尾 ALTER 语句重复执行会报 Duplicate column（可忽略，不影响其他语句），
+--       因此放在脚本最后。
 -- ============================================================
 
 USE `stardew`;
@@ -80,3 +83,44 @@ WHERE NOT EXISTS (SELECT 1 FROM `item` WHERE `name` = '金矿石');
 INSERT INTO `item` (`icon`, `name`, `cat`, `description`, `sort_order`, `enabled`)
 SELECT '💎', '钻石', 'ore', '矿洞最深处才可能见到的稀世珍宝。', 400, 1
 WHERE NOT EXISTS (SELECT 1 FROM `item` WHERE `name` = '钻石');
+
+-- ============================================================
+-- 社区中心收集包表（首页「社区中心」模块数据，后台可管理）
+-- need 列以 JSON 数组保存所需物品名，如 ["草莓","樱桃"]
+-- ============================================================
+CREATE TABLE IF NOT EXISTS `bundle` (
+    `id`          BIGINT       NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `icon`        VARCHAR(16)  NOT NULL                COMMENT '图标（emoji）',
+    `title`       VARCHAR(64)  NOT NULL                COMMENT '收集包名称',
+    `description` VARCHAR(255) DEFAULT ''              COMMENT '描述（首页卡片展示文案）',
+    `need`        TEXT         NOT NULL                COMMENT '所需物品名，JSON 数组',
+    `sort_order`  INT          NOT NULL DEFAULT 999    COMMENT '排序值，越小越靠前',
+    `enabled`     TINYINT      NOT NULL DEFAULT 1      COMMENT '是否启用：1-首页可见 0-隐藏',
+    `create_time` DATETIME     DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` DATETIME     DEFAULT CURRENT_TIMESTAMP
+                               ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (`id`),
+    KEY `idx_sort` (`sort_order`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT = '社区中心收集包表';
+
+-- 导入首页原有静态收集包数据（幂等：仅在表为空时插入）
+INSERT INTO `bundle` (`icon`, `title`, `description`, `need`, `sort_order`, `enabled`)
+SELECT t.`icon`, t.`title`, t.`description`, t.`need`, t.`sort_order`, 1
+FROM (
+    SELECT '🌸' AS `icon`, '春之收获包' AS `title`, '献上春季的馈赠，唤醒沉睡的社区中心。' AS `description`, '["草莓","樱桃"]' AS `need`, 1 AS `sort_order`
+    UNION ALL SELECT '☀️', '夏之盛宴包', '夏日丰饶，果蔬满仓。', '["蓝莓","啤酒花","玉米"]', 2
+    UNION ALL SELECT '🍂', '秋之丰收包', '金秋时节，谷仓飘香。', '["南瓜","远古水果"]', 3
+    UNION ALL SELECT '🐮', '牧场情谊包', '来自动物们的温柔陪伴。', '["鸡","奶牛","羊"]', 4
+    UNION ALL SELECT '🎣', '深海渔获包', '江河湖海的礼物。', '["鲈鱼","虹鳟","鲶鱼","传说之鱼"]', 5
+    UNION ALL SELECT '💎', '矿洞宝藏包', '地心深处闪耀的珍宝。', '["铜矿石","铁矿石","金矿石","钻石"]', 6
+) AS t
+WHERE NOT EXISTS (SELECT 1 FROM `bundle`);
+
+-- ============================================================
+-- user 表补充 status 列（账号状态控制：1-正常 0-禁用）
+-- 放在脚本最后：重复执行会报 Duplicate column name 'status'，属预期行为可忽略
+-- ============================================================
+ALTER TABLE `user`
+    ADD COLUMN `status` TINYINT NOT NULL DEFAULT 1 COMMENT '账号状态：1-正常 0-禁用' AFTER `role`;

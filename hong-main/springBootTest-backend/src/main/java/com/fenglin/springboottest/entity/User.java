@@ -41,6 +41,9 @@ public class User implements Serializable {
     /** 权限：0-管理员，1-普通用户（默认） */
     private Integer role;
 
+    /** 账号状态：1-正常 0-禁用（禁用后无法登录） */
+    private Integer status;
+
     /** 创建时间 */
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
@@ -111,6 +114,14 @@ public class User implements Serializable {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public LocalDateTime getCreateTime() {

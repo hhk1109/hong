@@ -23,6 +23,7 @@ CREATE TABLE `user` (
     `email`       VARCHAR(128) DEFAULT NULL            COMMENT '邮箱',
     `animal`      VARCHAR(64)  DEFAULT NULL            COMMENT '宠物 / 动物',
     `role`        TINYINT      NOT NULL DEFAULT 1       COMMENT '权限：0-管理员，1-普通用户（默认）',
+    `status`      TINYINT      NOT NULL DEFAULT 1       COMMENT '账号状态：1-正常 0-禁用',
     `create_time` DATETIME     DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` DATETIME     DEFAULT CURRENT_TIMESTAMP
                                ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',

@@ -645,8 +645,8 @@
       { icon: "💎", name: "钻石", cat: "ore", description: "矿洞最深处才可能见到的稀世珍宝。" }
     ];
 
-    // ===== 社区中心收集包定义 =====
-    const BUNDLES = [
+    // ===== 社区中心收集包定义：优先从后端接口加载（后台管理可维护），失败时回退本地静态数据 =====
+    const FALLBACK_BUNDLES = [
       { id: "spring",  icon: "🌸", title: "春之收获包", desc: "献上春季的馈赠，唤醒沉睡的社区中心。", need: ["草莓", "樱桃"] },
       { id: "summer",  icon: "☀️", title: "夏之盛宴包", desc: "夏日丰饶，果蔬满仓。", need: ["蓝莓", "啤酒花", "玉米"] },
       { id: "autumn",  icon: "🍂", title: "秋之丰收包", desc: "金秋时节，谷仓飘香。", need: ["南瓜", "远古水果"] },
@@ -654,6 +654,19 @@
       { id: "fish",    icon: "🎣", title: "深海渔获包", desc: "江河湖海的礼物。", need: ["鲈鱼", "虹鳟", "鲶鱼", "传说之鱼"] },
       { id: "mine",    icon: "💎", title: "矿洞宝藏包", desc: "地心深处闪耀的珍宝。", need: ["铜矿石", "铁矿石", "金矿石", "钻石"] }
     ];
+    let bundleDefs = FALLBACK_BUNDLES;
+
+    async function loadBundleDefs() {
+      try {
+        const res = await fetch("/api/bundles");
+        const body = await res.json();
+        if (res.ok && body.code === 200 && Array.isArray(body.data) && body.data.length) {
+          bundleDefs = body.data.map(b => ({
+            id: String(b.id), icon: b.icon, title: b.title, desc: b.description, need: b.need || []
+          }));
+        }
+      } catch (e) { /* 后端不可达，沿用本地静态数据 */ }
+    }
 
     const CAT_LABEL = { crop: "作物", animal: "动物", villager: "村民", fish: "钓鱼", ore: "矿石" };
 
@@ -771,8 +784,8 @@
     ];
     function renderHome() {
       const ownedCount = Object.keys(state.bag).filter(k => state.bag[k] > 0).length;
-      const totalSlots = BUNDLES.reduce((s, b) => s + b.need.length, 0);
-      const filledSlots = BUNDLES.reduce((s, b) => s + ((state.bundles[b.id] || []).length), 0);
+      const totalSlots = bundleDefs.reduce((s, b) => s + b.need.length, 0);
+      const filledSlots = bundleDefs.reduce((s, b) => s + ((state.bundles[b.id] || []).length), 0);
       const pct = totalSlots ? Math.round(filledSlots / totalSlots * 100) : 0;
 
       document.getElementById("statCodex").textContent = state.items.length;
@@ -870,7 +883,7 @@
     function renderCommunity() {
       const grid = document.getElementById("bundleGrid");
       grid.innerHTML = "";
-      BUNDLES.forEach(b => {
+      bundleDefs.forEach(b => {
         const filled = state.bundles[b.id] || [];
         const done = filled.length === b.need.length;
         const card = document.createElement("div");
@@ -967,9 +980,7 @@
             "欢迎回到星露谷，<b>" + name + "</b>！今天也要努力种田哦～ 🌞";
         }
       } catch (e) { /* 忽略 */ }
-      // 权限控制：仅管理员（role=0）可见「后台管理」按钮
-      const adminBtn = document.getElementById("adminBtn");
-      if (adminBtn) adminBtn.style.display = (getRole() === 0) ? "" : "none";
+      // 「后台管理」入口对所有用户可见，点击后进入后台登录页，由管理员凭证验证把关
     }
 
     document.getElementById("logoutBtn").addEventListener("click", () => {
@@ -1058,6 +1069,7 @@
     (async function init() {
       applyFarmer();
       await loadItems();
+      await loadBundleDefs(); // 拉取后台维护的社区中心收集包定义
       await loadProgress(); // 拉取该账号在后端保存的背包 / 社区中心进度
       route();
     })();

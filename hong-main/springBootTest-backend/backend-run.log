@@ -8,172 +8,1896 @@
 
  :: Spring Boot ::                (v3.4.5)
 
-2026-11-04 09:55:47  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 1852 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in D:\workSpace\hong\hong-main\springBootTest-backend)
-2026-11-04 09:55:47  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
-2026-11-04 09:55:48  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
-2026-11-04 09:55:48  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
-2026-11-04 09:55:48  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
-2026-11-04 09:55:48  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
-2026-11-04 09:55:48  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1134 ms
+2026-11-09 11:08:08  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarting 53:Starting SpringBootTestApplication v0.0.1-SNAPSHOT using Java 21.0.10 with PID 3416 (D:\workSpace\hong\hong-main\springBootTest-backend\target\springBootTest-0.0.1-SNAPSHOT.jar started by Administrator in c:\Users\Administrator\WorkBuddy\2026-11-09-10-43-36)
+2026-11-09 11:08:08  INFO c.fenglin.springboottest.SpringBootTestApplication.logStartupProfileInfo 658:The following 1 profile is active: "dev"
+2026-11-09 11:08:09  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.initialize 111:Tomcat initialized with port 8081 (http)
+2026-11-09 11:08:09  INFO org.apache.catalina.core.StandardService.log 168:Starting service [Tomcat]
+2026-11-09 11:08:09  INFO org.apache.catalina.core.StandardEngine.log 168:Starting Servlet engine: [Apache Tomcat/10.1.40]
+2026-11-09 11:08:09  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring embedded WebApplicationContext
+2026-11-09 11:08:09  INFO o.s.b.w.s.c.ServletWebServerApplicationContext.prepareWebApplicationContext 301:Root WebApplicationContext: initialization completed in 1130 ms
 Logging initialized using 'class org.apache.ibatis.logging.stdout.StdOutImpl' adapter.
 Get /192.168.137.1 network interface 
 Get network interface info: name:ethernet_32776 (VMware Virtual Ethernet Adapter for VMnet8)
-Initialization Sequence datacenterId:0 workerId:20
+Initialization Sequence datacenterId:0 workerId:22
  _ _   |_  _ _|_. ___ _ |    _ 
 | | |\/|_)(_| | |_\  |_)||_|_\ 
      /               |         
                         3.5.9 
-2026-11-04 09:55:49  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
-2026-11-04 09:55:49  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
-2026-11-04 09:55:49  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.545 seconds (process running for 2.949)
+JacksonTypeHandler(interface java.util.List)
+2026-11-09 11:08:09  INFO o.s.b.a.web.servlet.WelcomePageHandlerMapping.<init> 59:Adding welcome page: class path resource [static/index.html]
+2026-11-09 11:08:10  INFO o.s.boot.web.embedded.tomcat.TomcatWebServer.start 243:Tomcat started on port 8081 (http) with context path '/'
+2026-11-09 11:08:10  INFO c.fenglin.springboottest.SpringBootTestApplication.logStarted 59:Started SpringBootTestApplication in 2.587 seconds (process running for 3.003)
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6870cfac] was not registered for synchronization because synchronization is not active
-2026-11-04 09:55:49  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
-2026-11-04 09:55:49  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e151e1f
-2026-11-04 09:55:49  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
-JDBC Connection [HikariProxyConnection@888984210 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
-==>  Preparing: SELECT COUNT( * ) AS total FROM admin_user WHERE (username = ?)
-==> Parameters: admin(String)
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1e56bc9b] was not registered for synchronization because synchronization is not active
+2026-11-09 11:08:10  INFO com.zaxxer.hikari.HikariDataSource.getConnection 109:HikariPool-1 - Starting...
+2026-11-09 11:08:10  INFO com.zaxxer.hikari.pool.HikariPool.checkFailFast 554:HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82
+2026-11-09 11:08:10  INFO com.zaxxer.hikari.HikariDataSource.getConnection 122:HikariPool-1 - Start completed.
+JDBC Connection [HikariProxyConnection@1990268013 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT COUNT( * ) AS total FROM user WHERE (role = ?)
+==> Parameters: 0(Integer)
 <==    Columns: total
 <==        Row: 1
 <==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6870cfac]
-2026-11-04 09:56:07  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-11-04 09:56:07  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
-2026-11-04 09:56:07  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1e56bc9b]
+2026-11-09 11:08:28  INFO o.a.c.core.ContainerBase.[Tomcat].[localhost].[/].log 168:Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-09 11:08:28  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 532:Initializing Servlet 'dispatcherServlet'
+2026-11-09 11:08:28  INFO org.springframework.web.servlet.DispatcherServlet.initServletBean 554:Completed initialization in 1 ms
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@8e29a0c] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@2062391581 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3cc06231] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@596349238 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3cc06231]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@481c3af1] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2042186058 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
 ==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
 ==> Parameters: 1(Integer)
 <==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
-<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 39, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 35, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 40, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 36, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 37, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 41, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 42, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 38, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
 <==      Total: 24
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@8e29a0c]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@481c3af1]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f54a92a] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@972229449 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
-==>  Preparing: SELECT id,username,password,nickname,create_time,update_time FROM admin_user WHERE (username = ?)
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@620cb1ce] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1799637868 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user WHERE (account = ?)
 ==> Parameters: admin(String)
-<==    Columns: id, username, password, nickname, create_time, update_time
-<==        Row: 1, admin, $2a$10$gXwPwq6HksBFdo79CznNEeuhGyMCkYQSIeI5tp1Wb30ZTwTRPxIvS, 镇长, 2026-11-04 08:59:24, 2026-11-04 08:59:24
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 1, admin, admin123, 镇长, 星露谷管理农场, admin@stardew.test, ?, 0, 1, 2026-11-09 10:44:58, 2026-11-09 10:44:58
 <==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6f54a92a]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@620cb1ce]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d292363] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@855486552 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
-==>  Preparing: INSERT INTO item ( icon, name, cat, description, sort_order, enabled, create_time, update_time ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-==> Parameters: ?(String), 分类验证(String), fish(String), tmp(String), 1(Integer), 1(Integer), 2026-11-04T09:56:08.588562600(LocalDateTime), 2026-11-04T09:56:08.588562600(LocalDateTime)
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d1a8a46] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1161294675 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5d1a8a46]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@8426910] was not registered for synchronization because synchronization is not active
+JacksonTypeHandler(interface java.util.List)
+JDBC Connection [HikariProxyConnection@1126637483 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: INSERT INTO bundle ( icon, title, description, need, sort_order, enabled, create_time, update_time ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
+==> Parameters: ?(String), 测试收集包(String), 验证用(String), ["草莓","钻石"](String), 99(Integer), 1(Integer), 2026-11-09T11:08:40.551945900(LocalDateTime), 2026-11-09T11:08:40.551945900(LocalDateTime)
 <==    Updates: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d292363]
-2026-11-04 09:56:08  INFO org.apache.coyote.http11.Http11Processor.log 170:Error parsing HTTP request header
- Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
-java.lang.IllegalArgumentException: Invalid character found in the request target [/api/admin/items?keyword=0xe50x880x860xe70xb10xbb0xe90xaa0x8c0xe80xaf0x81 ]. The valid characters are defined in RFC 7230 and RFC 3986
-	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:478)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:271)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@8426910]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4c5e3eda] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@1117374753 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
-==>  Preparing: SELECT id,username,password,nickname,create_time,update_time FROM admin_user WHERE (username = ?)
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7f55a841] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@182259563 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user ORDER BY id ASC
+==> Parameters: 
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 1, admin, admin123, 镇长, 星露谷管理农场, admin@stardew.test, ?, 0, 1, 2026-11-09 10:44:58, 2026-11-09 10:44:58
+<==        Row: 2, 123, 123456, 123, 123, 2531255532@qq.com, ? 奶牛, 1, 1, 2026-11-09 10:47:39, 2026-11-09 10:47:39
+<==      Total: 2
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7f55a841]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@153af043] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@469568660 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user WHERE (account = ?)
 ==> Parameters: admin(String)
-<==    Columns: id, username, password, nickname, create_time, update_time
-<==        Row: 1, admin, $2a$10$gXwPwq6HksBFdo79CznNEeuhGyMCkYQSIeI5tp1Wb30ZTwTRPxIvS, 镇长, 2026-11-04 08:59:24, 2026-11-04 08:59:24
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 1, admin, admin123, 镇长, 星露谷管理农场, admin@stardew.test, ?, 0, 1, 2026-11-09 10:44:58, 2026-11-09 10:44:58
 <==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4c5e3eda]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@153af043]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a4c80a0] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@2080184669 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
-==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (name LIKE ?) ORDER BY sort_order ASC,id ASC
-==> Parameters: %分类验证%(String)
-<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
-<==        Row: 43, ?, 分类验证, fish, tmp, 1, 1, 2026-11-04 09:56:09, 2026-11-04 09:56:09
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7d692866] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2053755639 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 8, ?, 测试收集包, 验证用, <<BLOB>>, 99, 1, 2026-11-09 11:08:41, 2026-11-09 11:08:41
+<==      Total: 7
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7d692866]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@14c4f023] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@872761192 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE id=?
+==> Parameters: 8(Long)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 8, ?, 测试收集包, 验证用, <<BLOB>>, 99, 1, 2026-11-09 11:08:41, 2026-11-09 11:08:41
 <==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6a4c80a0]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@14c4f023]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64ca6e48] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@1779272865 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
-==>  Preparing: SELECT id,username,password,nickname,create_time,update_time FROM admin_user WHERE (username = ?)
-==> Parameters: admin(String)
-<==    Columns: id, username, password, nickname, create_time, update_time
-<==        Row: 1, admin, $2a$10$gXwPwq6HksBFdo79CznNEeuhGyMCkYQSIeI5tp1Wb30ZTwTRPxIvS, 镇长, 2026-11-04 08:59:24, 2026-11-04 08:59:24
-<==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64ca6e48]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@338d3e6f] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@1051806036 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
-==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE id=?
-==> Parameters: 43(Long)
-<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
-<==        Row: 43, ?, 分类验证, fish, tmp, 1, 1, 2026-11-04 09:56:09, 2026-11-04 09:56:09
-<==      Total: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@338d3e6f]
-Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3e538490] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@1174478658 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
-==>  Preparing: DELETE FROM item WHERE id=?
-==> Parameters: 43(Long)
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1640e1f6] was not registered for synchronization because synchronization is not active
+JacksonTypeHandler(class java.lang.Object)
+JDBC Connection [HikariProxyConnection@2040812463 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: UPDATE bundle SET icon=?, title=?, description=?, need=?, sort_order=?, enabled=?, create_time=?, update_time=? WHERE id=?
+==> Parameters: ?(String), 测试收集包(String), 验证用(String), ["草莓","钻石"](String), 99(Integer), 0(Integer), 2026-11-09T11:08:41(LocalDateTime), 2026-11-09T11:08:41(LocalDateTime), 8(Long)
 <==    Updates: 1
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3e538490]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1640e1f6]
 Creating a new SqlSession
-SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f8b422d] was not registered for synchronization because synchronization is not active
-JDBC Connection [HikariProxyConnection@1878703452 wrapping com.mysql.cj.jdbc.ConnectionImpl@3e151e1f] will not be managed by Spring
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@67fdfce1] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1765416558 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@67fdfce1]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@77b6f207] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@529334631 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE id=?
+==> Parameters: 8(Long)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 8, ?, 测试收集包, 验证用, <<BLOB>>, 99, 0, 2026-11-09 11:08:41, 2026-11-09 11:08:41
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@77b6f207]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2a7a800b] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1309393710 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: DELETE FROM bundle WHERE id=?
+==> Parameters: 8(Long)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2a7a800b]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f49a246] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1261921735 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user WHERE (account = ?)
+==> Parameters: admin(String)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 1, admin, admin123, 镇长, 星露谷管理农场, admin@stardew.test, ?, 0, 1, 2026-11-09 10:44:58, 2026-11-09 10:44:58
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f49a246]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f38827b] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@386768884 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user WHERE id=?
+==> Parameters: 2(Long)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 2, 123, 123456, 123, 123, 2531255532@qq.com, ? 奶牛, 1, 1, 2026-11-09 10:47:39, 2026-11-09 10:47:39
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3f38827b]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f0a6cd2] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@533974850 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: UPDATE user SET account=?, password=?, farmer_name=?, farm_name=?, email=?, animal=?, role=?, status=?, create_time=?, update_time=? WHERE id=?
+==> Parameters: 123(String), 123456(String), 123(String), 123(String), 2531255532@qq.com(String), ? 奶牛(String), 1(Integer), 0(Integer), 2026-11-09T10:47:39(LocalDateTime), 2026-11-09T10:47:39(LocalDateTime), 2(Long)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f0a6cd2]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5bb01a26] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@948997524 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user WHERE (account = ? OR email = ?)
+==> Parameters: 123(String), 123(String)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 2, 123, 123456, 123, 123, 2531255532@qq.com, ? 奶牛, 1, 0, 2026-11-09 10:47:39, 2026-11-09 10:47:39
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5bb01a26]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@66507ec3] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@303573658 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user WHERE id=?
+==> Parameters: 1(Long)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 1, admin, admin123, 镇长, 星露谷管理农场, admin@stardew.test, ?, 0, 1, 2026-11-09 10:44:58, 2026-11-09 10:44:58
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@66507ec3]
+Creating a new SqlSession
+Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6aab9d33]
+JDBC Connection [HikariProxyConnection@898865534 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user WHERE id=?
+==> Parameters: 1(Long)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 1, admin, admin123, 镇长, 星露谷管理农场, admin@stardew.test, ?, 0, 1, 2026-11-09 10:44:58, 2026-11-09 10:44:58
+<==      Total: 1
+Releasing transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6aab9d33]
+Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6aab9d33]
+Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6aab9d33]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5ac006af] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@414862684 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user WHERE id=?
+==> Parameters: 2(Long)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 2, 123, 123456, 123, 123, 2531255532@qq.com, ? 奶牛, 1, 0, 2026-11-09 10:47:39, 2026-11-09 10:47:39
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5ac006af]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3aeff9e0] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1895138124 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3aeff9e0]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60e60cf6] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1425547924 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user WHERE id=?
+==> Parameters: 2(Long)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 2, 123, 123456, 123, 123, 2531255532@qq.com, ? 奶牛, 1, 0, 2026-11-09 10:47:39, 2026-11-09 10:47:39
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@60e60cf6]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@170ac75e] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1386384904 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: UPDATE user SET account=?, password=?, farmer_name=?, farm_name=?, email=?, animal=?, role=?, status=?, create_time=?, update_time=? WHERE id=?
+==> Parameters: 123(String), 123456(String), 123(String), 123(String), 2531255532@qq.com(String), ? 奶牛(String), 1(Integer), 1(Integer), 2026-11-09T10:47:39(LocalDateTime), 2026-11-09T10:47:39(LocalDateTime), 2(Long)
+<==    Updates: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@170ac75e]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@146f37af] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@176223155 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@146f37af]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3ea1a7be] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1645395141 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
 ==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
 ==> Parameters: 1(Integer)
 <==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
-<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-04 08:57:44, 2026-11-04 08:57:44
-<==        Row: 39, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 35, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 40, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 36, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 37, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 41, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 42, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
-<==        Row: 38, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-04 09:53:36, 2026-11-04 09:53:36
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
 <==      Total: 24
-Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1f8b422d]
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3ea1a7be]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@66f0cd4f] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2121538868 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@66f0cd4f]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@69aa17c9] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1211331458 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user WHERE (account = ? OR email = ?)
+==> Parameters: 123(String), 123(String)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 2, 123, 123456, 123, 123, 2531255532@qq.com, ? 奶牛, 1, 1, 2026-11-09 10:47:39, 2026-11-09 10:47:39
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@69aa17c9]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@58e0fe9a] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@158413689 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@58e0fe9a]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@41f71efe] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1462762318 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@41f71efe]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@28071455] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@538312512 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@28071455]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@18150d8] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@17125425 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@18150d8]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26aaa7d8] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1479414238 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26aaa7d8]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@11be0088] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1900297541 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@11be0088]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@35e229ef] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1721693106 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@35e229ef]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26b38f6d] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1630173651 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@26b38f6d]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4ec4c85d] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1712963392 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4ec4c85d]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15972756] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@649657869 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user WHERE (account = ?)
+==> Parameters: admin(String)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 1, admin, admin123, 镇长, 星露谷管理农场, admin@stardew.test, ?, 0, 1, 2026-11-09 10:44:58, 2026-11-09 10:44:58
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@15972756]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3500087d] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@294362648 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3500087d]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3c4216e4] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1327887059 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3c4216e4]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@172e79d6] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1995805179 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@172e79d6]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64956b96] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@30844833 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@64956b96]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@12d03822] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1626993580 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@12d03822]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@67cb8640] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1572451635 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@67cb8640]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4da05ce0] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@625926953 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4da05ce0]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@589de9e0] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1210641178 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@589de9e0]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@37358571] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@464828758 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@37358571]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@13616bfc] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1943498717 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@13616bfc]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4a764b30] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1714393516 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4a764b30]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31848b63] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1434498124 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31848b63]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7b3b0731] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@876415515 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7b3b0731]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@669e99a2] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1964813435 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@669e99a2]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2f6e819d] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@191330510 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2f6e819d]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b2ddd4d] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@275757038 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2b2ddd4d]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d555ceb] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@811115044 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2d555ceb]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@747c2147] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1134101697 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@747c2147]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@777f56b1] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1828342562 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@777f56b1]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5fb0fd77] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1201034230 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@5fb0fd77]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c8bc3fd] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1960584855 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c8bc3fd]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70f73853] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1706916541 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@70f73853]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1abed7ac] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@966744389 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1abed7ac]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4f0bf467] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1573533613 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4f0bf467]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@f610a3b] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1415057443 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@f610a3b]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@124f215d] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1464680940 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@124f215d]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c0b1d8b] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@80309341 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@c0b1d8b]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4c3be15d] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1498974084 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4c3be15d]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4313afa2] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1314173871 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4313afa2]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@141c6491] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1277130784 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@141c6491]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@a5a6889] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1486669332 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@a5a6889]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3e0eb198] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2012361642 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@3e0eb198]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@779a8350] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@460663224 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@779a8350]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2dbdbb35] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1032178217 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2dbdbb35]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@56458005] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1374844964 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@56458005]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46a493ef] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@755632047 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@46a493ef]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@fe565fd] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1540806351 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@fe565fd]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2c482063] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1072307646 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2c482063]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@737f48d6] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@768579492 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@737f48d6]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@d0a5451] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2059764109 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@d0a5451]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@12ef10] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1498796475 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@12ef10]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@301683db] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2069849648 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@301683db]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4a522f58] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1777444161 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4a522f58]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@558711a0] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@363031606 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle WHERE (enabled = ?) ORDER BY sort_order ASC,id ASC
+==> Parameters: 1(Integer)
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@558711a0]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c442a2b] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@385600014 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,bag,bundles,update_time FROM user_progress WHERE (account = ?)
+==> Parameters: 123(String)
+<==      Total: 0
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c442a2b]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@48a0893f] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1825490779 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user WHERE (account = ?)
+==> Parameters: admin(String)
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 1, admin, admin123, 镇长, 星露谷管理农场, admin@stardew.test, ?, 0, 1, 2026-11-09 10:44:58, 2026-11-09 10:44:58
+<==      Total: 1
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@48a0893f]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1137f56f] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2081522706 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1137f56f]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7c8e731a] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1967046053 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@7c8e731a]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@273e7ece] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@818118486 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@273e7ece]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@42a6c64c] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1185586584 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@42a6c64c]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@40775033] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@756044684 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user ORDER BY id ASC
+==> Parameters: 
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 1, admin, admin123, 镇长, 星露谷管理农场, admin@stardew.test, ?, 0, 1, 2026-11-09 10:44:58, 2026-11-09 10:44:58
+<==        Row: 2, 123, 123456, 123, 123, 2531255532@qq.com, ? 奶牛, 1, 1, 2026-11-09 10:47:39, 2026-11-09 10:47:39
+<==      Total: 2
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@40775033]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c94b436] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@567070461 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user ORDER BY id ASC
+==> Parameters: 
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 1, admin, admin123, 镇长, 星露谷管理农场, admin@stardew.test, ?, 0, 1, 2026-11-09 10:44:58, 2026-11-09 10:44:58
+<==        Row: 2, 123, 123456, 123, 123, 2531255532@qq.com, ? 奶牛, 1, 1, 2026-11-09 10:47:39, 2026-11-09 10:47:39
+<==      Total: 2
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6c94b436]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@261a775] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1321484151 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@261a775]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2f1de215] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@19920404 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@2f1de215]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6837a4a5] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@935386414 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@6837a4a5]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@18f3f8ea] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1290747188 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@18f3f8ea]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1b2fe8bd] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1088171119 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@1b2fe8bd]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@45e99e6] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@2127738774 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,name,cat,description,sort_order,enabled,create_time,update_time FROM item ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, name, cat, description, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 草莓, crop, 春季作物，可多次收获，镇长的最爱。, 1, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 2, ?, 蓝莓, crop, 夏季作物，产量高，制作果酱一流。, 2, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 3, ?, 玉米, crop, 夏秋两季均可种植，烘烤后更香甜。, 3, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 4, ?, 南瓜, crop, 秋季作物，万圣节必备，售价可观。, 4, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 5, ?, 樱桃, crop, 多年生果树，春季稳定产出。, 5, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 6, ?, 啤酒花, crop, 夏季攀藤作物，用于酿制淡啤酒。, 6, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 7, ?, 远古水果, crop, 传说作物，酿成酒价值连城。, 7, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 8, ?, 鸡, animal, 每天产蛋，金色母鸡更珍贵。, 8, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 9, ?, 奶牛, animal, 产出牛奶，可制作奶酪。, 9, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 10, ?, 羊, animal, 产出羊毛，梳毛后制成布料。, 10, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 11, ?, 猪, animal, 松露猎手，林间觅得松露。, 11, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 12, ?, 马, animal, 牧场好伙伴，提升移动速度。, 12, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 13, ?, 阿比盖尔, villager, 鹈鹕镇少女，热爱矿物与冒险。, 13, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 14, ?, 塞巴斯蒂安, villager, 镇上的程序员，钟爱雨天。, 14, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 15, ?, 艾芙琳, villager, 和蔼的祖母，擅长烘焙。, 15, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 16, ???, 镇长刘易斯, villager, 鹈鹕镇镇长，关心小镇发展。, 16, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 36, ?, 铜矿石, ore, 矿洞浅层最常见的矿石，熔炼后用途广泛。, 25, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 32, ?, 鲈鱼, fish, 鹈鹕河里最常见的鱼，新手渔夫的起点。, 40, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 37, ?, 铁矿石, ore, 埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。, 60, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 33, ?, 虹鳟, fish, 色彩斑斓的鳟鱼，在山间溪流中出没。, 65, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 34, ?, 鲶鱼, fish, 力气很大的深水鱼，咬钩时鱼竿都在颤抖。, 120, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 38, ?, 金矿石, ore, 深层矿脉中泛着金光，价值不菲。, 150, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 39, ?, 钻石, ore, 矿洞最深处才可能见到的稀世珍宝。, 400, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==        Row: 35, ?, 传说之鱼, fish, 只在月圆之夜现身的深海巨物，渔夫的终极梦想。, 500, 1, 2026-11-09 10:44:59, 2026-11-09 10:44:59
+<==      Total: 24
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@45e99e6]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@68b99a23] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@566605318 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@68b99a23]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@28dc4edd] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1241877442 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,icon,title,description,need,sort_order,enabled,create_time,update_time FROM bundle ORDER BY sort_order ASC,id ASC
+==> Parameters: 
+<==    Columns: id, icon, title, description, need, sort_order, enabled, create_time, update_time
+<==        Row: 1, ?, 春之收获包, 献上春季的馈赠，唤醒沉睡的社区中心。, <<BLOB>>, 1, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 2, ??, 夏之盛宴包, 夏日丰饶，果蔬满仓。, <<BLOB>>, 2, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 3, ?, 秋之丰收包, 金秋时节，谷仓飘香。, <<BLOB>>, 3, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 4, ?, 牧场情谊包, 来自动物们的温柔陪伴。, <<BLOB>>, 4, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 5, ?, 深海渔获包, 江河湖海的礼物。, <<BLOB>>, 5, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==        Row: 6, ?, 矿洞宝藏包, 地心深处闪耀的珍宝。, <<BLOB>>, 6, 1, 2026-11-09 10:58:41, 2026-11-09 10:58:41
+<==      Total: 6
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@28dc4edd]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4d552dd1] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1107321089 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user ORDER BY id ASC
+==> Parameters: 
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 1, admin, admin123, 镇长, 星露谷管理农场, admin@stardew.test, ?, 0, 1, 2026-11-09 10:44:58, 2026-11-09 10:44:58
+<==        Row: 2, 123, 123456, 123, 123, 2531255532@qq.com, ? 奶牛, 1, 1, 2026-11-09 10:47:39, 2026-11-09 10:47:39
+<==      Total: 2
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@4d552dd1]
+Creating a new SqlSession
+SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@294143b0] was not registered for synchronization because synchronization is not active
+JDBC Connection [HikariProxyConnection@1770783175 wrapping com.mysql.cj.jdbc.ConnectionImpl@5e0f2c82] will not be managed by Spring
+==>  Preparing: SELECT id,account,password,farmer_name,farm_name,email,animal,role,status,create_time,update_time FROM user ORDER BY id ASC
+==> Parameters: 
+<==    Columns: id, account, password, farmer_name, farm_name, email, animal, role, status, create_time, update_time
+<==        Row: 1, admin, admin123, 镇长, 星露谷管理农场, admin@stardew.test, ?, 0, 1, 2026-11-09 10:44:58, 2026-11-09 10:44:58
+<==        Row: 2, 123, 123456, 123, 123, 2531255532@qq.com, ? 奶牛, 1, 1, 2026-11-09 10:47:39, 2026-11-09 10:47:39
+<==      Total: 2
+Closing non transactional SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@294143b0]

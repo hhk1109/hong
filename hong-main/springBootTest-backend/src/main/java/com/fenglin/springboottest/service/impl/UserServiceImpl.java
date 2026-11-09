@@ -47,6 +47,10 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             throw new BizException(401, "账号不存在");
         }
+        // 账号状态校验（后台可禁用账号）：0-禁用
+        if (user.getStatus() != null && user.getStatus() == 0) {
+            throw new BizException(403, "账号已被禁用，请联系管理员");
+        }
         // 明文比对（需求约定不加密）
         if (!req.getPassword().equals(user.getPassword())) {
             throw new BizException(401, "密码错误");

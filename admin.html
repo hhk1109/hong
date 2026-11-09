@@ -61,6 +61,28 @@
 
     .container { max-width: 1100px; margin: 26px auto 60px; padding: 0 18px; }
 
+    /* ===== 模块标签页 ===== */
+    .tabs {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;
+    }
+    .tab-btn {
+      cursor: pointer; padding: 12px 20px;
+      font-family: "Press Start 2P", "Zpix", sans-serif; font-size: 11px;
+      color: var(--brown); background: var(--parchment-2);
+      border: 3px solid var(--line); border-radius: 12px;
+      box-shadow: 0 3px 0 rgba(90, 58, 30, .18);
+      white-space: nowrap;
+    }
+    .tab-btn:hover { border-color: var(--green-deep); }
+    .tab-btn.active {
+      color: #fff8e8; background: linear-gradient(180deg, var(--green), var(--green-deep));
+      border-color: var(--brown); box-shadow: 0 3px 0 var(--brown);
+    }
+    .tab-hint { font-size: 12px; color: #9a7a4a; margin: 6px 2px 14px; line-height: 1.7; }
+    .panel { display: none; }
+    .panel.active { display: block; animation: fadeIn .18s steps(3); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
     .toolbar {
       display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
       background: linear-gradient(180deg, var(--parchment-2), var(--parchment-3));
@@ -115,16 +137,20 @@
     td .item-icon { font-size: 22px; }
     .tag {
       display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 6px;
-      color: #fff8e8; background: var(--green-deep);
+      color: #fff8e8; background: var(--green-deep); margin: 1px 2px 1px 0;
     }
     .tag.animal { background: var(--gold-deep); }
     .tag.villager { background: #a05fc4; }
+    .tag.need-tag { background: var(--brown-soft, #8a6a3a); }
     .badge {
       display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 6px;
       color: #fff8e8; background: var(--green-dark);
     }
     .badge.off { background: #b39b6e; }
+    .badge.admin { background: #4a3a5e; }
+    .badge.disabled { background: var(--red); }
     .desc-cell { max-width: 300px; color: #9a7a4a; font-size: 12px; }
+    .time-cell { color: #9a7a4a; font-size: 12px; white-space: nowrap; }
     .actions { display: flex; gap: 6px; flex-wrap: wrap; }
     .btn-mini {
       cursor: pointer; padding: 6px 10px; font-family: inherit; font-size: 12px;
@@ -137,15 +163,17 @@
     .btn-mini.danger { background: var(--red); color: #fff8e8; }
     .empty-row { text-align: center; color: #b39b6e; padding: 30px; }
 
-    /* 弹窗表单 */
+    /* ===== 弹窗表单 ===== */
     .mask {
       position: fixed; inset: 0; z-index: 50;
       display: none; place-items: center;
       background: rgba(43, 36, 64, .55);
+      padding: 20px;
     }
     .mask.open { display: grid; }
     .modal {
-      width: min(480px, 92vw);
+      width: min(500px, 94vw);
+      max-height: 88vh; overflow-y: auto;
       background: linear-gradient(180deg, var(--parchment-2), var(--parchment-3));
       border: 4px solid var(--gold); border-radius: 14px;
       padding: 22px 24px;
@@ -159,7 +187,7 @@
       color: var(--brown); background: #fffdf6;
       border: 3px solid var(--brown-2); border-radius: 8px; outline: none;
     }
-    .modal .field textarea { resize: vertical; min-height: 64px; }
+    .modal .field textarea { resize: vertical; min-height: 72px; }
     .modal .field-row { display: flex; gap: 10px; }
     .modal .field-row .field { flex: 1; }
     .modal .check { display: flex; align-items: center; gap: 8px; font-size: 13px; }
@@ -178,6 +206,14 @@
       box-shadow: 0 3px 0 var(--brown);
     }
     .btn-save:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--brown); }
+    .modal .tip { font-size: 11px; color: #9a7a4a; margin-top: 4px; line-height: 1.6; }
+
+    /* 进度查看弹窗 */
+    .progress-box { font-size: 13px; }
+    .progress-box h4 { margin: 12px 0 6px; color: var(--green-dark); }
+    .progress-box .plist { display: flex; gap: 6px; flex-wrap: wrap; }
+    .progress-box .plist .tag { background: var(--brown-2); }
+    .progress-box .empty-tip { color: #b39b6e; font-size: 12px; }
 
     .toast {
       position: fixed; left: 50%; top: 26px; transform: translate(-50%, -16px);
@@ -187,7 +223,12 @@
     }
     .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
-    .footer { text-align: center; padding: 22px; font-size: 12px; color: #9a7a4a; border-top: 3px dashed var(--line); }
+    .footer { text-align: center; padding: 22px; font-size: 12px; color: #9a7a4a; border-top: 3px dashed var(--line); line-height: 1.8; }
+
+    @media (max-width: 640px) {
+      .brand { font-size: 10px; }
+      .field-row { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
@@ -201,91 +242,126 @@
   </header>
 
   <div class="container">
-    <div class="stats" id="stats">
-      <div class="stat"><div class="num" id="statTotal">0</div><div class="label">条目总数</div></div>
-      <div class="stat"><div class="num" id="statVisible">0</div><div class="label">首页可见</div></div>
-      <div class="stat"><div class="num" id="statHidden">0</div><div class="label">已隐藏</div></div>
-      <div class="stat"><div class="num" id="statCrops">0</div><div class="label">作物 / 动物 / 村民</div></div>
+    <!-- 模块标签页 -->
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="items">📖 图鉴条目</button>
+      <button class="tab-btn" data-tab="bundles">🏠 收集包</button>
+      <button class="tab-btn" data-tab="users">🧑‍🌾 用户管理</button>
     </div>
 
-    <div class="toolbar">
-      <input class="search-input" id="kwInput" type="text" placeholder="按名称搜索条目…" />
-      <select id="catSelect">
-        <option value="">全部分类</option>
-        <option value="crop">作物</option>
-        <option value="animal">动物</option>
-        <option value="villager">村民</option>
-        <option value="fish">鱼类</option>
-        <option value="ore">矿石</option>
-      </select>
-      <button class="btn-add" id="addBtn">＋ 新增条目</button>
-    </div>
+    <!-- ============ 图鉴条目管理（对应首页「作物图鉴」模块） ============ -->
+    <section class="panel active" id="panel-items">
+      <div class="tab-hint">管理首页「作物图鉴」展示的全部条目（作物 / 动物 / 村民 / 鱼类 / 矿石），保存后首页即时同步。</div>
+      <div class="stats">
+        <div class="stat"><div class="num" id="statTotal">0</div><div class="label">条目总数</div></div>
+        <div class="stat"><div class="num" id="statVisible">0</div><div class="label">首页可见</div></div>
+        <div class="stat"><div class="num" id="statHidden">0</div><div class="label">已隐藏</div></div>
+        <div class="stat"><div class="num" id="statCrops">0</div><div class="label">作物 / 动物 / 村民</div></div>
+      </div>
+      <div class="toolbar">
+        <input class="search-input" id="kwInput" type="text" placeholder="按名称搜索条目…" />
+        <select id="catSelect">
+          <option value="">全部分类</option>
+          <option value="crop">作物</option>
+          <option value="animal">动物</option>
+          <option value="villager">村民</option>
+          <option value="fish">鱼类</option>
+          <option value="ore">矿石</option>
+        </select>
+        <button class="btn-add" id="addBtn">＋ 新增条目</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:60px">图标</th>
+            <th>名称</th>
+            <th style="width:90px">分类</th>
+            <th>描述</th>
+            <th style="width:70px">售价/排序</th>
+            <th style="width:80px">状态</th>
+            <th style="width:230px">操作</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+          <tr><td colspan="7" class="empty-row">加载中…</td></tr>
+        </tbody>
+      </table>
+    </section>
 
-    <table>
-      <thead>
-        <tr>
-          <th style="width:60px">图标</th>
-          <th>名称</th>
-          <th style="width:90px">分类</th>
-          <th>描述</th>
-          <th style="width:70px">售价/排序</th>
-          <th style="width:80px">状态</th>
-          <th style="width:230px">操作</th>
-        </tr>
-      </thead>
-      <tbody id="tbody">
-        <tr><td colspan="7" class="empty-row">加载中…</td></tr>
-      </tbody>
-    </table>
+    <!-- ============ 收集包管理（对应首页「社区中心」模块） ============ -->
+    <section class="panel" id="panel-bundles">
+      <div class="tab-hint">管理首页「社区中心」的收集包定义（名称 / 图标 / 所需物品），保存后首页即时同步。</div>
+      <div class="stats">
+        <div class="stat"><div class="num" id="bStatTotal">0</div><div class="label">收集包总数</div></div>
+        <div class="stat"><div class="num" id="bStatVisible">0</div><div class="label">首页可见</div></div>
+        <div class="stat"><div class="num" id="bStatHidden">0</div><div class="label">已隐藏</div></div>
+        <div class="stat"><div class="num" id="bStatSlots">0</div><div class="label">捐赠槽总数</div></div>
+      </div>
+      <div class="toolbar">
+        <input class="search-input" id="bKwInput" type="text" placeholder="按名称搜索收集包…" />
+        <button class="btn-add" id="bAddBtn">＋ 新增收集包</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:60px">图标</th>
+            <th>名称</th>
+            <th>描述</th>
+            <th>所需物品</th>
+            <th style="width:70px">排序</th>
+            <th style="width:80px">状态</th>
+            <th style="width:230px">操作</th>
+          </tr>
+        </thead>
+        <tbody id="bTbody">
+          <tr><td colspan="7" class="empty-row">加载中…</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ============ 用户管理（对应首页「登录账号 / 背包进度」数据） ============ -->
+    <section class="panel" id="panel-users">
+      <div class="tab-hint">管理注册用户账号：查询 / 编辑资料 / 调整角色 / 禁用启用 / 重置密码 / 删除，并可查看背包与社区中心进度。</div>
+      <div class="stats">
+        <div class="stat"><div class="num" id="uStatTotal">0</div><div class="label">用户总数</div></div>
+        <div class="stat"><div class="num" id="uStatAdmin">0</div><div class="label">管理员</div></div>
+        <div class="stat"><div class="num" id="uStatNormal">0</div><div class="label">普通用户</div></div>
+        <div class="stat"><div class="num" id="uStatDisabled">0</div><div class="label">已禁用</div></div>
+      </div>
+      <div class="toolbar">
+        <input class="search-input" id="uKwInput" type="text" placeholder="按账号 / 农夫名 / 邮箱搜索…" />
+        <button class="btn-add" id="uRefreshBtn">🔄 刷新列表</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:50px">ID</th>
+            <th>账号</th>
+            <th>农夫名</th>
+            <th>邮箱</th>
+            <th style="width:80px">角色</th>
+            <th style="width:80px">状态</th>
+            <th style="width:130px">注册时间</th>
+            <th style="width:280px">操作</th>
+          </tr>
+        </thead>
+        <tbody id="uTbody">
+          <tr><td colspan="8" class="empty-row">加载中…</td></tr>
+        </tbody>
+      </table>
+    </section>
   </div>
 
-  <!-- 新增/编辑弹窗 -->
+  <!-- 条目 / 收集包 / 用户 通用编辑弹窗 -->
   <div class="mask" id="mask">
-    <div class="modal">
-      <h3 id="modalTitle">新增条目</h3>
-      <div class="field">
-        <label>图标（emoji）</label>
-        <input type="text" id="fIcon" maxlength="8" placeholder="例如 🍓" />
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label>名称</label>
-          <input type="text" id="fName" maxlength="32" placeholder="例如 草莓" />
-        </div>
-        <div class="field">
-          <label>分类</label>
-          <select id="fCat">
-            <option value="crop">作物</option>
-            <option value="animal">动物</option>
-            <option value="villager">村民</option>
-            <option value="fish">鱼类</option>
-            <option value="ore">矿石</option>
-          </select>
-        </div>
-      </div>
-      <div class="field">
-        <label>描述（首页卡片展示文案）</label>
-        <textarea id="fDesc" maxlength="200" placeholder="一句话介绍这个条目…"></textarea>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label>售价 / 排序（金币数值，越小越靠前）</label>
-          <input type="number" id="fSort" min="0" max="9999" value="999" />
-        </div>
-        <div class="field">
-          <label>首页可见</label>
-          <div class="check" style="padding:10px 0"><input type="checkbox" id="fEnabled" checked /> 在首页展示</div>
-        </div>
-      </div>
-      <div class="modal-actions">
-        <button class="btn-cancel" id="cancelBtn">取消</button>
-        <button class="btn-save" id="saveBtn">保 存</button>
-      </div>
-    </div>
+    <div class="modal" id="modalBox"><!-- JS 动态渲染 --></div>
   </div>
 
   <div class="toast" id="toast"></div>
-  <footer class="footer">星露谷 · 后台管理系统 ｜ 管理首页展示的全部图鉴数据（作物 / 动物 / 村民）</footer>
+  <footer class="footer">
+    星露谷 · 后台管理系统 ｜ 模块对应关系：图鉴条目 → 首页「作物图鉴」 · 收集包 → 首页「社区中心」 · 用户管理 → 登录账号与背包进度<br/>
+    首页统计卡片（图鉴总数 / 收集进度）由以上模块数据实时计算，管理端保存后首页自动同步
+  </footer>
 
   <script>
     const TOKEN_KEY = "stardew_admin_token";
@@ -299,7 +375,10 @@
     } catch (e) { /* 忽略 */ }
 
     const CAT_LABEL = { crop: "作物", animal: "动物", villager: "村民", fish: "鱼类", ore: "矿石" };
+
     let allItems = [];
+    let allBundles = [];
+    let allUsers = [];
     let editingId = null; // null = 新增
 
     const toastEl = document.getElementById("toast");
@@ -314,6 +393,7 @@
     document.getElementById("adminName").textContent =
       localStorage.getItem("stardew_admin_username") || "管理员";
 
+    // 统一请求：自动携带管理员令牌，401 时踢回登录页
     async function api(path, options = {}) {
       const res = await fetch("/api" + path, {
         headers: { "Content-Type": "application/json", "X-Admin-Token": token },
@@ -330,17 +410,46 @@
       return body.data;
     }
 
-    function load() {
+    function esc(s) {
+      return String(s == null ? "" : s)
+        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    }
+    function fmtTime(t) {
+      if (!t) return "-";
+      return String(t).replace("T", " ").slice(0, 16);
+    }
+
+    // ===== 标签页路由 =====
+    const TABS = ["items", "bundles", "users"];
+    function switchTab(tab) {
+      if (!TABS.includes(tab)) tab = "items";
+      location.hash = tab;
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+      document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === "panel-" + tab));
+      if (tab === "items") loadItems();
+      if (tab === "bundles") loadBundles();
+      if (tab === "users") loadUsers();
+    }
+    document.querySelectorAll(".tab-btn").forEach(b => {
+      b.addEventListener("click", () => switchTab(b.dataset.tab));
+    });
+    window.addEventListener("hashchange", () => switchTab(location.hash.replace("#", "")));
+
+    /* ============================================================
+     * 模块一：图鉴条目（首页「作物图鉴」）
+     * ============================================================ */
+    function loadItems() {
       const kw = document.getElementById("kwInput").value.trim();
       const cat = document.getElementById("catSelect").value;
       const query = "?keyword=" + encodeURIComponent(kw) + "&cat=" + encodeURIComponent(cat);
       api("/admin/items" + query).then(list => {
         allItems = list;
-        render();
+        renderItems();
       }).catch(e => { if (e.message !== "unauthorized") toast("🚜 " + e.message); });
     }
 
-    function render() {
+    function renderItems() {
       const tbody = document.getElementById("tbody");
       if (!allItems.length) {
         tbody.innerHTML = '<tr><td colspan="7" class="empty-row">🌾 暂无条目，点击「新增条目」添加</td></tr>';
@@ -355,14 +464,13 @@
             <td><span class="badge ${it.enabled ? "" : "off"}">${it.enabled ? "首页可见" : "已隐藏"}</span></td>
             <td>
               <div class="actions">
-                <button class="btn-mini" onclick="openEdit(${it.id})">编辑</button>
-                <button class="btn-mini warn" onclick="toggleEnabled(${it.id}, ${it.enabled})">${it.enabled ? "隐藏" : "显示"}</button>
+                <button class="btn-mini" onclick="openEditItem(${it.id})">编辑</button>
+                <button class="btn-mini warn" onclick="toggleItemEnabled(${it.id}, ${it.enabled})">${it.enabled ? "隐藏" : "显示"}</button>
                 <button class="btn-mini danger" onclick="removeItem(${it.id}, '${esc(it.name)}')">删除</button>
               </div>
             </td>
           </tr>`).join("");
       }
-      // 统计
       const total = allItems.length;
       const visible = allItems.filter(i => i.enabled).length;
       document.getElementById("statTotal").textContent = total;
@@ -374,40 +482,66 @@
       document.getElementById("statCrops").textContent = crops + " / " + animals + " / " + villagers;
     }
 
-    function esc(s) {
-      return String(s == null ? "" : s)
-        .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+    function itemFormHtml(it) {
+      return `
+      <h3>${it ? "编辑条目 · " + esc(it.name) : "新增条目"}</h3>
+      <div class="field">
+        <label>图标（emoji）</label>
+        <input type="text" id="fIcon" maxlength="8" placeholder="例如 🍓" value="${it ? esc(it.icon) : ""}" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>名称</label>
+          <input type="text" id="fName" maxlength="32" placeholder="例如 草莓" value="${it ? esc(it.name) : ""}" />
+        </div>
+        <div class="field">
+          <label>分类</label>
+          <select id="fCat">
+            <option value="crop" ${it && it.cat === "crop" ? "selected" : ""}>作物</option>
+            <option value="animal" ${it && it.cat === "animal" ? "selected" : ""}>动物</option>
+            <option value="villager" ${it && it.cat === "villager" ? "selected" : ""}>村民</option>
+            <option value="fish" ${it && it.cat === "fish" ? "selected" : ""}>鱼类</option>
+            <option value="ore" ${it && it.cat === "ore" ? "selected" : ""}>矿石</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>描述（首页卡片展示文案）</label>
+        <textarea id="fDesc" maxlength="200" placeholder="一句话介绍这个条目…">${it ? esc(it.description) : ""}</textarea>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>售价 / 排序（越小越靠前）</label>
+          <input type="number" id="fSort" min="0" max="9999" value="${it ? it.sortOrder : 999}" />
+        </div>
+        <div class="field">
+          <label>首页可见</label>
+          <div class="check" style="padding:10px 0"><input type="checkbox" id="fEnabled" ${(!it || it.enabled) ? "checked" : ""} /> 在首页展示</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">取消</button>
+        <button class="btn-save" id="fSave">保 存</button>
+      </div>`;
     }
 
-    // ===== 弹窗 =====
-    function openModal(isEdit, item) {
-      editingId = isEdit ? item.id : null;
-      document.getElementById("modalTitle").textContent = isEdit ? "编辑条目 · " + item.name : "新增条目";
-      document.getElementById("fIcon").value = item ? item.icon : "";
-      document.getElementById("fName").value = item ? item.name : "";
-      document.getElementById("fCat").value = item ? item.cat : "crop";
-      document.getElementById("fDesc").value = item ? item.description : "";
-      document.getElementById("fSort").value = item ? item.sortOrder : 999;
-      document.getElementById("fEnabled").checked = item ? !!item.enabled : true;
+    function openAddItem() {
+      editingId = null;
+      document.getElementById("modalBox").innerHTML = itemFormHtml(null);
+      document.getElementById("fSave").addEventListener("click", saveItem);
       document.getElementById("mask").classList.add("open");
     }
-    function closeModal() { document.getElementById("mask").classList.remove("open"); }
 
-    // 表格行「编辑」按钮入口（内联 onclick 调用）：按 id 找到条目并打开编辑弹窗
-    function openEdit(id) {
+    function openEditItem(id) {
       const item = allItems.find(i => Number(i.id) === Number(id));
       if (!item) { toast("⚠️ 条目已不存在，请刷新列表"); return; }
-      openModal(true, item);
+      editingId = item.id;
+      document.getElementById("modalBox").innerHTML = itemFormHtml(item);
+      document.getElementById("fSave").addEventListener("click", saveItem);
+      document.getElementById("mask").classList.add("open");
     }
 
-    document.getElementById("addBtn").addEventListener("click", () => openModal(false, null));
-    document.getElementById("cancelBtn").addEventListener("click", closeModal);
-    document.getElementById("mask").addEventListener("click", e => {
-      if (e.target === e.currentTarget) closeModal();
-    });
-
-    document.getElementById("saveBtn").addEventListener("click", async () => {
+    async function saveItem() {
       const req = {
         icon: document.getElementById("fIcon").value.trim(),
         name: document.getElementById("fName").value.trim(),
@@ -427,11 +561,11 @@
           toast("✅ 保存成功，首页已同步");
         }
         closeModal();
-        load();
+        loadItems();
       } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
-    });
+    }
 
-    async function toggleEnabled(id, current) {
+    async function toggleItemEnabled(id, current) {
       const item = allItems.find(i => i.id === id);
       if (!item) return;
       try {
@@ -444,7 +578,7 @@
           })
         });
         toast(current ? "已隐藏，首页不再展示" : "已恢复展示");
-        load();
+        loadItems();
       } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
     }
 
@@ -453,9 +587,340 @@
       try {
         await api("/admin/items/" + id, { method: "DELETE" });
         toast("🗑️ 已删除「" + name + "」");
-        load();
+        loadItems();
       } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
     }
+
+    /* ============================================================
+     * 模块二：收集包（首页「社区中心」）
+     * ============================================================ */
+    function loadBundles() {
+      const kw = document.getElementById("bKwInput").value.trim();
+      api("/admin/bundles?keyword=" + encodeURIComponent(kw)).then(list => {
+        allBundles = list;
+        renderBundles();
+      }).catch(e => { if (e.message !== "unauthorized") toast("🚜 " + e.message); });
+    }
+
+    function renderBundles() {
+      const tbody = document.getElementById("bTbody");
+      if (!allBundles.length) {
+        tbody.innerHTML = '<tr><td colspan="7" class="empty-row">🏠 暂无收集包，点击「新增收集包」添加</td></tr>';
+      } else {
+        tbody.innerHTML = allBundles.map(b => `
+          <tr>
+            <td class="item-icon">${esc(b.icon)}</td>
+            <td>${esc(b.title)}</td>
+            <td class="desc-cell">${esc(b.description)}</td>
+            <td>${(b.need || []).map(n => `<span class="tag need-tag">${esc(n)}</span>`).join("")}</td>
+            <td>${b.sortOrder}</td>
+            <td><span class="badge ${b.enabled ? "" : "off"}">${b.enabled ? "首页可见" : "已隐藏"}</span></td>
+            <td>
+              <div class="actions">
+                <button class="btn-mini" onclick="openEditBundle(${b.id})">编辑</button>
+                <button class="btn-mini warn" onclick="toggleBundleEnabled(${b.id}, ${b.enabled})">${b.enabled ? "隐藏" : "显示"}</button>
+                <button class="btn-mini danger" onclick="removeBundle(${b.id}, '${esc(b.title)}')">删除</button>
+              </div>
+            </td>
+          </tr>`).join("");
+      }
+      const total = allBundles.length;
+      const visible = allBundles.filter(b => b.enabled).length;
+      const slots = allBundles.reduce((s, b) => s + ((b.need || []).length), 0);
+      document.getElementById("bStatTotal").textContent = total;
+      document.getElementById("bStatVisible").textContent = visible;
+      document.getElementById("bStatHidden").textContent = total - visible;
+      document.getElementById("bStatSlots").textContent = slots;
+    }
+
+    function bundleFormHtml(b) {
+      return `
+      <h3>${b ? "编辑收集包 · " + esc(b.title) : "新增收集包"}</h3>
+      <div class="field-row">
+        <div class="field">
+          <label>图标（emoji）</label>
+          <input type="text" id="bfIcon" maxlength="8" placeholder="例如 🌸" value="${b ? esc(b.icon) : ""}" />
+        </div>
+        <div class="field">
+          <label>收集包名称</label>
+          <input type="text" id="bfTitle" maxlength="32" placeholder="例如 春之收获包" value="${b ? esc(b.title) : ""}" />
+        </div>
+      </div>
+      <div class="field">
+        <label>描述（首页卡片展示文案）</label>
+        <textarea id="bfDesc" maxlength="200" placeholder="一句话介绍这个收集包…">${b ? esc(b.description) : ""}</textarea>
+      </div>
+      <div class="field">
+        <label>所需物品（每行一个物品名，需与图鉴条目名称一致）</label>
+        <textarea id="bfNeed" placeholder="草莓&#10;樱桃">${b ? esc((b.need || []).join("\n")) : ""}</textarea>
+        <div class="tip">例如：草莓、樱桃、蓝莓…（首页将按物品名从图鉴中匹配图标）</div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>排序（越小越靠前）</label>
+          <input type="number" id="bfSort" min="0" max="9999" value="${b ? b.sortOrder : 999}" />
+        </div>
+        <div class="field">
+          <label>首页可见</label>
+          <div class="check" style="padding:10px 0"><input type="checkbox" id="bfEnabled" ${(!b || b.enabled) ? "checked" : ""} /> 在首页展示</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">取消</button>
+        <button class="btn-save" id="bfSave">保 存</button>
+      </div>`;
+    }
+
+    function openAddBundle() {
+      editingId = null;
+      document.getElementById("modalBox").innerHTML = bundleFormHtml(null);
+      document.getElementById("bfSave").addEventListener("click", saveBundle);
+      document.getElementById("mask").classList.add("open");
+    }
+
+    function openEditBundle(id) {
+      const b = allBundles.find(x => Number(x.id) === Number(id));
+      if (!b) { toast("⚠️ 收集包已不存在，请刷新列表"); return; }
+      editingId = b.id;
+      document.getElementById("modalBox").innerHTML = bundleFormHtml(b);
+      document.getElementById("bfSave").addEventListener("click", saveBundle);
+      document.getElementById("mask").classList.add("open");
+    }
+
+    async function saveBundle() {
+      const need = document.getElementById("bfNeed").value
+        .split("\n").map(s => s.trim()).filter(s => s.length > 0);
+      const req = {
+        icon: document.getElementById("bfIcon").value.trim(),
+        title: document.getElementById("bfTitle").value.trim(),
+        description: document.getElementById("bfDesc").value.trim(),
+        need: need,
+        sortOrder: parseInt(document.getElementById("bfSort").value, 10) || 999,
+        enabled: document.getElementById("bfEnabled").checked ? 1 : 0
+      };
+      if (!req.icon) { toast("✋ 图标不能为空"); return; }
+      if (!req.title) { toast("✋ 名称不能为空"); return; }
+      if (!req.need.length) { toast("✋ 至少需要一个所需物品"); return; }
+      try {
+        if (editingId == null) {
+          await api("/admin/bundles", { method: "POST", body: JSON.stringify(req) });
+          toast("🎉 新增成功，首页社区中心已同步");
+        } else {
+          await api("/admin/bundles/" + editingId, { method: "PUT", body: JSON.stringify(req) });
+          toast("✅ 保存成功，首页社区中心已同步");
+        }
+        closeModal();
+        loadBundles();
+      } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
+    }
+
+    async function toggleBundleEnabled(id, current) {
+      const b = allBundles.find(x => x.id === id);
+      if (!b) return;
+      try {
+        await api("/admin/bundles/" + id, {
+          method: "PUT",
+          body: JSON.stringify({
+            icon: b.icon, title: b.title, description: b.description,
+            need: b.need || [], sortOrder: b.sortOrder,
+            enabled: current ? 0 : 1
+          })
+        });
+        toast(current ? "已隐藏，首页不再展示" : "已恢复展示");
+        loadBundles();
+      } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
+    }
+
+    async function removeBundle(id, title) {
+      if (!confirm("确定删除收集包「" + title + "」吗？删除后首页社区中心将不再展示。")) return;
+      try {
+        await api("/admin/bundles/" + id, { method: "DELETE" });
+        toast("🗑️ 已删除「" + title + "」");
+        loadBundles();
+      } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
+    }
+
+    /* ============================================================
+     * 模块三：用户管理（登录账号 / 背包进度）
+     * ============================================================ */
+    function loadUsers() {
+      const kw = document.getElementById("uKwInput").value.trim();
+      api("/admin/users?keyword=" + encodeURIComponent(kw)).then(list => {
+        allUsers = list;
+        renderUsers();
+      }).catch(e => { if (e.message !== "unauthorized") toast("🚜 " + e.message); });
+    }
+
+    function renderUsers() {
+      const tbody = document.getElementById("uTbody");
+      if (!allUsers.length) {
+        tbody.innerHTML = '<tr><td colspan="8" class="empty-row">🧑‍🌾 暂无用户</td></tr>';
+      } else {
+        tbody.innerHTML = allUsers.map(u => `
+          <tr>
+            <td>${u.id}</td>
+            <td>${esc(u.account)}</td>
+            <td>${esc(u.farmerName)}</td>
+            <td class="desc-cell">${esc(u.email || "-")}</td>
+            <td><span class="badge ${u.role === 0 ? "admin" : ""}">${u.role === 0 ? "管理员" : "普通用户"}</span></td>
+            <td><span class="badge ${u.status === 0 ? "disabled" : ""}">${u.status === 0 ? "已禁用" : "正常"}</span></td>
+            <td class="time-cell">${fmtTime(u.createTime)}</td>
+            <td>
+              <div class="actions">
+                <button class="btn-mini" onclick="openEditUser(${u.id})">编辑</button>
+                <button class="btn-mini warn" onclick="toggleUserStatus(${u.id}, ${u.status})">${u.status === 0 ? "启用" : "禁用"}</button>
+                <button class="btn-mini" onclick="viewProgress(${u.id}, '${esc(u.account)}')">进度</button>
+                <button class="btn-mini danger" onclick="removeUser(${u.id}, '${esc(u.account)}')">删除</button>
+              </div>
+            </td>
+          </tr>`).join("");
+      }
+      const total = allUsers.length;
+      const admins = allUsers.filter(u => u.role === 0).length;
+      const disabled = allUsers.filter(u => u.status === 0).length;
+      document.getElementById("uStatTotal").textContent = total;
+      document.getElementById("uStatAdmin").textContent = admins;
+      document.getElementById("uStatNormal").textContent = total - admins;
+      document.getElementById("uStatDisabled").textContent = disabled;
+    }
+
+    function userFormHtml(u) {
+      return `
+      <h3>编辑用户 · ${esc(u.account)}</h3>
+      <div class="field-row">
+        <div class="field">
+          <label>农夫名</label>
+          <input type="text" id="ufFarmerName" maxlength="32" value="${esc(u.farmerName)}" />
+        </div>
+        <div class="field">
+          <label>农场名</label>
+          <input type="text" id="ufFarmName" maxlength="32" value="${esc(u.farmName || "")}" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>邮箱</label>
+          <input type="text" id="ufEmail" maxlength="128" value="${esc(u.email || "")}" />
+        </div>
+        <div class="field">
+          <label>宠物 / 动物</label>
+          <input type="text" id="ufAnimal" maxlength="32" value="${esc(u.animal || "")}" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>角色</label>
+          <select id="ufRole">
+            <option value="1" ${u.role === 1 ? "selected" : ""}>普通用户</option>
+            <option value="0" ${u.role === 0 ? "selected" : ""}>管理员</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>账号状态</label>
+          <select id="ufStatus">
+            <option value="1" ${u.status !== 0 ? "selected" : ""}>正常</option>
+            <option value="0" ${u.status === 0 ? "selected" : ""}>禁用（无法登录）</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>重置密码</label>
+        <input type="text" id="ufPassword" maxlength="32" placeholder="留空表示不修改密码" />
+        <div class="tip">填写后将以新密码保存（6-32 位）；管理员账号 admin 的密码也在此修改。</div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="closeModal()">取消</button>
+        <button class="btn-save" id="ufSave">保 存</button>
+      </div>`;
+    }
+
+    function openEditUser(id) {
+      const u = allUsers.find(x => Number(x.id) === Number(id));
+      if (!u) { toast("⚠️ 用户已不存在，请刷新列表"); return; }
+      editingId = u.id;
+      document.getElementById("modalBox").innerHTML = userFormHtml(u);
+      document.getElementById("ufSave").addEventListener("click", saveUser);
+      document.getElementById("mask").classList.add("open");
+    }
+
+    async function saveUser() {
+      const pwd = document.getElementById("ufPassword").value;
+      const req = {
+        farmerName: document.getElementById("ufFarmerName").value.trim(),
+        farmName: document.getElementById("ufFarmName").value.trim(),
+        email: document.getElementById("ufEmail").value.trim(),
+        animal: document.getElementById("ufAnimal").value.trim(),
+        role: parseInt(document.getElementById("ufRole").value, 10),
+        status: parseInt(document.getElementById("ufStatus").value, 10)
+      };
+      if (pwd) req.password = pwd;
+      if (!req.farmerName) { toast("✋ 农夫名不能为空"); return; }
+      try {
+        await api("/admin/users/" + editingId, { method: "PUT", body: JSON.stringify(req) });
+        toast("✅ 用户信息已保存");
+        closeModal();
+        loadUsers();
+      } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
+    }
+
+    async function toggleUserStatus(id, current) {
+      const u = allUsers.find(x => x.id === id);
+      if (!u) return;
+      const req = {
+        farmerName: u.farmerName, farmName: u.farmName || "", email: u.email || "",
+        animal: u.animal || "", role: u.role, status: current === 0 ? 1 : 0
+      };
+      try {
+        await api("/admin/users/" + id, { method: "PUT", body: JSON.stringify(req) });
+        toast(current === 0 ? "已启用该账号" : "已禁用，该账号将无法登录");
+        loadUsers();
+      } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
+    }
+
+    async function removeUser(id, account) {
+      if (!confirm("确定删除用户「" + account + "」吗？其背包与社区中心进度将一并删除，此操作不可撤销。")) return;
+      try {
+        await api("/admin/users/" + id, { method: "DELETE" });
+        toast("🗑️ 已删除用户「" + account + "」");
+        loadUsers();
+      } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
+    }
+
+    async function viewProgress(id, account) {
+      try {
+        const p = await api("/admin/users/" + id + "/progress");
+        const bagEntries = Object.entries(p.bag || {}).filter(([, n]) => n > 0);
+        const bundleEntries = Object.entries(p.bundles || {});
+        editingId = null;
+        document.getElementById("modalBox").innerHTML = `
+          <h3>用户进度 · ${esc(account)}</h3>
+          <div class="progress-box">
+            <h4>🎒 背包（${bagEntries.length} 种物品）</h4>
+            ${bagEntries.length
+              ? '<div class="plist">' + bagEntries.map(([n, c]) => `<span class="tag">${esc(n)} ×${c}</span>`).join("") + "</div>"
+              : '<div class="empty-tip">背包为空</div>'}
+            <h4>🏠 社区中心捐赠记录（${bundleEntries.length} 个收集包）</h4>
+            ${bundleEntries.length
+              ? bundleEntries.map(([bid, names]) => `<div style="margin-bottom:8px">· ${esc(bid)}：${names.map(n => `<span class="tag">${esc(n)}</span>`).join("")}</div>`).join("")
+              : '<div class="empty-tip">暂无捐赠记录</div>'}
+          </div>
+          <div class="modal-actions">
+            <button class="btn-cancel" onclick="closeModal()">关 闭</button>
+          </div>`;
+        document.getElementById("mask").classList.add("open");
+      } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
+    }
+
+    /* ============================================================
+     * 通用：弹窗 / 退出 / 事件绑定
+     * ============================================================ */
+    function closeModal() { document.getElementById("mask").classList.remove("open"); }
+    document.getElementById("mask").addEventListener("click", e => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeModal();
+    });
 
     document.getElementById("logoutBtn").addEventListener("click", async () => {
       try { await api("/admin/auth/logout", { method: "POST" }); } catch (e) {}
@@ -464,10 +929,17 @@
       location.replace("/admin");
     });
 
-    document.getElementById("kwInput").addEventListener("input", load);
-    document.getElementById("catSelect").addEventListener("change", load);
+    document.getElementById("addBtn").addEventListener("click", openAddItem);
+    document.getElementById("bAddBtn").addEventListener("click", openAddBundle);
+    document.getElementById("uRefreshBtn").addEventListener("click", loadUsers);
 
-    load();
+    document.getElementById("kwInput").addEventListener("input", loadItems);
+    document.getElementById("catSelect").addEventListener("change", loadItems);
+    document.getElementById("bKwInput").addEventListener("input", loadBundles);
+    document.getElementById("uKwInput").addEventListener("input", loadUsers);
+
+    // 启动：按 hash 恢复标签页，默认图鉴条目
+    switchTab((location.hash || "#items").replace("#", ""));
   </script>
 </body>
 </html>
