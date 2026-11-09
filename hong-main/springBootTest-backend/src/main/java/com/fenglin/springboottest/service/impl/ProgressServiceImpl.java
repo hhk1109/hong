@@ -43,6 +43,15 @@ public class ProgressServiceImpl implements ProgressService {
         }
     }
 
+    private Map<String, Object> parseGameplay(String json) {
+        if (json == null || json.isEmpty()) return new HashMap<>();
+        try {
+            return objectMapper.readValue(json, new TypeReference<Map<String, Object>>() {});
+        } catch (Exception e) {
+            return new HashMap<>();
+        }
+    }
+
     @Override
     public Map<String, Object> getByAccount(String account) {
         UserProgress p = progressMapper.selectOne(
@@ -50,15 +59,18 @@ public class ProgressServiceImpl implements ProgressService {
         Map<String, Object> data = new HashMap<>();
         data.put("bag", p == null ? Collections.emptyMap() : parseBag(p.getBag()));
         data.put("bundles", p == null ? Collections.emptyMap() : parseBundles(p.getBundles()));
+        data.put("gameplay", p == null ? Collections.emptyMap() : parseGameplay(p.getGameplay()));
         return data;
     }
 
     @Override
-    public void save(String account, Map<String, Integer> bag, Map<String, List<String>> bundles) {
+    public void save(String account, Map<String, Integer> bag, Map<String, List<String>> bundles,
+                     Map<String, Object> gameplay) {
         if (account == null || account.isEmpty()) return;
         try {
             String bagJson = objectMapper.writeValueAsString(bag == null ? new HashMap<>() : bag);
             String bundlesJson = objectMapper.writeValueAsString(bundles == null ? new HashMap<>() : bundles);
+            String gameplayJson = gameplay == null ? null : objectMapper.writeValueAsString(gameplay);
             UserProgress exist = progressMapper.selectOne(
                     Wrappers.<UserProgress>lambdaQuery().eq(UserProgress::getAccount, account));
             if (exist == null) {
@@ -66,10 +78,15 @@ public class ProgressServiceImpl implements ProgressService {
                 p.setAccount(account);
                 p.setBag(bagJson);
                 p.setBundles(bundlesJson);
+                p.setGameplay(gameplayJson == null ? "{}" : gameplayJson);
                 progressMapper.insert(p);
             } else {
                 exist.setBag(bagJson);
                 exist.setBundles(bundlesJson);
+                // 未传 gameplay 时保留原值，避免其它模块保存进度时覆盖玩法状态
+                if (gameplayJson != null) {
+                    exist.setGameplay(gameplayJson);
+                }
                 progressMapper.updateById(exist);
             }
         } catch (Exception e) {

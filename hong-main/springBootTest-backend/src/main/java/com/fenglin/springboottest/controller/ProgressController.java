@@ -51,7 +51,7 @@ public class ProgressController {
         if (account == null) {
             return Result.fail(401, "未登录或登录已过期，请重新登录");
         }
-        progressService.save(account, req.getBag(), req.getBundles());
+        progressService.save(account, req.getBag(), req.getBundles(), req.getGameplay());
         return Result.success(null, "进度已保存");
     }
 }

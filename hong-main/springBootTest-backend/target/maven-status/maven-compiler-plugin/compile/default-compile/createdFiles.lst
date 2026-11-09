@@ -42,6 +42,7 @@ com\fenglin\springboottest\entity\Item.class
 com\fenglin\springboottest\mapper\ItemMapper.class
 com\fenglin\springboottest\service\AdminUserService.class
 com\fenglin\springboottest\service\ItemService.class
+com\fenglin\springboottest\service\impl\ProgressServiceImpl$3.class
 com\fenglin\springboottest\service\UserService.class
 com\fenglin\springboottest\controller\AuthController.class
 com\fenglin\springboottest\dto\UserVO.class

@@ -46,13 +46,14 @@ SELECT 'admin', 'admin123', '镇长', '星露谷管理农场', 'admin@stardew.te
 FROM DUAL
 WHERE NOT EXISTS (SELECT 1 FROM `user` WHERE `role` = 0);
 
--- 用户游戏进度表（背包 + 社区中心收集包），按账号维度存储
--- bag / bundles 以 JSON 字符串保存
+-- 用户游戏进度表（背包 + 社区中心收集包 + 三大玩法状态），按账号维度存储
+-- bag / bundles / gameplay 以 JSON 字符串保存
 CREATE TABLE IF NOT EXISTS `user_progress` (
     `id`          BIGINT       NOT NULL AUTO_INCREMENT COMMENT '主键',
     `account`     VARCHAR(64)  NOT NULL                COMMENT '用户登录账号（对应 user.account）',
     `bag`         JSON         DEFAULT NULL            COMMENT '背包：{"物品名": 数量}',
     `bundles`     JSON         DEFAULT NULL            COMMENT '社区中心收集包：{"bundleId": ["物品名", ...]}',
+    `gameplay`    TEXT         DEFAULT NULL            COMMENT '玩法状态：农场地块 / 钓鱼 / 挖矿 / 金币 / 体力',
     `update_time` DATETIME     DEFAULT CURRENT_TIMESTAMP
                                ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`),

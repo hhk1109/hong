@@ -29,6 +29,9 @@ public class UserProgress implements Serializable {
     /** 社区中心收集包：JSON 字符串，格式 {"bundleId": ["物品名", ...]} */
     private String bundles;
 
+    /** 三大玩法状态：JSON 字符串（农场地块 / 钓鱼 / 挖矿 / 金币 / 体力） */
+    private String gameplay;
+
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
@@ -40,6 +43,8 @@ public class UserProgress implements Serializable {
     public void setBag(String bag) { this.bag = bag; }
     public String getBundles() { return bundles; }
     public void setBundles(String bundles) { this.bundles = bundles; }
+    public String getGameplay() { return gameplay; }
+    public void setGameplay(String gameplay) { this.gameplay = gameplay; }
     public LocalDateTime getUpdateTime() { return updateTime; }
     public void setUpdateTime(LocalDateTime updateTime) { this.updateTime = updateTime; }
 }

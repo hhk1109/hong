@@ -487,9 +487,154 @@
     .modal-actions { display: flex; gap: 10px; }
     .modal-actions .btn { flex: 1; margin: 0; text-align: center; }
 
+    /* ===================== 核心玩法：通用 ===================== */
+    .resource-bar {
+      max-width: 1100px; margin: 18px auto 0; padding: 0 18px;
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    }
+    .res-chip {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 14px; font-size: 13px; color: var(--brown);
+      background: #fffdf6; border: 3px solid var(--gold-deep); border-radius: 999px;
+      box-shadow: 0 3px 0 rgba(90,58,30,.18);
+    }
+    .res-chip b { color: var(--green-dark); font-size: 15px; }
+    .res-chip.energy { border-color: var(--blue); }
+    .res-chip.energy b { color: var(--blue); }
+    .res-tip { font-size: 11px; color: #9a7a4a; }
+
+    .game-panel {
+      max-width: 1100px; margin: 18px auto 0; padding: 20px 22px;
+      background: linear-gradient(180deg, var(--parchment-2), var(--parchment-3));
+      border: 4px solid var(--gold); border-radius: 14px;
+      box-shadow: 0 6px 0 rgba(90, 58, 30, 0.25), 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+    .game-panel-head {
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px;
+    }
+    .game-panel-head .g-title {
+      font-family: "Press Start 2P", "Zpix", sans-serif; font-size: 12px;
+      color: var(--green-dark); text-shadow: 1px 1px 0 #fff8e8;
+    }
+    .game-panel-head .g-sub { font-size: 12px; color: #9a7a4a; }
+    .game-note {
+      font-size: 12px; color: #9a7a4a; line-height: 1.7; margin: 8px 0 16px;
+      padding: 10px 12px; background: rgba(255,253,246,.7);
+      border: 2px dashed var(--line); border-radius: 10px;
+    }
+
+    /* ===== 农场：地块 ===== */
+    .plot-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+      max-width: 560px; margin: 0 auto;
+    }
+    .plot {
+      position: relative; cursor: pointer; min-height: 116px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+      background: linear-gradient(180deg, #8b5e3c, #6b4526);
+      border: 4px solid var(--brown); border-radius: 12px;
+      box-shadow: inset 0 0 0 2px rgba(255,248,232,.15), 0 4px 0 rgba(90,58,30,.35);
+      transition: transform .12s steps(2);
+      color: #fff8e8; text-align: center; padding: 10px 6px;
+    }
+    .plot:hover { transform: translateY(-3px); border-color: var(--gold); }
+    .plot .p-icon { font-size: 32px; line-height: 1.2; }
+    .plot .p-name { font-size: 12px; }
+    .plot .p-timer { font-size: 11px; color: #ffe9a8; }
+    .plot.empty { background: linear-gradient(180deg, #a97a4f, #7c5530); }
+    .plot.empty .p-icon { opacity: .65; }
+    .plot.stage-1 { background: linear-gradient(180deg, #7d9a54, #5f7a3c); }
+    .plot.stage-2 { background: linear-gradient(180deg, #68a84f, #4d8a3c); }
+    .plot.stage-3 { background: linear-gradient(180deg, #6ba84f, #438a39); }
+    .plot.ripe {
+      background: linear-gradient(180deg, var(--gold-2), var(--gold-deep));
+      border-color: var(--brown); animation: ripePulse 1.2s steps(2) infinite;
+    }
+    @keyframes ripePulse { 0%,100% { box-shadow: 0 0 0 2px #fff8e8, 0 4px 0 rgba(90,58,30,.35); } 50% { box-shadow: 0 0 0 5px rgba(255,248,232,.75), 0 4px 0 rgba(90,58,30,.35); } }
+    .plot .p-badge {
+      position: absolute; top: 6px; right: 6px; font-size: 10px;
+      padding: 2px 7px; border-radius: 999px; color: var(--brown);
+      background: var(--parchment-2); border: 2px solid var(--brown);
+    }
+    .plot .p-water { position: absolute; top: 6px; left: 6px; font-size: 13px; }
+
+    /* ===== 钓鱼 / 挖矿：舞台 ===== */
+    .game-stage {
+      position: relative; min-height: 190px; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+      background: linear-gradient(180deg, #7ec8e3 0%, #4a90d9 60%, #2e6da4 100%);
+      border: 4px solid var(--brown); border-radius: 14px;
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,.18);
+      color: #fff8e8; padding: 18px; text-align: center;
+    }
+    .game-stage.mine {
+      background: radial-gradient(circle at 50% 20%, #6b5a4a 0%, #3b3129 55%, #241d18 100%);
+    }
+    .game-stage .stage-icon { font-size: 54px; line-height: 1.1; filter: drop-shadow(0 3px 0 rgba(0,0,0,.25)); }
+    .game-stage .stage-text { font-size: 14px; text-shadow: 1px 1px 0 rgba(0,0,0,.35); }
+    .game-stage .stage-sub { font-size: 12px; opacity: .9; }
+    .game-stage.waiting .stage-icon { animation: bob 1s steps(3) infinite; }
+    .game-stage.bite .stage-icon { animation: shake .3s steps(2) infinite; }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @keyframes shake { 0%,100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+    .stage-waves {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 22px;
+      background: repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 18px, transparent 18px 36px);
+      animation: wave 1.4s linear infinite;
+    }
+    @keyframes wave { from { background-position-x: 0; } to { background-position-x: 36px; } }
+
+    .game-actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 16px; }
+    .game-actions .btn { margin: 0; }
+    .btn.blue { background: linear-gradient(180deg, #5aa0e0, var(--blue)); }
+    .btn.dark { background: linear-gradient(180deg, #7b6a58, #57493a); }
+    .btn:disabled { background: #c9bda0; border-color: #9a8a66; box-shadow: none; cursor: not-allowed; }
+
+    .game-stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px; margin-top: 18px;
+    }
+    .game-stat {
+      background: #fffdf6; border: 3px solid var(--line); border-radius: 10px;
+      padding: 10px 12px; text-align: center;
+    }
+    .game-stat .n { font-size: 20px; color: var(--green-dark); font-weight: bold; }
+    .game-stat .l { font-size: 11px; color: #9a7a4a; margin-top: 3px; }
+    .game-log { margin-top: 16px; font-size: 12px; color: var(--brown-2); line-height: 1.8; }
+    .game-log .log-title { color: var(--green-dark); margin-bottom: 4px; }
+    .game-log .log-line { padding: 3px 0; border-bottom: 1px dashed var(--line); }
+    .game-log .log-empty { color: #b39b6e; }
+    .energy-wrap { height: 12px; background: #ecd9a8; border: 2px solid var(--gold-deep); border-radius: 999px; overflow: hidden; margin-top: 8px; }
+    .energy-bar { height: 100%; background: linear-gradient(90deg, #8fd0f0, var(--blue)); width: 100%; transition: width .3s steps(6); }
+
+    /* 玩法弹窗（选种子 / 地块详情） */
+    .seed-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; margin: 14px 0; }
+    .seed-card {
+      cursor: pointer; text-align: center; padding: 12px 8px;
+      background: #fffdf6; border: 3px solid var(--line); border-radius: 10px;
+      transition: transform .12s steps(2);
+    }
+    .seed-card:hover { transform: translateY(-3px); border-color: var(--green-deep); }
+    .seed-card .s-icon { font-size: 28px; }
+    .seed-card .s-name { font-size: 13px; color: var(--brown); margin-top: 4px; }
+    .seed-card .s-cost { font-size: 11px; color: var(--gold-deep); margin-top: 2px; }
+    .seed-card.disabled { opacity: .5; cursor: not-allowed; }
+
+    .toast {
+      position: fixed; left: 50%; top: 26px; transform: translate(-50%, -16px);
+      padding: 10px 18px; font-size: 13px; color: var(--brown);
+      background: var(--gold-2); border: 3px solid var(--brown); border-radius: 10px;
+      box-shadow: 0 4px 0 rgba(90,58,30,.3);
+      opacity: 0; pointer-events: none; transition: all .25s ease; z-index: 99;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
     @media (max-width: 640px) {
       .brand { font-size: 11px; }
       .nav-links { display: none; }
+      .plot { min-height: 96px; }
+      .plot .p-icon { font-size: 26px; }
+      .game-panel { padding: 16px; }
     }
   </style>
 </head>
@@ -501,6 +646,9 @@
     <div class="brand"><span class="leaf">🌾</span> STARDEW 星露谷</div>
     <nav class="nav-links" id="navLinks">
       <a data-page="home" class="active">首页</a>
+      <a data-page="farm">🌾 农场</a>
+      <a data-page="fishing">🎣 钓鱼</a>
+      <a data-page="mining">⛏️ 矿洞</a>
       <a data-page="codex">作物图鉴</a>
       <a data-page="community">社区中心</a>
       <a data-page="bag">背包</a>
@@ -521,6 +669,13 @@
     <section id="page-home" class="page active">
       <div class="welcome" id="welcome">欢迎来到星露谷，<b>尊敬的农夫</b>！今天也要努力种田哦～ 🌞</div>
 
+      <div class="resource-bar">
+        <div class="res-chip">💰 金币 <b id="resGold">50</b></div>
+        <div class="res-chip energy">⚡ 体力 <b id="resEnergy">20</b><span class="res-tip" id="resEnergyTip">/ 20</span></div>
+        <div class="energy-wrap" style="flex:1 1 140px;max-width:240px"><div class="energy-bar" id="resEnergyBar"></div></div>
+        <span class="res-tip">体力每 60 秒恢复 1 点 · 钓鱼 / 挖矿消耗体力</span>
+      </div>
+
       <div class="stats">
         <div class="stat-card">
           <div class="big" id="statCodex">0</div>
@@ -535,7 +690,15 @@
           <div class="label">社区中心进度</div>
           <div class="progress-wrap"><div class="progress-bar" id="statBundleBar"></div></div>
         </div>
+        <div class="stat-card">
+          <div class="big" id="statHarvest">0</div>
+          <div class="label">玩法收获次数</div>
+        </div>
       </div>
+
+      <div class="section-title">🎮 核心玩法</div>
+      <div class="section-sub">播种收获、抛竿钓鱼、深入矿洞。所有产出直接进入背包，可用于图鉴收集与社区中心捐赠。</div>
+      <div class="module-grid" id="gameModuleGrid"></div>
 
       <div class="section-title">🧭 功能模块</div>
       <div class="section-sub">点击下方模块卡片，进入对应功能；各模块数据相互联动（详见文末说明）。</div>
@@ -603,18 +766,111 @@
           <button class="btn ghost" id="exportBtn">导出进度</button>
           <button class="btn warn" id="resetBagBtn">清空背包</button>
           <button class="btn warn" id="resetBundleBtn">重置社区中心</button>
+          <button class="btn ghost" id="resetGameBtn">重置玩法</button>
         </div>
         <div class="saved-tip" id="dataTip"></div>
       </div>
     </section>
+
+    <!-- ============ 玩法一：农场种植 Farm ============ -->
+    <section id="page-farm" class="page">
+      <div class="game-panel">
+        <div class="game-panel-head">
+          <span class="g-title">🌾 鹈鹕镇农场</span>
+          <span class="g-sub" id="farmSub">9 块田地 · 点击空地播种</span>
+        </div>
+        <div class="game-note">
+          选择图鉴中的作物播种（消耗金币）→ 作物会随时间经历「种子 → 幼苗 → 生长 → 成熟」四个阶段 →
+          点击成熟地块收获，果实自动进入背包并获得金币。浇水可让作物提前 15 秒成熟。
+          作物目录与价格由后台「图鉴条目」维护。
+        </div>
+        <div class="plot-grid" id="plotGrid"></div>
+        <div class="game-stats">
+          <div class="game-stat"><div class="n" id="farmRipe">0</div><div class="l">成熟待收</div></div>
+          <div class="game-stat"><div class="n" id="farmGrowing">0</div><div class="l">生长中</div></div>
+          <div class="game-stat"><div class="n" id="farmHarvest">0</div><div class="l">累计收获</div></div>
+          <div class="game-stat"><div class="n" id="farmGold">0</div><div class="l">农场收益</div></div>
+        </div>
+        <div class="game-log" id="farmLog"></div>
+      </div>
+    </section>
+
+    <!-- ============ 玩法二：钓鱼 Fishing ============ -->
+    <section id="page-fishing" class="page">
+      <div class="game-panel">
+        <div class="game-panel-head">
+          <span class="g-title">🎣 鹈鹕河钓场</span>
+          <span class="g-sub">抛竿 → 等待咬钩 → 及时收竿</span>
+        </div>
+        <div class="game-note">
+          点击「抛竿」消耗 2 点体力，等待鱼儿咬钩（1.5～3.5 秒）；出现咬钩提示后需在 3 秒内点击「收竿」，
+          手慢鱼就跑掉啦。钓到的鱼进入背包并按售价换取金币，可捐赠社区中心「深海渔获包」。
+          鱼种目录与售价由后台「图鉴条目」维护。
+        </div>
+        <div class="game-stage waiting" id="fishStage">
+          <div class="stage-icon" id="fishIcon">🎣</div>
+          <div class="stage-text" id="fishText">水面平静，随时可以抛竿～</div>
+          <div class="stage-sub" id="fishSub">抛竿消耗 2 点体力</div>
+          <div class="stage-waves"></div>
+        </div>
+        <div class="game-actions">
+          <button class="btn blue" id="castBtn">🎣 抛 竿</button>
+          <button class="btn" id="reelBtn" style="display:none">⚡ 收 竿！</button>
+        </div>
+        <div class="game-stats">
+          <div class="game-stat"><div class="n" id="fishCasts">0</div><div class="l">抛竿次数</div></div>
+          <div class="game-stat"><div class="n" id="fishCaught">0</div><div class="l">成功钓获</div></div>
+          <div class="game-stat"><div class="n" id="fishSpecies">0</div><div class="l">解锁鱼种</div></div>
+          <div class="game-stat"><div class="n" id="fishGold">0</div><div class="l">渔获收益</div></div>
+        </div>
+        <div class="game-log" id="fishLog"></div>
+      </div>
+    </section>
+
+    <!-- ============ 玩法三：挖矿 Mining ============ -->
+    <section id="page-mining" class="page">
+      <div class="game-panel">
+        <div class="game-panel-head">
+          <span class="g-title">⛏️ 星露谷矿洞</span>
+          <span class="g-sub" id="mineSub">第 1 层 · 越深入稀有矿石越多</span>
+        </div>
+        <div class="game-note">
+          点击「挖掘」消耗 2 点体力，随机获得矿石（也可能一无所获）；每成功挖掘 5 次自动深入下一层，
+          层数越深稀有矿石概率越高。矿石进入背包并按售价换取金币，可捐赠社区中心「矿洞宝藏包」。
+          矿石目录与售价由后台「图鉴条目」维护。
+        </div>
+        <div class="game-stage mine" id="mineStage">
+          <div class="stage-icon" id="mineIcon">⛏️</div>
+          <div class="stage-text" id="mineText">矿洞深处传来叮叮当当的回声…</div>
+          <div class="stage-sub" id="mineSubText">挖掘消耗 2 点体力</div>
+        </div>
+        <div class="game-actions">
+          <button class="btn dark" id="digBtn">⛏️ 挖 掘</button>
+        </div>
+        <div class="energy-wrap" style="max-width:520px;margin:14px auto 0"><div class="energy-bar" id="mineDepthBar"></div></div>
+        <div class="game-stats">
+          <div class="game-stat"><div class="n" id="mineDepth">1</div><div class="l">当前层数</div></div>
+          <div class="game-stat"><div class="n" id="mineDigs">0</div><div class="l">挖掘次数</div></div>
+          <div class="game-stat"><div class="n" id="mineOres">0</div><div class="l">获得矿石</div></div>
+          <div class="game-stat"><div class="n" id="mineGold">0</div><div class="l">矿石收益</div></div>
+        </div>
+        <div class="game-log" id="mineLog"></div>
+      </div>
+    </section>
   </main>
 
-  <footer class="footer">星露谷 · 首页 ｜ 图鉴数据由后台管理系统统一维护（点击导航栏「后台管理」进入）｜ 背包与社区中心进度按账号保存在后端（浏览器本地作离线缓存）</footer>
+  <footer class="footer">星露谷 · 首页 ｜ 图鉴 / 收集包 / 用户数据由后台管理系统统一维护 ｜ 背包、社区中心与三大玩法进度按账号保存在后端（浏览器本地作离线缓存）</footer>
 
   <!-- 物品详情弹窗 -->
   <div class="modal-mask" id="modalMask">
     <div class="modal" id="modalBox"></div>
   </div>
+
+  <!-- 玩法弹窗（播种 / 地块详情） -->
+  <div class="modal-mask" id="gameMask">
+    <div class="modal" id="gameBox" style="max-width:440px"></div>
+  </div>
+  <div class="toast" id="gameToast"></div>
 
   <script>
     // ===== 展示数据：优先从后端接口加载（后台管理可维护），失败时回退本地静态数据 =====

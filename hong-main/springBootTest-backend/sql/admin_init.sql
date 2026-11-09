@@ -7,8 +7,8 @@
 --       默认管理员（admin / admin123）由后端首次启动时自动创建，无需本脚本维护。
 -- 执行方式（本地 MySQL，root / 123456）：
 --   "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -uroot -p123456 < admin_init.sql
--- 注意：末尾 ALTER 语句重复执行会报 Duplicate column（可忽略，不影响其他语句），
---       因此放在脚本最后。
+-- 注意：末尾两条 ALTER 重复执行会报 Duplicate column（可忽略），
+--       启动脚本使用 mysql --force 保证遇错继续执行。
 -- ============================================================
 
 USE `stardew`;
@@ -124,3 +124,10 @@ WHERE NOT EXISTS (SELECT 1 FROM `bundle`);
 -- ============================================================
 ALTER TABLE `user`
     ADD COLUMN `status` TINYINT NOT NULL DEFAULT 1 COMMENT '账号状态：1-正常 0-禁用' AFTER `role`;
+
+-- ============================================================
+-- user_progress 表补充 gameplay 列（三大玩法状态：农场 / 钓鱼 / 挖矿 / 金币 / 体力）
+-- 放在脚本最后，重复执行报 Duplicate column 属预期行为
+-- ============================================================
+ALTER TABLE `user_progress`
+    ADD COLUMN `gameplay` TEXT NULL COMMENT '玩法状态 JSON：农场地块 / 钓鱼 / 挖矿 / 金币 / 体力';

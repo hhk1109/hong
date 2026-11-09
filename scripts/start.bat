@@ -23,7 +23,7 @@ if errorlevel 1 (
 echo [2/4] Initializing admin tables (idempotent)...
 set "MYSQL=C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe"
 if exist "%MYSQL%" (
-    "%MYSQL%" -uroot -p123456 --default-character-set=utf8mb4 < "%BACKEND_DIR%\sql\admin_init.sql" >nul 2>&1
+    "%MYSQL%" --force -uroot -p123456 --default-character-set=utf8mb4 < "%BACKEND_DIR%\sql\admin_init.sql" >nul 2>&1
     if errorlevel 1 (echo   WARNING: admin_init.sql failed, tables may be missing.) else (echo   Tables OK.)
 ) else (
     echo   WARNING: mysql.exe not found, skip DB init.
