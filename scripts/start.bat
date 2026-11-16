@@ -53,10 +53,10 @@ if not errorlevel 1 (
 
 timeout /t 12 /nobreak >nul
 netstat -ano | findstr ":8081" | findstr "LISTENING" >nul
-if errorlevel 1 (echo   [FAIL] Backend is DOWN on 8081) else (echo   [ OK ] Backend  : http://localhost:8081)
+if errorlevel 1 (echo   [FAIL] Backend is DOWN on 8081) else (echo   [ OK ] Backend  : http://192.168.68.46:8081)
 netstat -ano | findstr ":5173" | findstr "LISTENING" >nul
-if errorlevel 1 (echo   [FAIL] Frontend is DOWN on 5173) else (echo   [ OK ] Frontend : http://localhost:5173)
+if errorlevel 1 (echo   [FAIL] Frontend is DOWN on 5173) else (echo   [ OK ] Frontend : http://192.168.68.46:5173)
 
-start "" http://localhost:5173
+start "" http://192.168.68.46:5173
 echo Done.
 endlocal

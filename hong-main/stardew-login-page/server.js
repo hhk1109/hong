@@ -20,7 +20,7 @@ const fs = require("fs");
 const path = require("path");
 
 const PORT = parseInt(process.env.FRONTEND_PORT || "5173", 10);
-const API_TARGET = process.env.API_TARGET || "http://127.0.0.1:8081";
+const API_TARGET = process.env.API_TARGET || "http://192.168.68.46:8081";
 const API_PREFIX = "/api/";
 const ROOT = __dirname;
 // 项目根目录（托管 home.html 登录后首页）
@@ -114,9 +114,9 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, "0.0.0.0", () => {
-  console.log(`[frontend] 静态服务已启动: http://localhost:${PORT}`);
+  console.log(`[frontend] 静态服务已启动: http://192.168.68.46:${PORT}`);
   console.log(`[frontend] /api 代理到后端: ${API_TARGET}`);
-  console.log(`[frontend] 登录后首页: http://localhost:${PORT}/home`);
-  console.log(`[frontend] 后台管理登录: http://localhost:${PORT}/admin`);
-  console.log(`[frontend] 后台管理面板: http://localhost:${PORT}/admin/dashboard`);
+  console.log(`[frontend] 登录后首页: http://192.168.68.46:${PORT}/home`);
+  console.log(`[frontend] 后台管理登录: http://192.168.68.46:${PORT}/admin`);
+  console.log(`[frontend] 后台管理面板: http://192.168.68.46:${PORT}/admin/dashboard`);
 });

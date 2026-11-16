@@ -1180,11 +1180,9 @@
         return;
       }
       list.forEach(it => {
-        const owned = state.bag[it.name] || 0;
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML =
-          (owned > 0 ? '<span class="owned-badge">×' + owned + '</span>' : '') +
           '<div class="icon">' + it.icon + '</div>' +
           '<div class="name">' + it.name + '</div>' +
           '<span class="tag">' + (CAT_LABEL[it.cat] || it.cat) + '</span>' +
@@ -1194,28 +1192,15 @@
       });
     }
 
-    // ===== 物品详情弹窗 =====
+    // ===== 物品详情弹窗（纯查看：仅展示信息，不提供收集 / 移除操作）=====
     function openModal(it) {
-      const owned = state.bag[it.name] || 0;
       const box = document.getElementById("modalBox");
       box.innerHTML =
         '<div class="m-icon">' + it.icon + '</div>' +
         '<div class="m-name">' + it.name + '</div>' +
         '<span class="m-tag">' + (CAT_LABEL[it.cat] || it.cat) + '</span>' +
-        '<div class="m-desc">' + (it.description || "暂无描述") + '</div>' +
-        '<div class="m-owned">背包持有：' + owned + ' 个</div>' +
-        '<div class="modal-actions">' +
-          '<button class="btn" id="modalAdd">＋ 收集</button>' +
-          '<button class="btn warn" id="modalRemove"' + (owned > 0 ? '' : ' disabled') + '>－ 移除</button>' +
-        '</div>';
+        '<div class="m-desc">' + (it.description || "暂无描述") + '</div>';
       document.getElementById("modalMask").classList.add("show");
-      document.getElementById("modalAdd").addEventListener("click", () => {
-        addToBag(it.name); closeModal(); renderCodex(); renderHome(); renderBag();
-      });
-      const rm = document.getElementById("modalRemove");
-      if (rm) rm.addEventListener("click", () => {
-        removeFromBag(it.name, 1); closeModal(); renderCodex(); renderHome(); renderBag();
-      });
     }
     function closeModal() { document.getElementById("modalMask").classList.remove("show"); }
     document.getElementById("modalMask").addEventListener("click", e => {
