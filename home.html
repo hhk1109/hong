@@ -476,6 +476,47 @@
     .modal-actions { display: flex; gap: 10px; }
     .modal-actions .btn { flex: 1; margin: 0; text-align: center; }
 
+    /* ===================== 村民模块 ===================== */
+    .v-banner {
+      max-width: 1100px; margin: 18px auto 0; padding: 10px 16px;
+      border: 3px dashed var(--gold); border-radius: 10px;
+      background: var(--parchment-3); color: var(--brown); font-size: 13px; line-height: 1.7;
+    }
+    .v-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(215px, 1fr)); gap: 14px; }
+    .v-card {
+      position: relative; padding: 18px 14px 14px; text-align: center; cursor: pointer;
+      background: linear-gradient(180deg, var(--parchment-2), var(--parchment-3));
+      border: 3px solid var(--brown-2); border-radius: 12px;
+      box-shadow: 0 4px 0 rgba(90, 58, 30, .3); transition: transform .15s;
+    }
+    .v-card:hover { transform: translateY(-3px); }
+    .v-card .v-avatar { font-size: 42px; }
+    .v-card .v-name { font-size: 15px; color: var(--brown); margin: 6px 0 4px; }
+    .v-hearts { font-size: 12px; letter-spacing: 1px; color: #e0526e; }
+    .v-hearts .off { color: #ddd0a8; }
+    .v-hearts b { color: var(--brown); }
+    .v-bday {
+      position: absolute; top: 8px; right: 10px; font-size: 18px;
+      animation: vBounce 1.2s ease-in-out infinite;
+    }
+    @keyframes vBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    .v-tags { margin-top: 8px; font-size: 11px; color: #9a7a4a; }
+    .modal .v-hearts-modal { text-align: center; font-size: 15px; margin-bottom: 12px; }
+    .v-sec { font-size: 12px; color: var(--brown-2); font-weight: bold; margin: 10px 0 6px; }
+    .v-bubble {
+      background: #fffdf6; border: 2px solid var(--brown-2); border-radius: 10px;
+      padding: 10px 12px; font-size: 13px; color: var(--brown); line-height: 1.6; margin-bottom: 10px;
+    }
+    .v-gift-list { display: flex; flex-wrap: wrap; gap: 8px; max-height: 148px; overflow: auto; }
+    .v-gift-item {
+      background: #fffdf6; border: 2px solid var(--brown-2); border-radius: 8px;
+      padding: 5px 9px; font-size: 12px; color: var(--brown); cursor: pointer; font-family: inherit;
+    }
+    .v-gift-item:hover:not(:disabled) { border-color: var(--green-deep); }
+    .v-gift-item:disabled { opacity: .45; cursor: not-allowed; }
+    .v-actions { display: flex; gap: 10px; margin-top: 12px; }
+    .v-actions .btn { flex: 1; margin: 0; }
+
     /* ===================== 核心玩法：通用 ===================== */
     .resource-bar {
       max-width: 1100px; margin: 18px auto 0; padding: 0 18px;
@@ -759,7 +800,8 @@
       <a data-page="fishing">🎣 钓鱼</a>
       <a data-page="shop">🛒 商店</a>
       <a data-page="mining">⛏️ 矿洞</a>
-      <a data-page="codex">作物图鉴</a>
+      <a data-page="codex">物品图鉴</a>
+      <a data-page="villagers">💗 村民</a>
       <a data-page="community">社区中心</a>
       <a data-page="bag">背包</a>
       <a data-page="settings">设置</a>
@@ -817,20 +859,19 @@
       <div class="module-grid" id="moduleGrid"></div>
     </section>
 
-    <!-- ============ 作物图鉴 Codex ============ -->
+    <!-- ============ 物品图鉴 Codex ============ -->
     <section id="page-codex" class="page">
       <div class="search-card">
-        <h2 class="search-title">🔍 星露谷百科 · 作物图鉴</h2>
+        <h2 class="search-title">🔍 星露谷百科 · 物品图鉴</h2>
         <div class="search-row">
           <input id="searchInput" class="search-input" type="text"
-                 placeholder="搜索作物、动物、村民、鱼类、矿石…（例如：草莓 / 鸡 / 阿比盖尔）" />
+                 placeholder="搜索作物、动物、鱼类、矿石…（例如：草莓 / 鸡 / 蓝莓）" />
           <button class="search-btn" id="searchBtn">搜 索</button>
         </div>
         <div class="chips" id="chips">
           <span class="chip active" data-cat="all">全部</span>
           <span class="chip" data-cat="crop">作物</span>
           <span class="chip" data-cat="animal">动物</span>
-          <span class="chip" data-cat="villager">村民</span>
           <span class="chip" data-cat="fish">钓鱼</span>
           <span class="chip" data-cat="ore">矿石</span>
         </div>
@@ -838,12 +879,23 @@
       <main class="grid" id="grid"></main>
     </section>
 
+    <!-- ============ 村民 Villagers ============ -->
+    <section id="page-villagers" class="page">
+      <div class="v-banner" id="vEventBanner" style="display:none"></div>
+      <div class="section-title">💗 鹈鹕镇 · 村民</div>
+      <div class="section-sub">
+        与村民每日对话、送礼可提升好感度（每 250 好感 = 1 心，满 10 心成为挚友）；送礼每周至多 2 份、礼物取自背包。
+        生日送礼好感 ×8，节日当天对话好感 ×2——看看今天谁过生日、有什么节日吧！
+      </div>
+      <div class="v-grid" id="villagerGrid"></div>
+    </section>
+
     <!-- ============ 社区中心 Community ============ -->
     <section id="page-community" class="page">
       <div class="section-title">🏠 社区中心</div>
       <div class="section-sub">
         将背包中拥有的物品捐赠到对应的「收集包」即可点亮插槽。集齐一个收集包，社区中心便恢复一分光彩。
-        捐赠会消耗背包中的对应物品，请先到「作物图鉴」收集心仪物种。
+        捐赠会消耗背包中的对应物品，可通过农场种植、钓鱼或挖矿获得。
       </div>
       <div class="bundle-grid" id="bundleGrid"></div>
     </section>

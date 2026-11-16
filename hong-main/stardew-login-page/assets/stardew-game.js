@@ -111,7 +111,8 @@
         inventory: {},    // { 产物名: 数量 }      收获 / 钓获 / 挖矿产物，商店出售
         owned: {},        // { 商品id: 数量 }      已购商品 / 升级
         seasonKey: "",    // 上次进入的季节，用于换季枯萎判定
-        mine: { last: "", at: 0, depth: 1 }
+        mine: { last: "", at: 0, depth: 1 },
+        villagers: {}     // { 村民名: { exp, talkedOn, giftWeek, gifts, total, lastLine } } 好感度存档
       };
     }
     function normalizeGame(raw) {
@@ -121,7 +122,7 @@
       g.species = Object.assign(d.species, (raw && raw.species) || {});
       g.logs = Object.assign(d.logs, (raw && raw.logs) || {});
       g.mine = Object.assign(d.mine, (raw && raw.mine) || {});
-      ["seeds", "inventory", "owned"].forEach(k => {
+      ["seeds", "inventory", "owned", "villagers"].forEach(k => {
         if (!g[k] || typeof g[k] !== "object" || Array.isArray(g[k])) g[k] = {};
       });
       ["fish", "ore", "crop"].forEach(k => { if (!Array.isArray(g.species[k])) g.species[k] = []; });
@@ -461,7 +462,7 @@
     /* ============================================================
      * 路由 + 首页（季节横幅 / 三大功能入口与状态 / 既有统计卡）
      * ============================================================ */
-    const PAGES = ["home", "farm", "fishing", "shop", "mining", "codex", "community", "bag", "settings"];
+    const PAGES = ["home", "farm", "fishing", "shop", "mining", "codex", "villagers", "community", "bag", "settings"];
     function go(page) {
       if (!PAGES.includes(page)) page = "home";
       location.hash = page;
@@ -482,6 +483,7 @@
       if (active === "shop") renderShop();
       if (active === "mining") renderMining();
       if (active === "codex") renderCodex();
+      if (active === "villagers") renderVillagers();
       if (active === "community") renderCommunity();
       if (active === "bag") renderBag();
       if (active === "settings") renderSettings();
@@ -489,7 +491,8 @@
     window.addEventListener("hashchange", route);
 
     const MODULES = [
-      { page: "codex", icon: "📖", name: "作物图鉴", desc: "浏览全部作物、动物、村民、鱼类与矿石，点击收集入背包。" },
+      { page: "codex", icon: "📖", name: "物品图鉴", desc: "浏览全部作物、动物、鱼类与矿石的图鉴资料，点击查看详情。" },
+      { page: "villagers", icon: "💗", name: "村民", desc: "与鹈鹕镇村民聊天、送礼提升好感度，别错过生日与节日。" },
       { page: "community", icon: "🏠", name: "社区中心", desc: "用背包物品完成收集包捐赠，复兴小镇。" },
       { page: "bag", icon: "🎒", name: "背包", desc: "管理你收集到的物种，可移除或用于捐赠。" },
       { page: "settings", icon: "⚙️", name: "设置", desc: "编辑农夫资料，导出或重置本地进度。" }
@@ -547,7 +550,7 @@
       const filledSlots = bundleDefs.reduce((s, b) => s + ((state.bundles[b.id] || []).length), 0);
       const pct = totalSlots ? Math.round(filledSlots / totalSlots * 100) : 0;
 
-      setText("statCodex", state.items.length);
+      setText("statCodex", state.items.filter(it => it.cat !== "villager").length);
       setText("statBag", ownedCount);
       setText("statBundlePct", pct + "%");
       const pbar = document.getElementById("statBundleBar");
@@ -1162,11 +1165,12 @@
         }, 500);
       }
     }
-    // ===== 渲染：作物图鉴 =====
+    // ===== 渲染：物品图鉴（纯查看；村民已拆分至独立「村民」模块）=====
     function renderCodex() {
       const grid = document.getElementById("grid");
       const q = state.searchQ.trim().toLowerCase();
       const list = state.items.filter(it => {
+        if (it.cat === "villager") return false; // 村民已拆分至独立「村民」模块
         const okCat = state.currentCat === "all" || it.cat === state.currentCat;
         const text = (it.description || "") + " " + (it.name || "");
         const okQ = !q || it.name.toLowerCase().includes(q)
@@ -1217,6 +1221,230 @@
       state.bag[name] -= (n || 1);
       if (state.bag[name] <= 0) delete state.bag[name];
       saveBag();
+    }
+
+    /* ============================================================
+     * 村民模块：好感度 / 每日对话 / 送礼 / 生日与节日
+     * 数据来源：/api/items（cat=villager，后台「图鉴条目」维护）；
+     * 好感度存档：game.villagers（本地缓存 + 后端进度同步）。
+     * 规则（参照星露谷物语）：每 250 好感经验 = 1 心，满 10 心成为挚友；
+     * 每日首次对话 +20；送礼每周至多 2 份，评价随物品类别；
+     * 生日送礼好感 ×8；节日当天对话好感 ×2。
+     * ============================================================ */
+    const VILLAGER_META = {
+      "阿比盖尔": {
+        birthday: [3, 13],   // 星露谷 春13
+        loved: ["fish", "ore"], liked: ["crop"], disliked: ["animal"],
+        lines: ["今天想进山洞找水晶，你敢一起去吗？", "雨天就该窝在屋里打游戏，才不要出门。",
+                "爸爸总说我要淑女一点……哼，才不要。", "你看这颗紫水晶，是不是超漂亮？"]
+      },
+      "塞巴斯蒂安": {
+        birthday: [12, 3],   // 星露谷 冬3
+        loved: ["ore", "fish"], liked: ["crop"], disliked: ["animal"],
+        lines: ["又要下雨了……不过，下雨天也挺好。", "我半夜常去湖边发呆，别告诉我妈。",
+                "青蛙是我最喜欢的动物，酷吧。", "等攒够了钱，我就搬去城里住。"]
+      },
+      "艾芙琳": {
+        birthday: [12, 1],   // 星露谷 冬1
+        loved: ["crop"], liked: ["fish"], disliked: ["ore"],
+        lines: ["孩子，要不要尝尝我刚烤的饼干？", "我的老伴乔治脾气有点倔，但他心肠很好。",
+                "公园里那些花都是我亲手种的哦。", "记得常回来看看我这把老骨头呀。"]
+      },
+      "镇长刘易斯": {
+        birthday: [3, 27],   // 星露谷 春27
+        loved: ["crop"], liked: ["animal"], disliked: ["fish"],
+        lines: ["镇上的事务真让人操心啊……", "今年收成不错，多亏了你这样的农夫。",
+                "我的秘密……咳，我是说，没什么。", "星露谷的火种，就靠你们年轻人了。"]
+      }
+    };
+    const VILLAGER_DEFAULT = {
+      birthday: null,
+      loved: ["crop"], liked: ["fish", "animal"], disliked: ["ore"],
+      lines: ["今天的天气真不错。", "星露谷越来越热闹了呢。",
+              "听说你的农场经营得很好？", "有空来找我聊聊吧。"]
+    };
+    const FESTIVALS = [
+      { name: "🥚 蛋节",         date: [3, 13],  desc: "全镇寻找彩蛋，赢家有惊喜奖励" },
+      { name: "💃 花舞节",       date: [3, 24],  desc: "春日花田起舞，邀请村民共舞一支" },
+      { name: "🍲 夏威夷宴会",   date: [6, 11],  desc: "海滩汤锅宴——放点好东西进去？" },
+      { name: "🌊 月光水母节",   date: [6, 28],  desc: "夏夜的海边，看水母成群发光" },
+      { name: "🎪 星露谷博览会", date: [9, 16],  desc: "秋季集市，展示你最得意的农产" },
+      { name: "🎃 万圣节",       date: [10, 27], desc: "南瓜灯与糖果之夜" },
+      { name: "❄️ 冰雪节",      date: [12, 8],  desc: "湖上凿洞冰钓，比比谁钓得多" }
+    ];
+    const V_MAX_EXP = 2500, V_EXP_PER_HEART = 250, V_GIFT_WEEKLY = 2;
+    const OP_LABEL = { loved: "最爱", liked: "喜欢", neutral: "普通", disliked: "忌讳" };
+
+    function vMeta(name) { return VILLAGER_META[name] || VILLAGER_DEFAULT; }
+    function vEntry(name) {
+      if (!game.villagers) game.villagers = {};
+      const v = game.villagers[name];
+      if (!v || typeof v !== "object") {
+        game.villagers[name] = { exp: 0, talkedOn: "", giftWeek: "", gifts: 0, total: 0, lastLine: "" };
+      }
+      return game.villagers[name];
+    }
+    function vHearts(name) { return Math.min(10, Math.floor((vEntry(name).exp || 0) / V_EXP_PER_HEART)); }
+    function heartsHtml(h) {
+      let s = "";
+      for (let i = 0; i < 10; i++) s += '<span' + (i < h ? "" : ' class="off"') + '>❤</span>';
+      return s;
+    }
+    function addVExp(name, n) {
+      const v = vEntry(name);
+      v.exp = Math.max(0, Math.min(V_MAX_EXP, (v.exp || 0) + n));
+    }
+    function dateKey(d) {
+      d = d || new Date();
+      return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();
+    }
+    function weekKey(d) {
+      d = d || new Date();
+      const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+      const day = t.getUTCDay() || 7;
+      t.setUTCDate(t.getUTCDate() + 4 - day);
+      const y = t.getUTCFullYear();
+      const w = Math.ceil(((t - Date.UTC(y, 0, 1)) / 86400000 + 1) / 7);
+      return y + "-W" + w;
+    }
+    function isBirthday(name) {
+      const b = vMeta(name).birthday, d = new Date();
+      return !!b && (d.getMonth() + 1) === b[0] && d.getDate() === b[1];
+    }
+    function todayFestival() {
+      const d = new Date();
+      return FESTIVALS.find(f => (d.getMonth() + 1) === f.date[0] && d.getDate() === f.date[1]) || null;
+    }
+    function vGiftLeft(name) {
+      const v = vEntry(name), wk = weekKey();
+      return (v.giftWeek === wk ? (v.gifts || 0) : 0) >= V_GIFT_WEEKLY ? 0 : V_GIFT_WEEKLY - (v.giftWeek === wk ? (v.gifts || 0) : 0);
+    }
+    function giftOpinion(meta, cat) {
+      if ((meta.loved || []).indexOf(cat) >= 0) return "loved";
+      if ((meta.disliked || []).indexOf(cat) >= 0) return "disliked";
+      if ((meta.liked || []).indexOf(cat) >= 0) return "liked";
+      return "neutral";
+    }
+    function villagerByName(name) { return state.items.find(it => it.cat === "villager" && it.name === name); }
+
+    // ===== 渲染：村民 =====
+    function renderVillagers() {
+      const grid = document.getElementById("villagerGrid");
+      const villagers = state.items.filter(it => it.cat === "villager" && it.enabled !== 0);
+      const fest = todayFestival();
+      const bdays = villagers.filter(v => isBirthday(v.name)).map(v => v.name);
+      const banner = document.getElementById("vEventBanner");
+      if (fest || bdays.length) {
+        banner.style.display = "";
+        banner.innerHTML =
+          (fest ? "🎉 今天是 <b>" + esc(fest.name) + "</b>——" + esc(fest.desc) + "（对话好感 ×2）" : "") +
+          (bdays.length ? (fest ? " ｜ " : "") + "🎂 今天是 <b>" + bdays.map(esc).join("、") + "</b> 的生日（送礼好感 ×8）" : "");
+      } else {
+        banner.style.display = "none";
+      }
+      grid.innerHTML = "";
+      if (!villagers.length) {
+        grid.innerHTML = '<div class="empty">🌷 村民们还在来的路上……</div>';
+        return;
+      }
+      villagers.forEach(v => {
+        const talked = vEntry(v.name).talkedOn === dateKey();
+        const giftLeft = vGiftLeft(v.name);
+        const bday = isBirthday(v.name);
+        const card = document.createElement("div");
+        card.className = "v-card";
+        card.innerHTML =
+          (bday ? '<span class="v-bday">🎂</span>' : '') +
+          '<div class="v-avatar">' + v.icon + '</div>' +
+          '<div class="v-name">' + esc(v.name) + '</div>' +
+          '<div class="v-hearts">' + heartsHtml(vHearts(v.name)) + ' <b>' + vHearts(v.name) + '</b>/10</div>' +
+          '<div class="v-tags">' +
+            (talked ? "✅ 今日已问候" : "💬 今日可对话") + " · " +
+            (giftLeft > 0 ? "🎁 本周可送礼 ×" + giftLeft : "🎁 本周礼物已送满") +
+          '</div>';
+        card.addEventListener("click", () => openVillagerModal(v.name));
+        grid.appendChild(card);
+      });
+    }
+
+    // ===== 村民详情弹窗：日常对话 / 送礼 =====
+    function openVillagerModal(name) {
+      const v = villagerByName(name);
+      if (!v) return;
+      const meta = vMeta(name), entry = vEntry(name);
+      const talked = entry.talkedOn === dateKey();
+      const giftLeft = vGiftLeft(name);
+      const bday = isBirthday(name);
+      const bagNames = Object.keys(state.bag).filter(k => (state.bag[k] || 0) > 0);
+      const box = document.getElementById("modalBox");
+      box.innerHTML =
+        '<div class="m-icon">' + v.icon + '</div>' +
+        '<div class="m-name">' + esc(v.name) + (bday ? ' 🎂 生日快乐' : '') + '</div>' +
+        '<div class="m-desc">' + esc(v.description || "暂无描述") + '</div>' +
+        '<div class="v-hearts v-hearts-modal">' + heartsHtml(vHearts(name)) + ' <b>' + vHearts(name) + '</b>/10</div>' +
+        '<div class="v-sec">💬 日常对话' + (talked ? "（今日已问候）" : "（每日首次 +20 好感" + (todayFestival() ? "，节日 ×2" : "") + "）") + '</div>' +
+        '<div class="v-bubble" id="vBubble">' + esc(entry.lastLine || "点「今日问候」，和 TA 聊两句吧。") + '</div>' +
+        '<div class="v-sec">🎁 送礼（每周至多 ' + V_GIFT_WEEKLY + ' 份' +
+          (bday ? " · 生日 ×8" : "") + '，礼物取自背包）</div>' +
+        '<div class="v-gift-list" id="vGiftList">' +
+          (bagNames.length
+            ? bagNames.map(n => {
+                const it = itemByName(n);
+                const op = it ? giftOpinion(meta, it.cat) : "neutral";
+                return '<button class="v-gift-item" data-name="' + esc(n) + '"' + (giftLeft > 0 ? "" : " disabled") + '>' +
+                  (it ? it.icon : "🎁") + " " + esc(n) + " ×" + state.bag[n] + "（" + OP_LABEL[op] + "）</button>";
+              }).join("")
+            : '<span class="v-tags">背包空空——先去农场种植、钓鱼或挖矿收获些礼物吧</span>') +
+        '</div>' +
+        '<div class="v-actions">' +
+          '<button class="btn" id="vTalk"' + (talked ? " disabled" : "") + '>💬 今日问候</button>' +
+          '<button class="btn ghost" id="vClose">关闭</button>' +
+        '</div>';
+      document.getElementById("modalMask").classList.add("show");
+      document.getElementById("vClose").addEventListener("click", closeModal);
+      const tb = document.getElementById("vTalk");
+      if (tb && !tb.disabled) tb.addEventListener("click", () => doTalk(name));
+      box.querySelectorAll(".v-gift-item").forEach(btn => {
+        btn.addEventListener("click", () => doGift(name, btn.dataset.name));
+      });
+    }
+
+    function doTalk(name) {
+      const entry = vEntry(name);
+      if (entry.talkedOn === dateKey()) return;
+      const meta = vMeta(name);
+      const line = meta.lines[Math.floor(Math.random() * meta.lines.length)];
+      let exp = 20;
+      if (todayFestival()) exp *= 2;   // 节日当天对话好感 ×2
+      entry.talkedOn = dateKey();
+      entry.lastLine = line;
+      addVExp(name, exp);
+      saveGame();
+      gameToast("💬 " + esc(name) + "：" + esc(line) + "（好感 +" + exp + "）");
+      renderVillagers();
+      openVillagerModal(name);
+    }
+
+    function doGift(name, itemName) {
+      if ((state.bag[itemName] || 0) <= 0 || vGiftLeft(name) <= 0) return;
+      const meta = vMeta(name);
+      const it = itemByName(itemName);
+      const op = giftOpinion(meta, it ? it.cat : "");
+      let exp = op === "loved" ? 80 : op === "liked" ? 45 : op === "disliked" ? -20 : 20;
+      if (isBirthday(name)) exp *= 8;  // 生日送礼好感 ×8
+      const entry = vEntry(name);
+      const wk = weekKey();
+      if (entry.giftWeek !== wk) { entry.giftWeek = wk; entry.gifts = 0; }
+      entry.gifts += 1;
+      entry.total = (entry.total || 0) + 1;
+      removeFromBag(itemName, 1);   // 礼物取自背包（含本地缓存 + 后端同步）
+      addVExp(name, exp);
+      saveGame();
+      const giftIcon = it ? it.icon : "🎁";
+      gameToast((exp > 0 ? "❤️ " + esc(name) + " 收下了 " + giftIcon + " " + esc(itemName) + "，好感 " + (exp > 0 ? "+" : "") + exp
+                         : "💔 " + esc(name) + " 似乎不太喜欢 " + giftIcon + " " + esc(itemName) + "……好感 " + exp));
+      renderVillagers();
+      openVillagerModal(name);
     }
 
     // ===== 渲染：社区中心 =====
@@ -1271,7 +1499,7 @@
         .map(k => ({ name: k, count: state.bag[k], it: itemByName(k) }));
       grid.innerHTML = "";
       if (!entries.length) {
-        grid.innerHTML = '<div class="empty">🎒 背包还是空的，去「作物图鉴」收集物种吧！</div>';
+        grid.innerHTML = '<div class="empty">🎒 背包还是空的，去农场种植、钓鱼或挖矿收获物品吧！</div>';
         return;
       }
       entries.forEach(e => {

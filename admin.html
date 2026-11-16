@@ -249,9 +249,9 @@
       <button class="tab-btn" data-tab="users">🧑‍🌾 用户管理</button>
     </div>
 
-    <!-- ============ 图鉴条目管理（对应首页「作物图鉴」模块） ============ -->
+    <!-- ============ 图鉴条目管理（对应首页「物品图鉴」与「村民」模块） ============ -->
     <section class="panel active" id="panel-items">
-      <div class="tab-hint">管理首页「作物图鉴」展示的全部条目（作物 / 动物 / 村民 / 鱼类 / 矿石），保存后首页即时同步。</div>
+      <div class="tab-hint">管理首页「物品图鉴」与「村民」模块展示的全部条目（作物 / 动物 / 村民 / 鱼类 / 矿石），保存后首页即时同步。</div>
       <div class="stats">
         <div class="stat"><div class="num" id="statTotal">0</div><div class="label">条目总数</div></div>
         <div class="stat"><div class="num" id="statVisible">0</div><div class="label">首页可见</div></div>
@@ -359,7 +359,7 @@
 
   <div class="toast" id="toast"></div>
   <footer class="footer">
-    星露谷 · 后台管理系统 ｜ 模块对应关系：图鉴条目 → 首页「作物图鉴」 · 收集包 → 首页「社区中心」 · 用户管理 → 登录账号与背包进度<br/>
+    星露谷 · 后台管理系统 ｜ 模块对应关系：图鉴条目 → 首页「物品图鉴」/「村民」 · 收集包 → 首页「社区中心」 · 用户管理 → 登录账号与背包进度<br/>
     首页统计卡片（图鉴总数 / 收集进度）由以上模块数据实时计算，管理端保存后首页自动同步
   </footer>
 
@@ -431,7 +431,7 @@
     window.addEventListener("hashchange", () => switchTab(location.hash.replace("#", "")));
 
     /* ============================================================
-     * 模块一：图鉴条目（首页「作物图鉴」）
+     * 模块一：图鉴条目（首页「物品图鉴」/「村民」模块）
      * ============================================================ */
     function loadItems() {
       const kw = document.getElementById("kwInput").value.trim();

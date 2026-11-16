@@ -165,7 +165,7 @@ async function go(page) {
     check(errors.length === 0, "浏览器控制台 0 个未捕获异常", errors.length);
     check(await ev("document.getElementById('gameModuleGrid').children.length") >= 4, "首页四个功能入口卡片存在");
     await go("codex");
-    check(await ev("document.getElementById('grid').children.length") > 0, "既有作物图鉴正常渲染");
+    check(await ev("document.getElementById('grid').children.length") > 0, "既有物品图鉴正常渲染");
     await go("community");
     check(await ev("document.getElementById('bundleGrid').children.length") > 0, "既有社区中心正常渲染");
 
