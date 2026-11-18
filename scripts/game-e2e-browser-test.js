@@ -96,6 +96,9 @@ async function go(page) {
     await send("Page.navigate", { url: "http://localhost:5173/home" });
     await waitFor("typeof game !== 'undefined' && document.getElementById('seasonBanner').innerHTML.length > 20", 15000);
 
+    const initialGold = await ev("game.gold");
+    check(initialGold === 500, "新档初始金币 500", initialGold);
+
     // 干净的游客基线
     await ev("localStorage.clear(); game = defaultGame(); game.gold = 1000; game.seasonKey = seasonNow().key; saveGame(); renderHome(); true");
     console.log("\n[1] 商店购买当季种子（真实点击）");
@@ -122,15 +125,41 @@ async function go(page) {
     check(await ev("game.gold") === goldBefore, "收获不直接发金币");
     check(await ev("game.plots.filter(Boolean).length") === 0, "收获后地块清空");
 
-    console.log("\n[3] 商店出售 / 购买升级（真实点击）");
+    console.log("\n[3] 商店出售（真实点击）");
     await go("shop");
     await ev("document.querySelector('[data-act=\"sell-all\"]').click()");
     check(await ev("invTotal()") === 0, "一键全部出售清空仓库");
     check(await ev("game.gold") > goldBefore, "出售结算金币");
     await ev("game.gold = 5000; shopCat = 'upgrade'; renderShop(); true");
-    await ev("(function(){var b=document.querySelector('#shopGoods [data-id=\"greenhouse\"]');if(b)b.click();return true})()");
-    check(await ev("game.owned.greenhouse || 0") === 1, "点击购买温室升级");
+    check(await ev("document.querySelector('#shopGoods [data-id=\"greenhouse\"]') === null"), "商店不再出售温室");
+    check(await ev("document.querySelector('#shopGoods [data-id=\"watering_can\"]') === null"), "商店不再出售工具");
+
+    console.log("\n[3b] 铁匠铺 / 温室（真实点击）");
+    await ev("game.gold = 5000; game.inventory['铜矿石'] = 10; true");
+    await go("blacksmith");
+    await ev("renderBlacksmith(); true");
+    await ev("document.querySelector('#forgeToolList [data-act=\"upgrade-tool\"][data-id=\"watering_can\"]').click()");
+    check(await ev("toolLevel('watering_can')") === 1, "铁匠处点击升级洒水壶");
+    check(await ev("game.inventory['铜矿石']") === 5, "升级消耗 5 块铜矿石");
+    check(await ev("game.gold") === 4800, "升级扣除 200g");
+    await go("greenhouse");
+    await ev("renderGreenhouse(); true");
+    check(await ev("document.getElementById('greenUnlockGold').disabled") === false, "金币足够时温室解锁按钮可用");
+    await ev("document.getElementById('greenUnlockGold').click()");
+    check(await ev("hasGreenhouse()") === true, "支付金币解锁温室");
     check(await ev("plantableCrops().length") === await ev("SD.crops.length"), "温室解锁全季作物");
+
+    console.log("\n[3c] 牧场（真实点击：购买 / 喂养 / 收集）");
+    await go("ranch");
+    await ev("game.gold = 5000; renderRanch(); true");
+    await ev("document.querySelector('#ranchAnimalShop [data-act=\"buy-animal\"][data-id=\"chicken\"]').click()");
+    check(await ev("game.animals.length") === 1, "牧场购买小鸡");
+    await ev("game.feed = 1; renderRanch(); true");
+    await ev("document.querySelector('#ranchAnimalList [data-act=\"feed-animal\"][data-idx=\"0\"]').click()");
+    check(await ev("game.feed") === 0, "喂养消耗 1 份饲料");
+    await ev("game.animals[0].readyAt = Date.now() - 1; renderRanch(); true");
+    await ev("document.querySelector('#ranchAnimalList [data-act=\"collect-animal\"][data-idx=\"0\"]').click()");
+    check(await ev("game.inventory['鸡蛋'] || 0") === 1, "收集鸡蛋进入仓库");
 
     console.log("\n[4] 钓鱼（真实点击抛竿 / 收竿）");
     await go("fishing");
@@ -163,9 +192,10 @@ async function go(page) {
       e.method === "Runtime.exceptionThrown" ||
       (e.method === "Log.entryAdded" && e.params.entry && e.params.entry.level === "error"));
     check(errors.length === 0, "浏览器控制台 0 个未捕获异常", errors.length);
-    check(await ev("document.getElementById('gameModuleGrid').children.length") >= 4, "首页四个功能入口卡片存在");
+    check(await ev("document.getElementById('gameModuleGrid').children.length") === 7, "首页七个核心玩法入口卡片存在");
     await go("codex");
-    check(await ev("document.getElementById('grid').children.length") > 0, "既有物品图鉴正常渲染");
+    const codexCount = await ev("document.getElementById('grid').children.length");
+    check(codexCount >= 80, "物品图鉴渲染全量目录物品", codexCount);
     await go("community");
     check(await ev("document.getElementById('bundleGrid').children.length") > 0, "既有社区中心正常渲染");
 

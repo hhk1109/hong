@@ -20,11 +20,12 @@ if errorlevel 1 (
     echo   MySQL OK.
 )
 
-echo [2/4] Initializing admin tables (idempotent)...
+echo [2/4] Initializing database and tables (idempotent)...
 set "MYSQL=C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe"
 if exist "%MYSQL%" (
+    "%MYSQL%" --force -uroot -p123456 --default-character-set=utf8mb4 < "%BACKEND_DIR%\sql\stardew_init.sql" >nul 2>&1
     "%MYSQL%" --force -uroot -p123456 --default-character-set=utf8mb4 < "%BACKEND_DIR%\sql\admin_init.sql" >nul 2>&1
-    if errorlevel 1 (echo   WARNING: admin_init.sql failed, tables may be missing.) else (echo   Tables OK.)
+    if errorlevel 1 (echo   WARNING: SQL init failed, tables may be missing.) else (echo   Tables OK.)
 ) else (
     echo   WARNING: mysql.exe not found, skip DB init.
 )
@@ -53,10 +54,10 @@ if not errorlevel 1 (
 
 timeout /t 12 /nobreak >nul
 netstat -ano | findstr ":8081" | findstr "LISTENING" >nul
-if errorlevel 1 (echo   [FAIL] Backend is DOWN on 8081) else (echo   [ OK ] Backend  : http://192.168.68.46:8081)
+if errorlevel 1 (echo   [FAIL] Backend is DOWN on 8081) else (echo   [ OK ] Backend  : http://192.168.68.5:8081)
 netstat -ano | findstr ":5173" | findstr "LISTENING" >nul
-if errorlevel 1 (echo   [FAIL] Frontend is DOWN on 5173) else (echo   [ OK ] Frontend : http://192.168.68.46:5173)
+if errorlevel 1 (echo   [FAIL] Frontend is DOWN on 5173) else (echo   [ OK ] Frontend : http://192.168.68.5:5173)
 
-start "" http://192.168.68.46:5173
+start "" http://192.168.68.5:5173
 echo Done.
 endlocal

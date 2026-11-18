@@ -116,15 +116,59 @@
     { name: "铱矿石",   icon: "⚙️", price: 250, minDepth: 6, weight: 10,  note: "深层稀有矿，价值不菲" }
   ];
 
-  /* ---------- 商店商品（种子由作物目录动态生成） ---------- */
+  /* ---------- 牧场动物（在牧场购买 / 喂养 / 收集，不在杂货店出售） ---------- */
+  var ANIMALS = [
+    { id: "chicken", name: "小鸡",   icon: "🐔", price: 400,  product: "鸡蛋", productIcon: "🥚", productPrice: 50,  produceMs: 45 * 1000, note: "每天产蛋，金色母鸡更珍贵" },
+    { id: "duck",    name: "鸭子",   icon: "🦆", price: 600,  product: "鸭蛋", productIcon: "🥚", productPrice: 80,  produceMs: 60 * 1000, note: "偶尔产鸭蛋，比鸡蛋更值钱" },
+    { id: "cow",     name: "奶牛",   icon: "🐄", price: 800,  product: "牛奶", productIcon: "🥛", productPrice: 120, produceMs: 75 * 1000, note: "每天产牛奶，可制作奶酪" },
+    { id: "sheep",   name: "绵羊",   icon: "🐑", price: 1200, product: "羊毛", productIcon: "🧶", productPrice: 200, produceMs: 90 * 1000, note: "定期产羊毛，可制成布料" }
+  ];
+
+  /* ---------- 牧场产物（统一入仓库，可在商店出售 / 图鉴展示） ---------- */
+  var PRODUCTS = ANIMALS.map(a => ({
+    name: a.product, icon: a.productIcon, sell: a.productPrice,
+    cat: "product", from: a.name, note: a.name + "喂养后产出"
+  }));
+
+  /* ---------- 铁匠工具升级（四级：铜 → 铁 → 钢 → 铱；消耗仓库矿石 + 金币） ---------- */
+  var TOOLS = [
+    { id: "watering_can", name: "洒水壶", icon: "🚿", note: "浇水缩短作物成熟时间", levels: [
+      { name: "铜制洒水壶", ore: "铜矿石", count: 5, gold: 200,  effect: "浇水提前 30 秒成熟" },
+      { name: "铁制洒水壶", ore: "铁矿石", count: 5, gold: 400,  effect: "浇水提前 45 秒成熟" },
+      { name: "钢制洒水壶", ore: "金矿石", count: 5, gold: 700,  effect: "浇水提前 60 秒成熟" },
+      { name: "铱制洒水壶", ore: "铱矿石", count: 5, gold: 1200, effect: "浇水提前 75 秒成熟" }
+    ] },
+    { id: "hoe", name: "锄头", icon: "🪓", note: "收获时额外产出作物", levels: [
+      { name: "铜制锄头", ore: "铜矿石", count: 5, gold: 200,  effect: "每次收获额外 +1" },
+      { name: "铁制锄头", ore: "铁矿石", count: 5, gold: 400,  effect: "每次收获额外 +2" },
+      { name: "钢制锄头", ore: "金矿石", count: 5, gold: 700,  effect: "每次收获额外 +3" },
+      { name: "铱制锄头", ore: "铱矿石", count: 5, gold: 1200, effect: "每次收获额外 +4" }
+    ] },
+    { id: "pickaxe", name: "镐子", icon: "⛏️", note: "提升挖矿时稀有矿石概率", levels: [
+      { name: "铜制镐子", ore: "铜矿石", count: 5, gold: 200,  effect: "稀有矿权重 +20%" },
+      { name: "铁制镐子", ore: "铁矿石", count: 5, gold: 400,  effect: "稀有矿权重 +40%" },
+      { name: "钢制镐子", ore: "金矿石", count: 5, gold: 700,  effect: "稀有矿权重 +60%" },
+      { name: "铱制镐子", ore: "铱矿石", count: 5, gold: 1200, effect: "稀有矿权重 +80%" }
+    ] },
+    { id: "rod", name: "钓竿", icon: "🎣", note: "提升钓鱼成功率与稀有鱼权重", levels: [
+      { name: "铜制钓竿", ore: "铜矿石", count: 5, gold: 200,  effect: "成功率 78% → 83%" },
+      { name: "铁制钓竿", ore: "铁矿石", count: 5, gold: 400,  effect: "成功率 78% → 88%" },
+      { name: "钢制钓竿", ore: "金矿石", count: 5, gold: 700,  effect: "成功率 78% → 93%" },
+      { name: "铱制钓竿", ore: "铱矿石", count: 5, gold: 1200, effect: "成功率 78% → 98%" }
+    ] }
+  ];
+
+  /* ---------- 商店商品（种子由作物目录动态生成；sold:false 仅用于图鉴，不进商店） ---------- */
   var GOODS = [
-    { id: "watering_can", name: "铜制洒水壶",   icon: "🚿", cat: "tool",     price: 180,  unique: true, effect: "浇水提前成熟 15 秒 → 30 秒" },
-    { id: "sprinkler",    name: "优质洒水器",   icon: "💧", cat: "tool",     price: 420,  unique: true, effect: "新播种的作物自动浇水" },
-    { id: "hoe",          name: "钢锄头",       icon: "🪓", cat: "tool",     price: 260,  unique: true, effect: "每次收获额外 +1 作物" },
-    { id: "rod",          name: "玻璃纤维钓竿", icon: "🎣", cat: "tool",     price: 300,  unique: true, effect: "钓鱼成功率 78% → 93%，稀有鱼权重提升" },
-    { id: "pickaxe",      name: "钢镐子",       icon: "⛏️", cat: "tool",     price: 280,  unique: true, effect: "挖矿稀有矿石概率提升" },
+    // 工具不再在商店出售：仅在铁匠处按等级消耗矿石 + 金币升级（sold:false 仅保留图鉴条目）
+    { id: "watering_can", name: "铜制洒水壶",   icon: "🚿", cat: "tool",     price: 180,  unique: true, sold: false, effect: "铁匠处升级 · 浇水提前成熟" },
+    { id: "hoe",          name: "钢锄头",       icon: "🪓", cat: "tool",     price: 260,  unique: true, sold: false, effect: "铁匠处升级 · 收获额外 +作物" },
+    { id: "rod",          name: "玻璃纤维钓竿", icon: "🎣", cat: "tool",     price: 300,  unique: true, sold: false, effect: "铁匠处升级 · 钓鱼成功率提升" },
+    { id: "pickaxe",      name: "钢镐子",       icon: "⛏️", cat: "tool",     price: 280,  unique: true, sold: false, effect: "铁匠处升级 · 稀有矿概率提升" },
+    // 洒水器属于农场设施，可在杂货店购买
+    { id: "sprinkler",    name: "优质洒水器",   icon: "💧", cat: "upgrade",  price: 420,  unique: true, effect: "新播种的作物自动浇水" },
     { id: "scarecrow",    name: "稻草人",       icon: "👒", cat: "upgrade",  price: 180,  unique: true, effect: "换季时保护地里作物不枯萎" },
-    { id: "greenhouse",   name: "温室",         icon: "🏡", cat: "upgrade",  price: 2500, unique: true, effect: "任意季节可购买 / 种植全部作物" },
+    { id: "greenhouse",   name: "温室",         icon: "🏡", cat: "upgrade",  price: 2500, unique: true, sold: false, effect: "支付 2500g 或完成社区中心全部收集后解锁" },
     { id: "backpack",     name: "大背包",       icon: "🎒", cat: "upgrade",  price: 600,  unique: true, effect: "仓库容量 60 → 120 格" },
 
     { id: "fried_egg",    name: "煎蛋",     icon: "🍳", cat: "food",      price: 60,  energy: 6,  effect: "立即恢复 6 点体力" },
@@ -139,10 +183,11 @@
     { id: "tv",           name: "电视机",   icon: "📺", cat: "furniture", price: 350, effect: "每天收看天气预报与烹饪节目" },
     { id: "fence",        name: "木栅栏",   icon: "🪵", cat: "furniture", price: 40,  effect: "围出整齐的田地" },
 
-    { id: "chicken",      name: "小鸡",     icon: "🐔", cat: "animal",    price: 400,  effect: "牧场伙伴 · 每天产蛋" },
-    { id: "duck",         name: "鸭子",     icon: "🦆", cat: "animal",    price: 600,  effect: "牧场伙伴 · 偶尔产鸭蛋" },
-    { id: "cow",          name: "奶牛",     icon: "🐄", cat: "animal",    price: 800,  effect: "牧场伙伴 · 每天产牛奶" },
-    { id: "sheep",        name: "绵羊",     icon: "🐑", cat: "animal",    price: 1200, effect: "牧场伙伴 · 定期产羊毛" },
+    // 动物在牧场购买 / 饲养 / 收集产物（sold:false 仅保留图鉴条目）
+    { id: "chicken",      name: "小鸡",     icon: "🐔", cat: "animal",    price: 400,  sold: false, effect: "牧场购买 · 喂养后产鸡蛋" },
+    { id: "duck",         name: "鸭子",     icon: "🦆", cat: "animal",    price: 600,  sold: false, effect: "牧场购买 · 喂养后产鸭蛋" },
+    { id: "cow",          name: "奶牛",     icon: "🐄", cat: "animal",    price: 800,  sold: false, effect: "牧场购买 · 喂养后产牛奶" },
+    { id: "sheep",        name: "绵羊",     icon: "🐑", cat: "animal",    price: 1200, sold: false, effect: "牧场购买 · 喂养后产羊毛" },
 
     { id: "stardrop",     name: "星之果实", icon: "⭐", cat: "special",   price: 5000, unique: true, effect: "传说收藏品 · 星露谷的纪念" },
     { id: "totem",        name: "传送图腾", icon: "🌀", cat: "special",   price: 300,  effect: "农场纪念品 · 可摆放在客厅" }
@@ -150,11 +195,9 @@
 
   var CATS = [
     { key: "seed",      label: "🌱 种子" },
-    { key: "tool",      label: "🛠️ 工具" },
     { key: "upgrade",   label: "🏡 农场升级" },
     { key: "food",      label: "🍳 食物" },
     { key: "furniture", label: "🪑 家具" },
-    { key: "animal",    label: "🐔 动物" },
     { key: "special",   label: "⭐ 特殊" }
   ];
 
@@ -163,6 +206,9 @@
     crops: CROPS,
     fish: FISH,
     ores: ORES,
+    animals: ANIMALS,
+    products: PRODUCTS,
+    tools: TOOLS,
     goods: GOODS,
     cats: CATS
   };

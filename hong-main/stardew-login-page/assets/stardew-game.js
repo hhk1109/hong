@@ -8,33 +8,48 @@
  * ============================================================ */
 "use strict";
 
-    // ===== 展示数据：优先从后端接口加载（后台管理可维护），失败时回退本地静态数据 =====
-    const FALLBACK_ITEMS = [
-      { icon: "🍓", name: "草莓", cat: "crop", description: "春季作物，可多次收获，镇长的最爱。" },
-      { icon: "🍇", name: "蓝莓", cat: "crop", description: "夏季作物，产量高，制作果酱一流。" },
-      { icon: "🌽", name: "玉米", cat: "crop", description: "夏秋两季均可种植，烘烤后更香甜。" },
-      { icon: "🎃", name: "南瓜", cat: "crop", description: "秋季作物，万圣节必备，售价可观。" },
-      { icon: "🍒", name: "樱桃", cat: "crop", description: "多年生果树，春季稳定产出。" },
-      { icon: "🍺", name: "啤酒花", cat: "crop", description: "夏季攀藤作物，用于酿制淡啤酒。" },
-      { icon: "🍞", name: "远古水果", cat: "crop", description: "传说作物，酿成酒价值连城。" },
-      { icon: "🐔", name: "鸡", cat: "animal", description: "每天产蛋，金色母鸡更珍贵。" },
-      { icon: "🐄", name: "奶牛", cat: "animal", description: "产出牛奶，可制作奶酪。" },
-      { icon: "🐑", name: "羊", cat: "animal", description: "产出羊毛，梳毛后制成布料。" },
-      { icon: "🐖", name: "猪", cat: "animal", description: "松露猎手，林间觅得松露。" },
-      { icon: "🐎", name: "马", cat: "animal", description: "牧场好伙伴，提升移动速度。" },
-      { icon: "👧", name: "阿比盖尔", cat: "villager", description: "鹈鹕镇少女，热爱矿物与冒险。" },
-      { icon: "🧔", name: "塞巴斯蒂安", cat: "villager", description: "镇上的程序员，钟爱雨天。" },
-      { icon: "👵", name: "艾芙琳", cat: "villager", description: "和蔼的祖母，擅长烘焙。" },
-      { icon: "🧑‍🌾", name: "镇长刘易斯", cat: "villager", description: "鹈鹕镇镇长，关心小镇发展。" },
-      { icon: "🐟", name: "鲈鱼", cat: "fish", description: "鹈鹕河里最常见的鱼，新手渔夫的起点。" },
-      { icon: "🐠", name: "虹鳟", cat: "fish", description: "色彩斑斓的鳟鱼，在山间溪流中出没。" },
-      { icon: "🐡", name: "鲶鱼", cat: "fish", description: "力气很大的深水鱼，咬钩时鱼竿都在颤抖。" },
-      { icon: "🦈", name: "传说之鱼", cat: "fish", description: "只在月圆之夜现身的深海巨物，渔夫的终极梦想。" },
-      { icon: "🔶", name: "铜矿石", cat: "ore", description: "矿洞浅层最常见的矿石，熔炼后用途广泛。" },
-      { icon: "🔷", name: "铁矿石", cat: "ore", description: "埋藏在矿洞中层的闪亮矿石，锻制工具的必需品。" },
-      { icon: "🥇", name: "金矿石", cat: "ore", description: "深层矿脉中泛着金光，价值不菲。" },
-      { icon: "💎", name: "钻石", cat: "ore", description: "矿洞最深处才可能见到的稀世珍宝。" }
-    ];
+    // ===== 图鉴数据：以游戏目录为唯一事实源，后端不可达时也能兜底展示全量物品 =====
+    const SD = window.SD_CATALOG || null;
+    const SEASON_LABEL = { spring: "春", summer: "夏", fall: "秋", winter: "冬" };
+    const seasonText = arr => (arr || []).map(k => SEASON_LABEL[k]).join("/");
+
+    const FALLBACK_ITEMS = (function () {
+      const list = [];
+      const seen = Object.create(null);
+      function add(name, icon, cat, description, sort_order) {
+        if (seen[name]) return;
+        seen[name] = 1;
+        list.push({ icon: icon, name: name, cat: cat, description: description,
+                    sort_order: sort_order, enabled: 1 });
+      }
+      if (SD) {
+        SD.crops.forEach(c => add(c.name, c.icon, "crop",
+          seasonText(c.seasons) + "季作物 · " + c.note + " 种子 " + c.seed + "g，售价 " + c.sell + "g，需 " + c.days + " 天成熟。", c.sell));
+        SD.fish.forEach(f => add(f.name, f.icon, "fish",
+          seasonText(f.seasons) + "季可钓 · " + f.note + " 售价 " + f.price + "g。", f.price));
+        SD.ores.forEach(o => add(o.name, o.icon, "ore",
+          o.note + " 矿洞第 " + o.minDepth + " 层起可挖，售价 " + o.price + "g。", o.price));
+        SD.goods.forEach(g => add(g.name, g.icon, g.cat,
+          (g.effect || "杂货店商品。") + " 售价 " + g.price + "g。", g.price));
+        if (SD.products) SD.products.forEach(p => add(p.name, p.icon, p.cat,
+          p.from + "喂养后产出 · 售价 " + p.sell + "g。", p.sell * 2));
+        if (SD.tools) SD.tools.forEach(t => t.levels.forEach((lv, i) => add(lv.name, t.icon, "tool",
+          t.name + "第 " + (i + 1) + " 级 · " + lv.effect + " · " + lv.ore + "×" + lv.count + " + " + lv.gold + "g。", lv.gold)));
+      }
+      // 目录外的旧版条目：保留旧存档中的动物与村民
+      [
+        ["鸡", "🐔", "animal", "每天产蛋，金色母鸡更珍贵。", 8],
+        ["奶牛", "🐄", "animal", "产出牛奶，可制作奶酪。", 9],
+        ["羊", "🐑", "animal", "产出羊毛，梳毛后制成布料。", 10],
+        ["猪", "🐖", "animal", "松露猎手，林间觅得松露。", 11],
+        ["马", "🐎", "animal", "牧场好伙伴，提升移动速度。", 12],
+        ["阿比盖尔", "👧", "villager", "鹈鹕镇少女，热爱矿物与冒险。", 13],
+        ["塞巴斯蒂安", "🧔", "villager", "镇上的程序员，钟爱雨天。", 14],
+        ["艾芙琳", "👵", "villager", "和蔼的祖母，擅长烘焙。", 15],
+        ["镇长刘易斯", "🧑‍🌾", "villager", "鹈鹕镇镇长，关心小镇发展。", 16]
+      ].forEach(a => add(a[0], a[1], a[2], a[3], a[4]));
+      return list;
+    })();
 
     // ===== 社区中心收集包定义：优先从后端接口加载（后台管理可维护），失败时回退本地静态数据 =====
     const FALLBACK_BUNDLES = [
@@ -42,7 +57,7 @@
       { id: "summer",  icon: "☀️", title: "夏之盛宴包", desc: "夏日丰饶，果蔬满仓。", need: ["蓝莓", "啤酒花", "玉米"] },
       { id: "autumn",  icon: "🍂", title: "秋之丰收包", desc: "金秋时节，谷仓飘香。", need: ["南瓜", "远古水果"] },
       { id: "animal",  icon: "🐮", title: "牧场情谊包", desc: "来自动物们的温柔陪伴。", need: ["鸡", "奶牛", "羊"] },
-      { id: "fish",    icon: "🎣", title: "深海渔获包", desc: "江河湖海的礼物。", need: ["鲈鱼", "虹鳟", "鲶鱼", "传说之鱼"] },
+      { id: "fish",    icon: "🎣", title: "深海渔获包", desc: "江河湖海的礼物。", need: ["鲈鱼", "虹鳟鱼", "鲶鱼", "传说之鱼"] },
       { id: "mine",    icon: "💎", title: "矿洞宝藏包", desc: "地心深处闪耀的珍宝。", need: ["铜矿石", "铁矿石", "金矿石", "钻石"] }
     ];
     let bundleDefs = FALLBACK_BUNDLES;
@@ -59,12 +74,15 @@
       } catch (e) { /* 后端不可达，沿用本地静态数据 */ }
     }
 
-    const CAT_LABEL = { crop: "作物", animal: "动物", villager: "村民", fish: "钓鱼", ore: "矿石" };
+    const CAT_LABEL = {
+      crop: "作物", animal: "动物", villager: "村民", fish: "钓鱼", ore: "矿石",
+      tool: "工具", upgrade: "农场升级", food: "食物", furniture: "家具", special: "特殊",
+      product: "牧场产物"
+    };
 
     /* ============================================================
      * 季节引擎 + 玩法总状态（沿用原有 localStorage /api/progress 约定）
      * ============================================================ */
-    const SD = window.SD_CATALOG;
     const LS_GAME = "stardew_game";
     const MAX_ENERGY = 20;
     const ENERGY_REGEN_MS = 60 * 1000;   // 每 60 秒恢复 1 点体力（沿用原设定）
@@ -76,6 +94,10 @@
     const STAGE_NAME = ["种子", "幼苗", "生长中", "成熟可收"];
     const DEFAUT_INV_CAP = 60;
     const BIG_INV_CAP = 120;
+    const GREENHOUSE_PLOTS = 6;
+    const GREENHOUSE_PRICE = 2500;
+    const FEED_PRICE = 50;
+    const TOOL_MAX_LEVEL = 4;
 
     // 修复：原页面 renderLog / openPlot 引用了未定义的 esc，导致玩法日志渲染中断
     function esc(s) {
@@ -100,19 +122,24 @@
 
     function defaultGame() {
       return {
-        gold: 50, energy: MAX_ENERGY, energyAt: Date.now(),
+        gold: 500, energy: MAX_ENERGY, energyAt: Date.now(),
         plots: Array(PLOT_COUNT).fill(null),
         stats: { harvest: 0, casts: 0, caught: 0, digs: 0, ores: 0,
-                 farmGold: 0, fishGold: 0, mineGold: 0,
-                 planted: 0, sold: 0, bought: 0, sellGold: 0, buyGold: 0 },
+                 farmGold: 0, fishGold: 0, mineGold: 0, ranchGold: 0,
+                 planted: 0, sold: 0, bought: 0, sellGold: 0, buyGold: 0, collected: 0 },
         species: { fish: [], ore: [], crop: [] },
-        logs: { farm: [], fishing: [], mining: [], shop: [] },
+        logs: { farm: [], fishing: [], mining: [], shop: [], forge: [], greenhouse: [], ranch: [] },
         seeds: {},        // { 作物名: 种子袋数 }  商店购买
-        inventory: {},    // { 产物名: 数量 }      收获 / 钓获 / 挖矿产物，商店出售
-        owned: {},        // { 商品id: 数量 }      已购商品 / 升级
+        inventory: {},    // { 产物名: 数量 }      收获 / 钓获 / 挖矿 / 牧场产物，商店出售
+        owned: {},        // { 商品id: 数量 }      已购商品 / 升级（工具等级另见 toolLevels）
         seasonKey: "",    // 上次进入的季节，用于换季枯萎判定
         mine: { last: "", at: 0, depth: 1 },
-        villagers: {}     // { 村民名: { exp, talkedOn, giftWeek, gifts, total, lastLine } } 好感度存档
+        villagers: {},    // { 村民名: { exp, talkedOn, giftWeek, gifts, total, lastLine } } 好感度存档
+        toolLevels: { watering_can: 0, hoe: 0, pickaxe: 0, rod: 0 },
+        greenhouse: { unlocked: false, method: "" },
+        greenhousePlots: Array(GREENHOUSE_PLOTS).fill(null),
+        animals: [],      // [{ id, fed, readyAt }] 牧场动物
+        feed: 0           // 饲料数量，喂养每只动物消耗 1 份
       };
     }
     function normalizeGame(raw) {
@@ -122,11 +149,43 @@
       g.species = Object.assign(d.species, (raw && raw.species) || {});
       g.logs = Object.assign(d.logs, (raw && raw.logs) || {});
       g.mine = Object.assign(d.mine, (raw && raw.mine) || {});
-      ["seeds", "inventory", "owned", "villagers"].forEach(k => {
+      ["seeds", "inventory", "owned", "villagers", "toolLevels"].forEach(k => {
         if (!g[k] || typeof g[k] !== "object" || Array.isArray(g[k])) g[k] = {};
       });
       ["fish", "ore", "crop"].forEach(k => { if (!Array.isArray(g.species[k])) g.species[k] = []; });
-      ["farm", "fishing", "mining", "shop"].forEach(k => { if (!Array.isArray(g.logs[k])) g.logs[k] = []; });
+      ["farm", "fishing", "mining", "shop", "forge", "greenhouse", "ranch"].forEach(k => {
+        if (!Array.isArray(g.logs[k])) g.logs[k] = [];
+      });
+      // 工具等级：0-4，旧存档按 owned 标记兼容为 1 级
+      Object.keys(d.toolLevels).forEach(k => {
+        const lv = Number(g.toolLevels[k]);
+        g.toolLevels[k] = isFinite(lv) ? Math.max(0, Math.min(TOOL_MAX_LEVEL, Math.floor(lv)))
+          : ((Number(g.owned[k]) || 0) > 0 ? 1 : 0);
+        if (g.toolLevels[k] > 0) g.owned[k] = 1;
+      });
+      // 温室：优先读新结构；旧存档 owned.greenhouse 视为金币解锁
+      if (!g.greenhouse || typeof g.greenhouse !== "object") g.greenhouse = { unlocked: false, method: "" };
+      g.greenhouse.unlocked = !!g.greenhouse.unlocked || (Number(g.owned.greenhouse) || 0) > 0;
+      g.greenhouse.method = String(g.greenhouse.method || (g.greenhouse.unlocked ? "gold" : ""));
+      if (g.greenhouse.unlocked) g.owned.greenhouse = 1;
+      if (!Array.isArray(g.greenhousePlots)) g.greenhousePlots = [];
+      g.greenhousePlots = g.greenhousePlots.slice(0, GREENHOUSE_PLOTS).map(p => {
+        if (!p || typeof p !== "object") return null;
+        const c = cropByName(p.name);
+        return {
+          name: String(p.name || "未知作物"),
+          plantedAt: Number(p.plantedAt) || Date.now(),
+          watered: !!p.watered,
+          growMs: Number(p.growMs) || growMsFor(c)
+        };
+      });
+      while (g.greenhousePlots.length < GREENHOUSE_PLOTS) g.greenhousePlots.push(null);
+      if (!Array.isArray(g.animals)) g.animals = [];
+      g.animals = g.animals.filter(a => a && SD.animals.some(x => x.id === a.id)).map(a => ({
+        id: String(a.id), fed: !!a.fed, readyAt: Number(a.readyAt) || 0
+      }));
+      if (typeof g.feed !== "number" || !isFinite(g.feed) || g.feed < 0) g.feed = 0;
+      g.feed = Math.floor(g.feed);
       // 兼容旧存档：地块数组长度不一致时保留已有地块并补空位，不整段丢弃
       if (!Array.isArray(g.plots)) g.plots = [];
       g.plots = g.plots.slice(0, PLOT_COUNT).map(p => {
@@ -141,7 +200,7 @@
         };
       });
       while (g.plots.length < PLOT_COUNT) g.plots.push(null);
-      if (typeof g.gold !== "number" || !isFinite(g.gold)) g.gold = 50;
+      if (typeof g.gold !== "number" || !isFinite(g.gold)) g.gold = 500;
       if (typeof g.energy !== "number" || !isFinite(g.energy)) g.energy = MAX_ENERGY;
       if (typeof g.energyAt !== "number" || !isFinite(g.energyAt)) g.energyAt = Date.now();
       if (typeof g.seasonKey !== "string") g.seasonKey = "";
@@ -207,6 +266,9 @@
     }
     function refreshLinked() {
       renderHome(); renderBag(); renderCodex(); renderCommunity();
+      if (isActive("blacksmith")) renderBlacksmith();
+      if (isActive("greenhouse")) renderGreenhouse();
+      if (isActive("ranch")) renderRanch();
     }
 
     /* ---------- 四季 / 钓期 ---------- */
@@ -325,12 +387,27 @@
     function fishByName(name) { return SD.fish.find(f => f.name === name); }
     function oreByName(name)  { return SD.ores.find(o => o.name === name); }
     function seasonCrops(key) { return SD.crops.filter(c => c.seasons.indexOf(key) >= 0); }
-    function hasGreenhouse()  { return (Number(game.owned.greenhouse) || 0) > 0; }
+    function animalById(id) { return SD.animals.find(a => a.id === id); }
+    function productByName(name) { return SD.products.find(p => p.name === name); }
+    function toolDef(id) { return SD.tools.find(t => t.id === id); }
+    function toolLevel(id) {
+      const lv = Number(game.toolLevels && game.toolLevels[id]);
+      return isFinite(lv) ? Math.max(0, Math.min(TOOL_MAX_LEVEL, Math.floor(lv))) : 0;
+    }
+    function hasGreenhouse() { return !!(game.greenhouse && game.greenhouse.unlocked); }
+    function bundleProgress() {
+      const total = bundleDefs.reduce((s, b) => s + b.need.length, 0);
+      const filled = bundleDefs.reduce((s, b) => s + ((state.bundles[b.id] || []).length), 0);
+      return { total: total, filled: filled, pct: total ? Math.round(filled / total * 100) : 0,
+               allDone: total > 0 && bundleDefs.every(b => (state.bundles[b.id] || []).length >= b.need.length) };
+    }
+    function allBundlesDone() { return bundleProgress().allDone; }
     function plantableCrops() { return hasGreenhouse() ? SD.crops.slice() : seasonCrops(seasonNow().key); }
     function growMsFor(c)     { return BASE_GROW_MS + (c ? c.days : 7) * DAY_GROW_MS; }
-    function waterBonus()     { return (Number(game.owned.watering_can) || 0) > 0 ? WATER_BONUS_MS * 2 : WATER_BONUS_MS; }
+    function waterBonus()     { return WATER_BONUS_MS * (1 + toolLevel("watering_can")); }
     function capacity()       { return (Number(game.owned.backpack) || 0) > 0 ? BIG_INV_CAP : DEFAUT_INV_CAP; }
     function productInfo(name) {
+      const p = productByName(name); if (p) return { icon: p.icon, price: p.sell, kind: "product" };
       const c = cropByName(name); if (c) return { icon: c.icon, price: c.sell, kind: "crop" };
       const f = fishByName(name); if (f) return { icon: f.icon, price: f.price, kind: "fish" };
       const o = oreByName(name);  if (o) return { icon: o.icon, price: o.price, kind: "ore" };
@@ -352,13 +429,15 @@
       const n = Math.min(count, space);
       game.inventory[name] = (Number(game.inventory[name]) || 0) + n;
       addToBag(name, n);
-      addSpecies(kind === "fish" ? "fish" : kind === "ore" ? "ore" : "crop", name);
+      if (kind === "fish") addSpecies("fish", name);
+      else if (kind === "ore") addSpecies("ore", name);
+      else if (kind === "crop") addSpecies("crop", name);
       if (n < count) gameToast("📦 仓库空间不足，部分产物未入库");
       return n;
     }
     function goodsList() {
       const key = seasonNow().key, greenhouse = hasGreenhouse();
-      const list = SD.goods.slice();
+      const list = SD.goods.filter(g => g.sold !== false);
       const seeds = SD.crops.map(c => ({
         id: "seed:" + c.name, name: c.name + "种子", icon: c.icon, cat: "seed",
         price: c.seed, crop: c.name, seasons: c.seasons,
@@ -462,7 +541,7 @@
     /* ============================================================
      * 路由 + 首页（季节横幅 / 三大功能入口与状态 / 既有统计卡）
      * ============================================================ */
-    const PAGES = ["home", "farm", "fishing", "shop", "mining", "codex", "villagers", "community", "bag", "settings"];
+    const PAGES = ["home", "farm", "fishing", "shop", "mining", "blacksmith", "greenhouse", "ranch", "codex", "villagers", "community", "bag", "settings"];
     function go(page) {
       if (!PAGES.includes(page)) page = "home";
       location.hash = page;
@@ -482,6 +561,9 @@
       if (active === "fishing") updateFishing();
       if (active === "shop") renderShop();
       if (active === "mining") renderMining();
+      if (active === "blacksmith") renderBlacksmith();
+      if (active === "greenhouse") renderGreenhouse();
+      if (active === "ranch") renderRanch();
       if (active === "codex") renderCodex();
       if (active === "villagers") renderVillagers();
       if (active === "community") renderCommunity();
@@ -521,12 +603,29 @@
       { page: "shop", icon: "🛒", name: "商店", theme: "shop",
         badge: () => "💰 " + game.gold + "g",
         desc: () => "仓库 <b>" + invTotal() + "/" + capacity() + "</b> 格 · 产物估值 <b>" + invValue() +
-                    "g</b><br/>出售全部收获换金币，购买当季种子、工具、食物、家具与动物" },
+                    "g</b><br/>出售全部收获换金币，购买当季种子、农场设施、食物与收藏品" },
       { page: "mining", icon: "⛏️", name: "矿洞", theme: "mine",
         badge: () => "第 " + mineDepth() + " 层",
         desc: () => "挖掘 <b>" + game.stats.digs + "</b> 次 · 获得矿石 <b>" + game.stats.ores +
                     "</b> 块 · 体力 <b>" + game.energy + "/" + MAX_ENERGY +
-                    "</b><br/>矿石入仓库，可在商店出售；越深稀有矿石越多" }
+                    "</b><br/>矿石入仓库，可在商店出售；越深稀有矿石越多" },
+      { page: "blacksmith", icon: "🔨", name: "铁匠铺", theme: "forge",
+        badge: () => "🔧 " + Object.keys(SD.tools).length + " 类工具",
+        desc: () => "工具<b>不在商店出售</b>，只能在此按 铜→铁→钢→铱 四级升级。<br/>" +
+                    "消耗仓库中的指定矿石 + 金币，当前总等级 <b>" +
+                    SD.tools.reduce((s, t) => s + toolLevel(t.id), 0) + "/16</b>" },
+      { page: "greenhouse", icon: "🏡", name: "温室", theme: "green",
+        badge: () => hasGreenhouse() ? "✅ 已解锁" : "🔒 未解锁",
+        desc: () => {
+          const bp = bundleProgress();
+          return hasGreenhouse()
+            ? "已" + (game.greenhouse.method === "community" ? "通过社区中心" : "支付金币") + "解锁 · <b>6 块温室田</b><br/>不受季节限制，换季不枯萎，可种植全季作物"
+            : "解锁方式：<b>支付 " + GREENHOUSE_PRICE + "g</b> 或 <b>完成社区中心全部收集</b>（当前 " + bp.pct + "%）<br/>两种条件均未满足时温室内的一切操作不可用";
+        } },
+      { page: "ranch", icon: "🐔", name: "牧场", theme: "ranch",
+        badge: () => "🐾 " + game.animals.length + " 只",
+        desc: () => "购买小鸡 / 鸭子 / 奶牛 / 绵羊，购买饲料喂养后按时间产出 <b>蛋 / 奶 / 羊毛</b>。<br/>" +
+                    "产物入仓库，可出售换金币或用于图鉴与社区中心 · 饲料 <b>" + game.feed + "</b> 份" }
     ];
 
     function updateResourceBar() {
@@ -546,11 +645,10 @@
 
     function renderHome() {
       const ownedCount = Object.keys(state.bag).filter(k => state.bag[k] > 0).length;
-      const totalSlots = bundleDefs.reduce((s, b) => s + b.need.length, 0);
-      const filledSlots = bundleDefs.reduce((s, b) => s + ((state.bundles[b.id] || []).length), 0);
-      const pct = totalSlots ? Math.round(filledSlots / totalSlots * 100) : 0;
+      const bp = bundleProgress();
+      const pct = bp.pct;
 
-      setText("statCodex", state.items.filter(it => it.cat !== "villager").length);
+      setText("statCodex", state.items.filter(it => it.cat !== "villager" && it.enabled !== 0).length);
       setText("statBag", ownedCount);
       setText("statBundlePct", pct + "%");
       const pbar = document.getElementById("statBundleBar");
@@ -758,7 +856,7 @@
       if (!plot || plotStage(plot) < 3) { gameToast("🌱 还没成熟，再等等～"); return; }
       if (invTotal() >= capacity()) { gameToast("📦 仓库已满，请先到商店出售产物"); return; }
       const c = cropByName(plot.name) || { days: 7, sell: 20, yield: [1, 1], icon: "🌾" };
-      const bonus = (Number(game.owned.hoe) || 0) > 0 ? 1 : 0;
+      const bonus = toolLevel("hoe");
       const count = c.yield[0] + Math.floor(Math.random() * (c.yield[1] - c.yield[0] + 1)) + bonus;
       const got = addHarvest(plot.name, count, "crop");
       if (!got) return;
@@ -882,11 +980,11 @@
       if (fishPhase !== "bite") { gameToast("🎣 还没有鱼咬钩"); return; }
       clearTimeout(fishTimer);
       const list = currentFishes();
-      const rate = (Number(game.owned.rod) || 0) > 0 ? 0.93 : 0.78;
+      const lv = toolLevel("rod");
+      const rate = Math.min(0.98, 0.78 + lv * 0.05);
       if (Math.random() < rate && list.length) {
-        const hasRod = (Number(game.owned.rod) || 0) > 0;
-        const it = weightedPick(list, x => hasRod
-          ? 1000 / (x.price + 80) * Math.sqrt(x.price)
+        const it = weightedPick(list, x => lv > 0
+          ? 1000 / (x.price + 80) * Math.sqrt(x.price) * (1 + lv * 0.2)
           : 1000 / (x.price + 50)) || list[0];
         const got = addHarvest(it.name, 1, "fish");
         if (got > 0) {
@@ -924,6 +1022,7 @@
       if (info.kind === "crop") game.stats.farmGold += gain;
       else if (info.kind === "fish") game.stats.fishGold += gain;
       else if (info.kind === "ore") game.stats.mineGold += gain;
+      else if (info.kind === "product") game.stats.ranchGold += gain;
       addLog("shop", "💰 出售「" + name + "」×" + n + "（+" + gain + "g）");
       saveGame(); renderShop(); refreshLinked();
       gameToast("💰 出售 " + name + " ×" + n + "，+" + gain + "g");
@@ -940,6 +1039,7 @@
         if (info.kind === "crop") game.stats.farmGold += gain;
         else if (info.kind === "fish") game.stats.fishGold += gain;
         else if (info.kind === "ore") game.stats.mineGold += gain;
+        else if (info.kind === "product") game.stats.ranchGold += gain;
         delete game.inventory[name];
       });
       game.gold += total;
@@ -950,6 +1050,10 @@
       gameToast("💰 全部售出，共 +" + total + "g");
     }
     function buyGood(id) {
+      if (toolDef(id) || animalById(id) || id === "greenhouse") {
+        gameToast("🚫 该物品不在杂货店出售：" + (toolDef(id) ? "工具请去铁匠铺升级" : animalById(id) ? "动物请去牧场购买" : "温室请解锁后使用"));
+        return;
+      }
       const g = goodsList().find(x => x.id === id);
       if (!g) { gameToast("⚠️ 商品不存在"); return; }
       if (g.locked) {
@@ -995,7 +1099,7 @@
       if (sellBox) {
         sellBox.innerHTML = entries.length ? entries.map(name => {
           const qty = Number(game.inventory[name]) || 0, info = productInfo(name);
-          const kindLabel = { crop: "农作物", fish: "渔获", ore: "矿石", legacy: "图鉴物品", other: "物品" }[info.kind];
+          const kindLabel = { crop: "农作物", fish: "渔获", ore: "矿石", product: "牧场产物", legacy: "图鉴物品", other: "物品" }[info.kind];
           return '<div class="shop-item">' +
             '<div class="si-icon">' + esc(info.icon) + '</div>' +
             '<div class="si-main"><div class="si-name">' + esc(name) + ' <span class="si-tag">' + kindLabel + '</span></div>' +
@@ -1064,7 +1168,7 @@
     function mineWeight(o, depth) {
       const rare = o.minDepth >= 3;
       const base = o.weight * (rare ? (1 + (depth - 1) * 0.35) : Math.max(0.35, 1 - (depth - 1) * 0.06));
-      const boost = (Number(game.owned.pickaxe) || 0) > 0 && rare ? 1.6 : 1;
+      const boost = rare ? 1 + toolLevel("pickaxe") * 0.2 : 1;
       return Math.max(1, base * boost);
     }
     function setMineStage(result) {
@@ -1165,12 +1269,404 @@
         }, 500);
       }
     }
+
+    /* ============================================================
+     * 玩法五：铁匠铺 —— 工具不直接出售，只能按等级消耗矿石 + 金币升级
+     * 等级：0 旧工具 → 1 铜 → 2 铁 → 3 钢 → 4 铱，逐级不可跳级
+     * ============================================================ */
+    function nextToolLevel(id) {
+      const lv = toolLevel(id);
+      return lv >= TOOL_MAX_LEVEL ? null : toolDef(id).levels[lv];
+    }
+    function totalToolLevels() {
+      return SD.tools.reduce((s, t) => s + toolLevel(t.id), 0);
+    }
+    function upgradeTool(id) {
+      const t = toolDef(id);
+      if (!t) return;
+      const lv = toolLevel(id);
+      if (lv >= TOOL_MAX_LEVEL) { gameToast("🔨 「" + t.name + "」已是最高级"); return; }
+      const cost = t.levels[lv];
+      const have = Number(game.inventory[cost.ore]) || 0;
+      if (have < cost.count) {
+        gameToast("🔶 仓库里的「" + cost.ore + "」不足，还差 " + (cost.count - have) + " 块"); return;
+      }
+      if (game.gold < cost.gold) {
+        gameToast("💰 金币不足，还差 " + (cost.gold - game.gold) + "g"); return;
+      }
+      game.inventory[cost.ore] -= cost.count;
+      if (game.inventory[cost.ore] <= 0) delete game.inventory[cost.ore];
+      game.gold -= cost.gold;
+      game.toolLevels[id] = lv + 1;
+      game.owned[id] = 1;
+      addLog("forge", "🔨 「" + t.name + "」升级为「" + cost.name + "」（" + cost.ore + "×" + cost.count + " + " + cost.gold + "g）");
+      saveGame(); renderBlacksmith(); refreshLinked();
+      gameToast("🔨 升级成功！" + cost.name + "：" + cost.effect);
+    }
+    function renderBlacksmith() {
+      regenEnergy();
+      setText("forgeGold", game.gold);
+      setText("forgeLevelTotal", totalToolLevels() + " / " + (SD.tools.length * TOOL_MAX_LEVEL));
+      setText("forgeOreStock", SD.ores.reduce((s, o) => s + (Number(game.inventory[o.name]) || 0), 0));
+      const grid = document.getElementById("forgeToolList");
+      if (grid) {
+        grid.innerHTML = SD.tools.map(t => {
+          const lv = toolLevel(t.id);
+          const max = lv >= TOOL_MAX_LEVEL;
+          const cur = lv > 0 ? t.levels[lv - 1] : null;
+          const next = max ? null : t.levels[lv];
+          const have = next ? (Number(game.inventory[next.ore]) || 0) : 0;
+          const enoughOre = next && have >= next.count;
+          const enoughGold = next && game.gold >= next.gold;
+          const state = max ? '<span class="fc-state ok">✅ 已满级 · ' + cur.name + '</span>'
+            : !enoughOre ? '<span class="fc-state warn">🔶 矿石不足（' + have + '/' + next.count + '）</span>'
+            : !enoughGold ? '<span class="fc-state warn">💰 金币不足（' + game.gold + '/' + next.gold + '）</span>'
+            : '<span class="fc-state ok">✅ 可升级</span>';
+          return '<div class="forge-card">' +
+            '<div class="fc-head"><span class="fc-icon">' + t.icon + '</span>' +
+              '<div><div class="fc-name">' + esc(t.name) + '</div><div class="fc-line">' + esc(t.note) + '</div></div>' +
+              '<span class="fc-lv">Lv.' + lv + ' / ' + TOOL_MAX_LEVEL + '</span></div>' +
+            '<div class="fc-line">当前：<b>' + esc(cur ? cur.name : "旧" + t.name) + '</b>' +
+              (cur ? ' · ' + esc(cur.effect) : ' · 尚未升级') + '</div>' +
+            (next
+              ? '<div class="fc-line">下一级：<b>' + esc(next.name) + '</b> · ' + esc(next.effect) + '</div>' +
+                '<div class="fc-cost">' +
+                  '<span class="cost-chip ' + (enoughOre ? "ok" : "lack") + '">🔶 ' + esc(next.ore) + ' ×' + next.count + '（持有 ' + have + '）</span>' +
+                  '<span class="cost-chip ' + (enoughGold ? "ok" : "lack") + '">💰 ' + next.gold + 'g（持有 ' + game.gold + 'g）</span>' +
+                '</div>' + state +
+                '<button class="btn gold" data-act="upgrade-tool" data-id="' + t.id + '"' +
+                  (enoughOre && enoughGold ? '' : ' disabled') + '>🔨 升级到 ' + esc(next.name) + '</button>'
+              : '<div class="fc-line">已达到铱制顶级，效果：<b>' + esc(cur.effect) + '</b></div>' + state) +
+          '</div>';
+        }).join("");
+      }
+      renderLog("forge", "forgeLog");
+      updateResourceBar();
+    }
+
+    /* ============================================================
+     * 玩法六：温室 —— 金币解锁 或 社区中心全收集免费解锁，两者皆未满足则锁定
+     * 温室内 6 块田独立管理，不受季节限制、换季不枯萎
+     * ============================================================ */
+    function checkGreenhouseUnlock(silent) {
+      if (hasGreenhouse() || !allBundlesDone()) return false;
+      game.greenhouse = { unlocked: true, method: "community", at: Date.now() };
+      game.owned.greenhouse = 1;
+      addLog("greenhouse", "🏡 社区中心全部收集包完成，温室免费解锁！");
+      saveGame();
+      if (!silent) gameToast("🎉 社区中心全部完成，温室已免费解锁！");
+      return true;
+    }
+    function unlockGreenhouse(method) {
+      if (hasGreenhouse()) { gameToast("🏡 温室已经解锁啦"); return; }
+      if (method === "gold") {
+        if (game.gold < GREENHOUSE_PRICE) {
+          gameToast("💰 金币不足，还差 " + (GREENHOUSE_PRICE - game.gold) + "g"); return;
+        }
+        game.gold -= GREENHOUSE_PRICE;
+      } else {
+        if (!allBundlesDone()) {
+          const bp = bundleProgress();
+          gameToast("🏠 社区中心尚未全部完成（" + bp.filled + "/" + bp.total + "）"); return;
+        }
+      }
+      game.greenhouse = { unlocked: true, method: method, at: Date.now() };
+      game.owned.greenhouse = 1;
+      addLog("greenhouse", "🏡 温室通过" + (method === "gold" ? "支付 " + GREENHOUSE_PRICE + "g" : "社区中心全收集") + "解锁");
+      saveGame(); renderGreenhouse(); refreshLinked();
+      gameToast("🎉 温室已解锁！现在可以种植全季作物了");
+    }
+    function renderGreenhouse() {
+      regenEnergy();
+      const bp = bundleProgress(), unlocked = hasGreenhouse();
+      setText("greenStatus", unlocked ? "✅ 已解锁 · 全季种植" : "🔒 未解锁 · 操作不可用");
+      setText("greenBundlePct", bp.pct + "%");
+      setText("greenGold", game.gold);
+      setText("greenMethod", unlocked ? (game.greenhouse.method === "community" ? "社区中心" : "金币") : "未解锁");
+      setText("greenPlanted", game.greenhousePlots.filter(Boolean).length + " / " + GREENHOUSE_PLOTS);
+      setText("greenRipe", game.greenhousePlots.filter(p => p && plotStage(p) === 3).length);
+      const box = document.getElementById("greenUnlockBox");
+      if (box) box.classList.toggle("locked", !unlocked);
+      const bg = document.getElementById("greenUnlockGold");
+      if (bg) {
+        bg.disabled = unlocked || game.gold < GREENHOUSE_PRICE;
+        bg.textContent = unlocked ? "✅ 已解锁" : (game.gold < GREENHOUSE_PRICE ? "💰 金币不足" : "💰 支付 2500g 解锁");
+      }
+      const bf = document.getElementById("greenUnlockFree");
+      if (bf) {
+        bf.disabled = unlocked || !bp.allDone;
+        bf.textContent = unlocked ? "✅ 已解锁" : (bp.allDone ? "🏠 社区中心免费解锁" : "🏠 收集包未完成 " + bp.pct + "%");
+      }
+      const grid = document.getElementById("greenPlotGrid");
+      if (grid) {
+        grid.innerHTML = game.greenhousePlots.map((plot, idx) => {
+          const stage = plot ? plotStage(plot) : -1;
+          const ripe = stage === 3;
+          const c = plot ? cropByName(plot.name) : null;
+          return '<div class="green-plot' + (unlocked ? '' : ' locked') + (ripe ? ' ripe' : '') + '" data-idx="' + idx + '">' +
+            (ripe ? '<span class="gp-badge">可收获</span>' : '') +
+            '<div class="gp-icon">' + (ripe && c ? esc(c.icon) : plot ? STAGE_ICON[stage] : "🟫") + '</div>' +
+            '<div class="gp-name">' + (plot ? esc(plot.name) : "空地") + '</div>' +
+            '<div class="gp-timer">' + (!unlocked ? "🔒 请先解锁温室"
+              : !plot ? "点击播种"
+              : ripe ? "✨ 点击收获"
+              : (plot.watered ? "💧 " : "") + STAGE_NAME[stage] + " · " + fmtDuration(plotRemain(plot))) + '</div>' +
+          '</div>';
+        }).join("");
+      }
+      renderLog("greenhouse", "greenLog");
+      updateResourceBar();
+    }
+    function openGreenPlot(idx) {
+      if (!hasGreenhouse()) {
+        gameToast("🔒 温室未解锁：支付 " + GREENHOUSE_PRICE + "g 或完成社区中心全部收集后再来"); return;
+      }
+      const plot = game.greenhousePlots[idx];
+      if (!plot) {
+        const list = SD.crops.slice();
+        openGameModal(
+          '<div class="m-icon">🌱</div><div class="m-name">温室播种 · 全季作物</div>' +
+          '<div class="m-desc">温室不受季节限制，共 <b>' + list.length + '</b> 种作物可种；每次消耗 1 袋种子（商店购买）。</div>' +
+          '<div class="seed-list">' + list.map((c, i) => {
+            const own = Number(game.seeds[c.name]) || 0;
+            return '<div class="seed-card' + (own ? '' : ' disabled') + '" data-seed="' + i + '">' +
+              '<div class="s-icon">' + esc(c.icon) + '</div><div class="s-name">' + esc(c.name) + '</div>' +
+              '<div class="s-cost">种子 ×' + own + ' · ' + c.days + '日</div></div>';
+          }).join("") + '</div>' +
+          '<div class="modal-actions"><button class="btn blue" id="gShop">🛒 去商店买种子</button>' +
+          '<button class="btn ghost" id="gCancel">取消</button></div>'
+        );
+        document.getElementById("gCancel").addEventListener("click", closeGameModal);
+        document.getElementById("gShop").addEventListener("click", () => { closeGameModal(); go("shop"); });
+        document.querySelectorAll("#gameBox .seed-card:not(.disabled)").forEach(el => {
+          el.addEventListener("click", () => plantGreenPlot(idx, list[Number(el.dataset.seed)]));
+        });
+        return;
+      }
+      const stage = plotStage(plot);
+      if (stage === 3) { harvestGreenPlot(idx); return; }
+      openGameModal(
+        '<div class="m-icon">' + STAGE_ICON[stage] + '</div><div class="m-name">' + esc(plot.name) + '</div>' +
+        '<div class="m-desc">' + STAGE_NAME[stage] + ' · 还需 ' + fmtDuration(plotRemain(plot)) + '<br/>' +
+        (plot.watered ? '💧 已浇水（提前 ' + Math.round(waterBonus() / 1000) + ' 秒）' : '尚未浇水') + ' · 🏡 温室内不会枯萎</div>' +
+        '<div class="modal-actions">' + (plot.watered ? '' : '<button class="btn blue" id="gWater">💧 浇水</button>') +
+        '<button class="btn warn" id="gClear">铲除</button><button class="btn ghost" id="gClose">关闭</button></div>'
+      );
+      const w = document.getElementById("gWater");
+      if (w) w.addEventListener("click", () => waterGreenPlot(idx));
+      document.getElementById("gClear").addEventListener("click", () => clearGreenPlot(idx));
+      document.getElementById("gClose").addEventListener("click", closeGameModal);
+    }
+    function plantGreenPlot(idx, c) {
+      if (!c || !hasGreenhouse()) return;
+      if (game.greenhousePlots[idx]) { gameToast("🌱 这块地已经种了作物"); return; }
+      if ((Number(game.seeds[c.name]) || 0) < 1) { gameToast("🌱 没有「" + c.name + "」种子，请先到商店购买"); return; }
+      game.seeds[c.name] -= 1;
+      if (game.seeds[c.name] <= 0) delete game.seeds[c.name];
+      game.greenhousePlots[idx] = {
+        name: c.name, plantedAt: Date.now(),
+        watered: (Number(game.owned.sprinkler) || 0) > 0, growMs: growMsFor(c)
+      };
+      addLog("greenhouse", "🌱 温室内播下「" + c.name + "」种子（消耗 1 袋）");
+      saveGame(); closeGameModal(); renderGreenhouse(); refreshLinked();
+      gameToast("🌱 温室「" + c.name + "」已播种，约 " + Math.round(growMsFor(c) / 1000) + " 秒成熟");
+    }
+    function harvestGreenPlot(idx) {
+      const plot = game.greenhousePlots[idx];
+      if (!plot || plotStage(plot) < 3) { gameToast("🌱 还没成熟，再等等～"); return; }
+      if (invTotal() >= capacity()) { gameToast("📦 仓库已满，请先到商店出售产物"); return; }
+      const c = cropByName(plot.name) || { sell: 20, yield: [1, 1] };
+      const count = c.yield[0] + Math.floor(Math.random() * (c.yield[1] - c.yield[0] + 1)) + toolLevel("hoe");
+      const got = addHarvest(plot.name, count, "crop");
+      if (!got) return;
+      game.stats.harvest++;
+      addLog("greenhouse", "🌾 温室收获「" + plot.name + "」×" + got + "（已入仓库）");
+      game.greenhousePlots[idx] = null;
+      saveGame(); closeGameModal(); renderGreenhouse(); refreshLinked();
+      gameToast("🎉 温室收获 " + plot.name + " ×" + got);
+    }
+    function waterGreenPlot(idx) {
+      const plot = game.greenhousePlots[idx];
+      if (!plot || plot.watered) return;
+      plot.watered = true;
+      addLog("greenhouse", "💧 给温室「" + plot.name + "」浇了水");
+      saveGame(); closeGameModal(); renderGreenhouse();
+      gameToast("💧 浇水成功，成熟时间 -" + Math.round(waterBonus() / 1000) + " 秒");
+    }
+    function clearGreenPlot(idx) {
+      if (!game.greenhousePlots[idx]) return;
+      if (!confirm("确定铲除温室里的作物吗？种子不会返还。")) return;
+      game.greenhousePlots[idx] = null;
+      addLog("greenhouse", "🧹 铲除了温室的一株作物");
+      saveGame(); closeGameModal(); renderGreenhouse();
+    }
+    function waterAllGreen() {
+      if (!hasGreenhouse()) { gameToast("🔒 温室未解锁，无法浇水"); return; }
+      let n = 0;
+      game.greenhousePlots.forEach(p => { if (p && !p.watered && plotStage(p) < 3) { p.watered = true; n++; } });
+      if (!n) { gameToast("💧 温室没有需要浇水的地块"); return; }
+      addLog("greenhouse", "💧 一键给温室 " + n + " 块田浇了水");
+      saveGame(); renderGreenhouse(); gameToast("💧 已为温室 " + n + " 块田浇水");
+    }
+    function harvestAllGreen() {
+      if (!hasGreenhouse()) { gameToast("🔒 温室未解锁，无法收获"); return; }
+      let n = 0;
+      game.greenhousePlots.forEach((p, i) => {
+        if (p && plotStage(p) === 3 && invTotal() < capacity()) { harvestGreenPlot(i); n++; }
+      });
+      if (!n) gameToast("🧺 温室还没有成熟的作物");
+    }
+    function refreshGreenhouseTimers() {
+      if (!isActive("greenhouse")) return;
+      let needRender = false;
+      game.greenhousePlots.forEach((plot, idx) => {
+        if (!plot) return;
+        const el = document.querySelector('#greenPlotGrid .green-plot[data-idx="' + idx + '"]');
+        if (!el) return;
+        const stage = plotStage(plot);
+        if (stage === 3 && !el.classList.contains("ripe")) needRender = true;
+        const t = el.querySelector(".gp-timer");
+        if (t && stage < 3) t.textContent = (plot.watered ? "💧 " : "") + STAGE_NAME[stage] + " · " + fmtDuration(plotRemain(plot));
+      });
+      if (needRender) renderGreenhouse();
+    }
+
+    /* ============================================================
+     * 玩法七：牧场 —— 购买动物 / 喂养饲料 / 定时产物 / 收集入仓库
+     * 产物：鸡蛋 / 鸭蛋 / 牛奶 / 羊毛；出售在商店结算（ranchGold 统计）
+     * ============================================================ */
+    const RANCH_CAP = 12;
+    function animalState(a, def) {
+      if (!a.fed) return { key: "hungry", label: "🍽️ 未喂养", cls: "hungry" };
+      const left = Math.max(0, (Number(a.readyAt) || 0) - Date.now());
+      return left <= 0
+        ? { key: "ready", label: "✨ 可收集", cls: "ok" }
+        : { key: "growing", label: "⏳ " + fmtDuration(left), cls: "wait" };
+    }
+    function buyFeed(n) {
+      const cost = FEED_PRICE * n;
+      if (game.gold < cost) { gameToast("💰 金币不足，还差 " + (cost - game.gold) + "g"); return; }
+      game.gold -= cost;
+      game.feed += n;
+      addLog("ranch", "🌾 购买饲料 ×" + n + "（-" + cost + "g）");
+      saveGame(); renderRanch(); refreshLinked();
+      gameToast("🌾 饲料 +" + n + " 份（-" + cost + "g）");
+    }
+    function buyAnimal(id) {
+      const def = animalById(id);
+      if (!def) return;
+      if (game.animals.length >= RANCH_CAP) { gameToast("🐾 牧场已满（最多 " + RANCH_CAP + " 只）"); return; }
+      if (game.gold < def.price) { gameToast("💰 金币不足，还差 " + (def.price - game.gold) + "g"); return; }
+      game.gold -= def.price;
+      game.animals.push({ id: id, fed: false, readyAt: 0, boughtAt: Date.now() });
+      addLog("ranch", "🐾 购入「" + def.name + "」（-" + def.price + "g），喂养后开始产出");
+      saveGame(); renderRanch(); refreshLinked();
+      gameToast("🎉 " + def.name + " 入住牧场！喂 1 份饲料即可开始产出" + def.product);
+    }
+    function feedAnimal(idx) {
+      const a = game.animals[idx], def = a && animalById(a.id);
+      if (!def || a.fed) return;
+      if (game.feed < 1) { gameToast("🌾 没有饲料了，请先购买"); return; }
+      game.feed -= 1;
+      a.fed = true;
+      a.readyAt = Date.now() + def.produceMs;
+      addLog("ranch", "🌾 喂养「" + def.name + "」（-1 饲料），约 " + Math.round(def.produceMs / 1000) + " 秒后产出" + def.product);
+      saveGame(); renderRanch();
+      gameToast("🌾 " + def.name + " 吃得很开心，稍后回来收集" + def.product);
+    }
+    function feedAllAnimals() {
+      let n = 0;
+      game.animals.forEach((a, i) => {
+        if (!a.fed && game.feed > 0) { feedAnimal(i); n++; }
+      });
+      if (!n) gameToast("🌾 没有需要喂养的动物，或饲料不足");
+    }
+    function collectAnimal(idx) {
+      const a = game.animals[idx], def = a && animalById(a.id);
+      if (!def || !a.fed || animalState(a, def).key !== "ready") { gameToast("🧺 这份产物还没准备好"); return; }
+      if (invTotal() >= capacity()) { gameToast("📦 仓库已满，请先到商店出售产物"); return; }
+      const got = addHarvest(def.product, 1, "product");
+      if (!got) return;
+      a.fed = false;
+      a.readyAt = 0;
+      game.stats.collected += got;
+      addLog("ranch", "🧺 从「" + def.name + "」收集「" + def.product + "」×" + got + "（已入仓库）");
+      saveGame(); renderRanch(); refreshLinked();
+      gameToast("🧺 收集到 " + def.product + " ×" + got + "，可在商店出售 " + def.productPrice + "g");
+    }
+    function collectAllAnimals() {
+      let n = 0;
+      game.animals.forEach((a, i) => {
+        const def = animalById(a.id);
+        if (def && a.fed && animalState(a, def).key === "ready" && invTotal() < capacity()) { collectAnimal(i); n++; }
+      });
+      if (!n) gameToast("🧺 暂时没有可收集的产物");
+    }
+    function renderRanch() {
+      regenEnergy();
+      setText("ranchGold", game.gold);
+      setText("ranchFeed", game.feed);
+      setText("ranchAnimalCount", game.animals.length + " / " + RANCH_CAP);
+      setText("ranchProduced", game.stats.collected);
+      const shop = document.getElementById("ranchAnimalShop");
+      if (shop) {
+        shop.innerHTML = SD.animals.map(a =>
+          '<div class="animal-shop-card"><div class="as-icon">' + a.icon + '</div>' +
+          '<div class="as-name">' + esc(a.name) + '</div>' +
+          '<div class="as-meta">产出：' + a.icon + ' ' + esc(a.product) + ' · ' + a.productPrice + 'g/件 · 约 ' +
+            Math.round(a.produceMs / 1000) + ' 秒/轮</div>' +
+          '<div class="as-meta">' + esc(a.note) + '</div>' +
+          '<button class="btn gold" data-act="buy-animal" data-id="' + a.id + '"' +
+            (game.gold < a.price || game.animals.length >= RANCH_CAP ? ' disabled' : '') + '>💰 ' + a.price + 'g 购入</button>' +
+          '</div>').join("");
+      }
+      const list = document.getElementById("ranchAnimalList");
+      if (list) {
+        list.innerHTML = game.animals.length ? game.animals.map((a, idx) => {
+          const def = animalById(a.id);
+          if (!def) return "";
+          const st = animalState(a, def);
+          return '<div class="animal-card' + (st.key === "ready" ? " ready" : "") + '" data-idx="' + idx + '">' +
+            '<div class="ac-head"><span class="ac-icon">' + def.icon + '</span>' +
+              '<span class="ac-name">' + esc(def.name) + '</span>' +
+              '<span class="ac-state ' + st.cls + '">' + st.label + '</span></div>' +
+            '<div class="ac-meta">产物：' + def.productIcon + ' ' + esc(def.product) + ' · ' + def.productPrice + 'g/件' +
+              ' · 一轮 ' + Math.round(def.produceMs / 1000) + ' 秒</div>' +
+            '<div class="ac-meta">' + (a.fed ? '已喂养 · ' + (st.key === "ready" ? "等待收集" : "产出中") : '饥饿中 · 需 1 份饲料') + '</div>' +
+            '<div class="ac-actions">' +
+              '<button class="mini-btn" data-act="feed-animal" data-idx="' + idx + '"' +
+                (a.fed || game.feed < 1 ? ' disabled' : '') + '>🌾 喂养</button>' +
+              '<button class="mini-btn gold" data-act="collect-animal" data-idx="' + idx + '"' +
+                (st.key !== "ready" ? ' disabled' : '') + '>🧺 收集</button>' +
+            '</div></div>';
+        }).join("") : '<div class="empty">🐾 牧场里还没有动物，去上方购买一只吧～</div>';
+      }
+      renderLog("ranch", "ranchLog");
+      updateResourceBar();
+    }
+    function refreshRanchTimers() {
+      if (!isActive("ranch")) return;
+      game.animals.forEach((a, idx) => {
+        const def = animalById(a.id);
+        if (!def) return;
+        const el = document.querySelector('#ranchAnimalList .animal-card[data-idx="' + idx + '"]');
+        if (!el) return;
+        const st = animalState(a, def);
+        const s = el.querySelector(".ac-state");
+        if (s) { s.className = "ac-state " + st.cls; s.textContent = st.label; }
+        const c = el.querySelector('[data-act="collect-animal"]');
+        if (c) c.disabled = st.key !== "ready";
+        const f = el.querySelector('[data-act="feed-animal"]');
+        if (f) f.disabled = a.fed || game.feed < 1;
+      });
+    }
+
     // ===== 渲染：物品图鉴（纯查看；村民已拆分至独立「村民」模块）=====
     function renderCodex() {
       const grid = document.getElementById("grid");
       const q = state.searchQ.trim().toLowerCase();
       const list = state.items.filter(it => {
-        if (it.cat === "villager") return false; // 村民已拆分至独立「村民」模块
+        if (it.cat === "villager" || it.enabled === 0) return false; // 村民已拆分至独立「村民」模块；隐藏条目不展示
         const okCat = state.currentCat === "all" || it.cat === state.currentCat;
         const text = (it.description || "") + " " + (it.name || "");
         const okQ = !q || it.name.toLowerCase().includes(q)
@@ -1487,6 +1983,7 @@
           if (!state.bundles[bid]) state.bundles[bid] = [];
           if (!state.bundles[bid].includes(name)) state.bundles[bid].push(name);
           saveBundles();
+          if (checkGreenhouseUnlock(true)) gameToast("🎉 社区中心全部完成，温室已免费解锁！");
           renderCommunity(); renderBag(); renderHome();
         });
       });
@@ -1645,7 +2142,15 @@
     bind("digBtn", dig);
     bind("farmWaterAll", waterAll);
     bind("farmHarvestAll", harvestAll);
-    ["farmGoShop", "fishGoShop", "mineGoShop"].forEach(id => bind(id, () => go("shop")));
+    bind("greenUnlockGold", () => unlockGreenhouse("gold"));
+    bind("greenUnlockFree", () => unlockGreenhouse("community"));
+    bind("greenWaterAll", waterAllGreen);
+    bind("greenHarvestAll", harvestAllGreen);
+    bind("ranchBuyFeed1", () => buyFeed(1));
+    bind("ranchBuyFeed5", () => buyFeed(5));
+    bind("ranchFeedAll", feedAllAnimals);
+    bind("ranchCollectAll", collectAllAnimals);
+    ["farmGoShop", "fishGoShop", "mineGoShop", "greenGoShop", "ranchGoShop"].forEach(id => bind(id, () => go("shop")));
     const gameMask = document.getElementById("gameMask");
     if (gameMask) {
       gameMask.addEventListener("click", e => { if (e.target.id === "gameMask") closeGameModal(); });
@@ -1687,14 +2192,41 @@
         else if (a === "go-mining") go("mining");
       });
     }
+    const forgeRoot = document.getElementById("forgeRoot");
+    if (forgeRoot) {
+      forgeRoot.addEventListener("click", e => {
+        const b = e.target.closest('[data-act="upgrade-tool"]');
+        if (b) upgradeTool(b.dataset.id);
+      });
+    }
+    const greenPlotGrid = document.getElementById("greenPlotGrid");
+    if (greenPlotGrid) {
+      greenPlotGrid.addEventListener("click", e => {
+        const p = e.target.closest(".green-plot");
+        if (!p) return;
+        openGreenPlot(Number(p.dataset.idx));
+      });
+    }
+    const ranchRoot = document.getElementById("ranchRoot");
+    if (ranchRoot) {
+      ranchRoot.addEventListener("click", e => {
+        const b = e.target.closest("[data-act]");
+        if (!b) return;
+        const a = b.dataset.act;
+        if (a === "buy-animal") buyAnimal(b.dataset.id);
+        else if (a === "feed-animal") feedAnimal(Number(b.dataset.idx));
+        else if (a === "collect-animal") collectAnimal(Number(b.dataset.idx));
+      });
+    }
     bind("resetGameBtn", () => {
-      if (!confirm("确定重置全部玩法进度吗？金币、种子、仓库、地块、商店购买、钓鱼与挖矿统计将清零（背包与社区中心不受影响）。")) return;
+      if (!confirm("确定重置全部玩法进度吗？金币、种子、仓库、地块、工具等级、温室、动物与玩法统计将清零（背包与社区中心不受影响）。")) return;
       game = defaultGame();
       game.seasonKey = seasonNow().key;
       fishPhase = "idle";
       clearTimeout(fishTimer);
       cacheGame(); syncProgress();
-      renderFarm(); updateFishing(); renderShop(); renderMining(); refreshLinked();
+      renderFarm(); updateFishing(); renderShop(); renderMining();
+      renderBlacksmith(); renderGreenhouse(); renderRanch(); refreshLinked();
       setText("dataTip", "🔄 玩法进度已重置");
       setTimeout(() => setText("dataTip", ""), 2000);
     });
@@ -1708,6 +2240,7 @@
       await loadBundleDefs();  // 社区中心收集包
       await loadProgress();    // 后端优先：背包 / 捐赠 / 玩法状态
       syncSeasonChange();      // 后端状态覆盖后再次校验季节
+      checkGreenhouseUnlock(true); // 社区中心已全收集时补发温室解锁
       regenEnergy();
       route();
       // 每秒刷新体力、倒计时、换季与各玩法状态
@@ -1715,7 +2248,10 @@
         regenEnergy();
         updateResourceBar();
         refreshFarmTimers();
+        refreshGreenhouseTimers();
+        refreshRanchTimers();
         if (syncSeasonChange()) { renderHome(); renderFarm(); renderShop(); }
+        if (checkGreenhouseUnlock(true)) { renderHome(); if (isActive("greenhouse")) renderGreenhouse(); }
         if (fishPhase === "idle" && isActive("fishing")) updateFishing();
         if (isActive("mining") && !mineBusy) renderMining();
       }, 1000);

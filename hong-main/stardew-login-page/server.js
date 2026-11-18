@@ -3,13 +3,13 @@
  *
  * 职责：
  *  1. 托管本目录下的静态资源（index.html / assets/*，Vue 打包产物）
- *  2. 将 /api/** 请求反向代理到后端 Spring Boot 服务（默认 http://127.0.0.1:8081）
+ *  2. 将 /api/** 请求反向代理到后端 Spring Boot 服务（默认 http://192.168.68.5:8081）
  *     —— 前端代码使用相对路径 "/api" 作为接口基址，代理后前后端即为同源，
  *        彻底规避浏览器跨域问题（后端 CorsConfig 仍保留作为兜底）。
  *
  * 环境变量：
  *  FRONTEND_PORT  前端监听端口（默认 5173）
- *  API_TARGET     后端地址（默认 http://127.0.0.1:8081）
+ *  API_TARGET     后端地址（默认 http://192.168.68.5:8081）
  *
  * 启动：node server.js
  */
@@ -20,7 +20,7 @@ const fs = require("fs");
 const path = require("path");
 
 const PORT = parseInt(process.env.FRONTEND_PORT || "5173", 10);
-const API_TARGET = process.env.API_TARGET || "http://192.168.68.46:8081";
+const API_TARGET = process.env.API_TARGET || "http://192.168.68.5:8081";
 const API_PREFIX = "/api/";
 const ROOT = __dirname;
 // 项目根目录（托管 home.html 登录后首页）
@@ -77,7 +77,7 @@ function serveStatic(req, res) {
   const ext = path.extname(filePath).toLowerCase();
   res.writeHead(200, {
     "Content-Type": MIME[ext] || "application/octet-stream",
-    "Cache-Control": ext === ".html" ? "no-cache" : "public, max-age=3600"
+    "Cache-Control": (ext === ".html" || ext === ".js" || ext === ".css") ? "no-cache" : "public, max-age=3600"
   });
   fs.createReadStream(filePath).pipe(res);
 }
@@ -114,9 +114,9 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, "0.0.0.0", () => {
-  console.log(`[frontend] 静态服务已启动: http://192.168.68.46:${PORT}`);
+  console.log(`[frontend] 静态服务已启动: http://192.168.68.5:${PORT}`);
   console.log(`[frontend] /api 代理到后端: ${API_TARGET}`);
-  console.log(`[frontend] 登录后首页: http://192.168.68.46:${PORT}/home`);
-  console.log(`[frontend] 后台管理登录: http://192.168.68.46:${PORT}/admin`);
-  console.log(`[frontend] 后台管理面板: http://192.168.68.46:${PORT}/admin/dashboard`);
+  console.log(`[frontend] 登录后首页: http://192.168.68.5:${PORT}/home`);
+  console.log(`[frontend] 后台管理登录: http://192.168.68.5:${PORT}/admin`);
+  console.log(`[frontend] 后台管理面板: http://192.168.68.5:${PORT}/admin/dashboard`);
 });

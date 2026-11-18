@@ -20,12 +20,12 @@ function makeEl(id) {
   const set = new Set();
   return {
     id: id || "", innerHTML: "", textContent: "", value: "", disabled: false,
-    dataset: {}, style: {}, className: "",
+    dataset: {}, style: {}, className: "", children: [],
     classList: {
       add: c => set.add(c), remove: c => set.delete(c), contains: c => set.has(c),
       toggle: (c, f) => { if (f === undefined) (set.has(c) ? set.delete(c) : set.add(c)); else (f ? set.add(c) : set.delete(c)); }
     },
-    addEventListener() {}, appendChild() {}, querySelector() { return null; },
+    addEventListener() {}, appendChild(c) { this.children.push(c); }, querySelector() { return null; },
     querySelectorAll() { return []; }, closest() { return null; }, click() {}, focus() {}
   };
 }
@@ -68,10 +68,15 @@ const HOOK = `
   setMineIdle() { mineBusy = false; },
   setRandom(fn) { Math.random = fn; },
   SD, seasonNow, seasonWindow, fishingStatus, fishingOpenOn, seasonCrops,
+  get state() { return state; }, FALLBACK_ITEMS, CAT_LABEL, renderCodex,
   plantableCrops, cropByName, productInfo, invTotal, invValue, capacity,
   hasGreenhouse, goodsList, plotStage, plant, harvest, waterAll, harvestAll,
   renderFarm, renderShop, renderMining, renderHome, renderLog, updateFishing,
   castLine, reelLine, sellProduct, sellAllProducts, buyGood, dig, mineDepth,
+  toolLevel, upgradeTool, unlockGreenhouse, checkGreenhouseUnlock, allBundlesDone,
+  get bundleDefs() { return bundleDefs; },
+  buyFeed, buyAnimal, feedAnimal, collectAnimal, animalState,
+  renderBlacksmith, renderGreenhouse, renderRanch,
   normalizeGame, defaultGame, syncSeasonChange, esc
 };
 const __origToast = gameToast;
@@ -157,13 +162,20 @@ function eq(a, b, label) { ok(a === b, label + "（实际 " + JSON.stringify(a) 
   S.buyGood("seed:草莓");
   eq(S.game.seeds["草莓"], 1, "非当季种子被锁定，不能重复买（数量未增加）");
   S.game.gold = 5000;
+  S.toasts.length = 0;
   S.buyGood("greenhouse");
-  eq(S.game.owned.greenhouse, 1, "购买温室升级");
+  ok(S.toasts.some(t => t.indexOf("不在杂货店出售") >= 0), "温室不能在商店购买");
+  S.buyGood("watering_can");
+  ok(S.toasts.some(t => t.indexOf("工具请去铁匠铺升级") >= 0), "工具不能在商店购买");
+  S.unlockGreenhouse("gold");
+  eq(S.game.greenhouse.unlocked, true, "支付金币解锁温室");
+  eq(S.game.gold, 2500, "金币解锁温室扣除 2500g");
   eq(S.plantableCrops().length, S.SD.crops.length, "温室解锁全部季节作物");
   S.buyGood("seed:草莓");
   eq(S.game.seeds["草莓"], 2, "温室下可购买非当季种子");
-  S.buyGood("greenhouse");
-  eq(S.game.owned.greenhouse, 1, "唯一升级不可重复购买");
+  S.toasts.length = 0;
+  S.unlockGreenhouse("gold");
+  ok(S.toasts.some(t => t.indexOf("已经解锁") >= 0), "重复解锁温室被拦截");
   S.game.gold = 0;
   S.buyGood("bread");
   ok(S.toasts.some(t => t.indexOf("金币不足") >= 0), "金币不足时拦截购买");
@@ -222,8 +234,9 @@ function eq(a, b, label) { ok(a === b, label + "（实际 " + JSON.stringify(a) 
   eq(S.game.seasonKey, "fall", "季节标记已更新");
   const old = S.normalizeGame({ plots: [{ name: "南瓜", plantedAt: Date.now(), watered: false }], gold: "bad" });
   ok(old.plots[0].growMs > 0 && old.plots[0].seasonKey, "旧格式地块自动补齐生长时长与季节");
-  eq(old.gold, 50, "异常金币值兜底为初始值");
+  eq(old.gold, 500, "异常金币值兜底为初始值 500");
   S.game = S.defaultGame();
+  eq(S.game.gold, 500, "新档初始金币为 500");
   S.game.inventory = { "南瓜": 3, "铜矿石": 2 };
   const g0 = S.game.gold;
   S.sellAllProducts();
@@ -231,11 +244,84 @@ function eq(a, b, label) { ok(a === b, label + "（实际 " + JSON.stringify(a) 
   ok(S.game.gold > g0, "一键出售结算金币");
   eq(S.game.stats.mineGold, 2 * 25, "矿石收益计入矿洞出售统计");
 
-  console.log("\n[9] 既有功能未被破坏");
+  console.log("\n[9] 全量图鉴 / 初始金币 / 既有功能未被破坏");
+  const codexItems = S.FALLBACK_ITEMS.filter(it => it.cat !== "villager");
+  ok(codexItems.length >= 80, "图鉴兜底数据覆盖全部目录物品（实际 " + codexItems.length + " 条）");
+  ["草莓", "传说之鱼", "铱矿石", "温室", "星之果实", "小鸡"].forEach(n => {
+    ok(codexItems.some(it => it.name === n), "图鉴包含 " + n);
+  });
+  ok(codexItems.every(it => !!S.CAT_LABEL[it.cat]), "图鉴所有分类均有中文标签");
+  S.state.items = S.FALLBACK_ITEMS;
+  document.getElementById("grid").children.length = 0;
+  S.renderCodex();
+  ok(document.getElementById("grid").children.length === codexItems.length, "图鉴渲染条目数与数据一致");
+  ok(S.defaultGame().gold === 500, "默认初始金币 500");
   ok(typeof S.esc("<b>") === "string" && S.esc("<b>").indexOf("&lt;") >= 0, "HTML 转义函数可用（原页面缺失已修复）");
   S.renderLog("farm", "farmLog");
   S.renderHome(); S.renderFarm(); S.renderShop(); S.updateFishing();
   ok(true, "首页 / 农场 / 商店 / 钓鱼渲染无异常");
+
+  console.log("\n[10] 铁匠铺：工具不能直接购买，只能逐级升级");
+  S.game = S.defaultGame();
+  S.game.gold = 5000;
+  S.game.inventory["铜矿石"] = 10;
+  S.toasts.length = 0;
+  S.buyGood("watering_can");
+  ok(S.toasts.some(t => t.indexOf("工具请去铁匠铺升级") >= 0), "工具无法在商店直接购买");
+  S.upgradeTool("watering_can");
+  eq(S.toolLevel("watering_can"), 1, "铁匠处升级洒水壶到铜级");
+  eq(S.game.inventory["铜矿石"], 5, "升级消耗 5 块铜矿石");
+  eq(S.game.gold, 4800, "升级消耗 200g");
+  S.toasts.length = 0;
+  S.upgradeTool("watering_can");
+  ok(S.toasts.some(t => t.indexOf("铁矿石") >= 0 && t.indexOf("不足") >= 0), "材料不足时不能升级");
+  S.renderBlacksmith();
+  ok(true, "铁匠面板渲染无异常");
+
+  console.log("\n[11] 温室：社区中心全收集免费解锁 / 未满足条件不可用");
+  S.game = S.defaultGame();
+  S.state.bundles = {};
+  S.game.greenhouse = { unlocked: false, method: "" };
+  ok(!S.hasGreenhouse(), "初始温室锁定");
+  ok(!S.allBundlesDone(), "社区中心未完成");
+  S.toasts.length = 0;
+  S.unlockGreenhouse("community");
+  ok(S.toasts.some(t => t.indexOf("尚未全部完成") >= 0), "未满足条件时无法免费解锁");
+  S.bundleDefs.forEach(b => { S.state.bundles[b.id] = b.need.slice(); });
+  ok(S.allBundlesDone(), "社区中心全部完成");
+  S.checkGreenhouseUnlock(true);
+  eq(S.game.greenhouse.method, "community", "社区中心完成免费解锁温室");
+  ok(S.hasGreenhouse(), "免费解锁后温室可用");
+  S.renderGreenhouse();
+  ok(true, "温室面板渲染无异常");
+
+  console.log("\n[12] 牧场：购买动物 / 喂养 / 产物收集");
+  S.game = S.defaultGame();
+  S.game.gold = 5000;
+  S.buyAnimal("chicken");
+  eq(S.game.animals.length, 1, "购入小鸡");
+  eq(S.game.gold, 4600, "购买动物扣除 400g");
+  S.toasts.length = 0;
+  S.feedAnimal(0);
+  ok(S.toasts.some(t => t.indexOf("没有饲料") >= 0), "没有饲料时喂养被拦截");
+  S.buyFeed(1);
+  eq(S.game.feed, 1, "购买饲料 +1 份");
+  S.feedAnimal(0);
+  eq(S.game.feed, 0, "喂养消耗 1 份饲料");
+  ok(S.game.animals[0].fed, "喂养后进入产出状态");
+  S.game.animals[0].readyAt = Date.now() - 1;
+  eq(S.animalState(S.game.animals[0], S.SD.animals[0]).key, "ready", "产出完成后可收集");
+  S.collectAnimal(0);
+  eq(S.game.inventory["鸡蛋"], 1, "收集鸡蛋进入仓库");
+  eq(S.game.animals[0].fed, false, "收集后需再次喂养");
+  const ranchGoldBefore = S.game.stats.ranchGold;
+  S.sellProduct("鸡蛋", true);
+  ok(S.game.stats.ranchGold > ranchGoldBefore, "牧场产物出售计入牧场收益统计");
+  S.toasts.length = 0;
+  S.collectAnimal(0);
+  ok(S.toasts.some(t => t.indexOf("还没准备好") >= 0), "未产出时不能重复收集");
+  S.renderRanch();
+  ok(true, "牧场面板渲染无异常");
 
   console.log("\n================ 结果：" + passed + " 通过 / " + failed + " 失败 ================");
   process.exit(failed ? 1 : 0);

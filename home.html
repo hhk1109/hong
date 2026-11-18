@@ -786,6 +786,67 @@
     .ore-chip b { color: var(--gold-deep); }
     .sync-tip { margin-top: 12px; font-size: 11px; color: #9a7a4a; text-align: center; }
 
+    /* ===== 新增玩法：铁匠 / 温室 / 牧场 ===== */
+    .forge-grid, .ranch-shop, .ranch-grid { display: grid; gap: 12px; }
+    .forge-grid { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+    .forge-card, .animal-shop-card, .animal-card, .green-plot {
+      background: var(--parchment-2);
+      border: 3px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      box-shadow: 0 3px 0 rgba(90, 58, 30, 0.18);
+    }
+    .forge-card { display: flex; flex-direction: column; gap: 6px; }
+    .fc-head { display: flex; align-items: center; gap: 10px; }
+    .fc-icon { font-size: 28px; }
+    .fc-name { font-weight: bold; color: var(--green-dark); font-size: 15px; }
+    .fc-lv { margin-left: auto; font-size: 11px; padding: 3px 8px; border-radius: 999px; background: var(--parchment-3); border: 2px solid var(--line); }
+    .fc-line { font-size: 12px; color: var(--brown-soft); }
+    .fc-line b { color: var(--gold-deep); }
+    .fc-state { font-size: 12px; font-weight: bold; }
+    .fc-state.ok { color: var(--green-dark); }
+    .fc-state.warn { color: var(--gold-deep); }
+    .fc-state.off { color: #b39b6e; }
+    .fc-cost { display: flex; flex-wrap: wrap; gap: 6px; }
+    .cost-chip { font-size: 11px; padding: 4px 8px; border-radius: 999px; border: 2px solid var(--line); background: var(--parchment-3); }
+    .cost-chip.lack { color: var(--red); border-color: var(--red); }
+    .cost-chip.ok { color: var(--green-dark); border-color: var(--green); }
+
+    .green-unlock {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+      padding: 14px; border: 3px dashed var(--gold-deep); border-radius: 10px;
+      background: var(--parchment-3); margin-bottom: 14px;
+    }
+    .green-unlock.locked { border-color: var(--red); }
+    .green-unlock h3 { margin: 0; font-size: 14px; color: var(--green-dark); }
+    .green-unlock p { margin: 4px 0 0; font-size: 12px; color: var(--brown-soft); }
+    .green-plot-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); display: grid; gap: 10px; }
+    .green-plot { text-align: center; cursor: pointer; min-height: 116px; }
+    .green-plot.locked { opacity: .65; cursor: not-allowed; filter: grayscale(.6); }
+    .green-plot.ripe { border-color: var(--green-deep); background: #edffd9; }
+    .gp-icon { font-size: 30px; }
+    .gp-name { font-weight: bold; color: var(--green-dark); }
+    .gp-timer { font-size: 11px; color: var(--brown-soft); margin-top: 4px; }
+    .gp-badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 999px; background: var(--green-deep); color: #fff; }
+
+    .ranch-shop { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); margin-bottom: 16px; }
+    .animal-shop-card { display: flex; flex-direction: column; gap: 5px; }
+    .as-icon { font-size: 28px; }
+    .as-name { font-weight: bold; color: var(--green-dark); }
+    .as-meta { font-size: 11px; color: var(--brown-soft); }
+    .ranch-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .animal-card { display: flex; flex-direction: column; gap: 6px; }
+    .animal-card.ready { border-color: var(--green-deep); background: #edffd9; }
+    .animal-card .ac-head { display: flex; align-items: center; gap: 8px; }
+    .animal-card .ac-icon { font-size: 30px; }
+    .animal-card .ac-name { font-weight: bold; color: var(--green-dark); }
+    .animal-card .ac-state { margin-left: auto; font-size: 11px; }
+    .animal-card .ac-state.ok { color: var(--green-dark); }
+    .animal-card .ac-state.wait { color: var(--gold-deep); }
+    .animal-card .ac-state.hungry { color: var(--red); }
+    .animal-card .ac-meta { font-size: 11px; color: var(--brown-soft); }
+    .animal-card .ac-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+
   </style>
 </head>
 <body>
@@ -800,6 +861,9 @@
       <a data-page="fishing">🎣 钓鱼</a>
       <a data-page="shop">🛒 商店</a>
       <a data-page="mining">⛏️ 矿洞</a>
+      <a data-page="blacksmith">🔨 铁匠</a>
+      <a data-page="greenhouse">🏡 温室</a>
+      <a data-page="ranch">🐔 牧场</a>
       <a data-page="codex">物品图鉴</a>
       <a data-page="villagers">💗 村民</a>
       <a data-page="community">社区中心</a>
@@ -824,7 +888,7 @@
       <div class="season-banner" id="seasonBanner"></div>
 
       <div class="resource-bar">
-        <div class="res-chip">💰 金币 <b id="resGold">50</b></div>
+        <div class="res-chip">💰 金币 <b id="resGold">500</b></div>
         <div class="res-chip energy">⚡ 体力 <b id="resEnergy">20</b><span class="res-tip" id="resEnergyTip">/ 20</span></div>
         <div class="energy-wrap" style="flex:1 1 140px;max-width:240px"><div class="energy-bar" id="resEnergyBar"></div></div>
         <span class="res-tip">体力每 60 秒恢复 1 点 · 钓鱼 / 挖矿消耗体力</span>
@@ -865,7 +929,7 @@
         <h2 class="search-title">🔍 星露谷百科 · 物品图鉴</h2>
         <div class="search-row">
           <input id="searchInput" class="search-input" type="text"
-                 placeholder="搜索作物、动物、鱼类、矿石…（例如：草莓 / 鸡 / 蓝莓）" />
+                 placeholder="搜索作物、动物、鱼类、矿石、工具、食物…（例如：草莓 / 鸡 / 蓝莓）" />
           <button class="search-btn" id="searchBtn">搜 索</button>
         </div>
         <div class="chips" id="chips">
@@ -874,6 +938,11 @@
           <span class="chip" data-cat="animal">动物</span>
           <span class="chip" data-cat="fish">钓鱼</span>
           <span class="chip" data-cat="ore">矿石</span>
+          <span class="chip" data-cat="tool">工具</span>
+          <span class="chip" data-cat="upgrade">农场升级</span>
+          <span class="chip" data-cat="food">食物</span>
+          <span class="chip" data-cat="furniture">家具</span>
+          <span class="chip" data-cat="special">特殊</span>
         </div>
       </div>
       <main class="grid" id="grid"></main>
@@ -1013,15 +1082,16 @@
           <span class="g-sub">出售收获 · 购买商品 · 金币结算</span>
         </div>
         <div class="resource-bar" style="margin:6px 0 0;padding:0">
-          <div class="res-chip">💰 金币 <b id="shopGold">50</b></div>
+          <div class="res-chip">💰 金币 <b id="shopGold">500</b></div>
           <div class="res-chip">📦 仓库 <b id="shopCapacityChip">0 / 60</b></div>
           <div class="res-chip">🌾 <b id="shopSeasonChip">—</b></div>
           <div class="res-chip">🛍️ 已购买 <b id="shopOwnedCount">0</b> 件</div>
         </div>
         <div class="game-note">
           <b>出售</b>：仓库中收获的全部农作物、渔获与矿石均可按单价出售换金币（支持单个 / 单种全卖 / 一键全卖）。
-          <b>购买</b>：用金币购买当季种子、工具、农场升级、食物、家具、动物与特殊收藏品；
-          非当季种子锁定（购买「温室」后解锁全季），工具类升级购买后立即生效，食物立即恢复体力。
+          <b>购买</b>：用金币购买当季种子、农场升级、食物、家具与特殊收藏品；
+          <b>工具</b>不在本店出售，请前往「铁匠铺」逐级升级；<b>动物</b>请前往「牧场」购买。
+          非当季种子锁定（解锁「温室」后开放全季），食物立即恢复体力。
         </div>
         <div class="shop-cols">
           <div class="shop-panel">
@@ -1078,10 +1148,105 @@
         <div class="sync-tip" id="mineSync"></div>
       </div>
     </section>
+
+    <!-- ============ 玩法五：铁匠铺（工具只能升级，不能直接购买） ============ -->
+    <section id="page-blacksmith" class="page">
+      <div class="game-panel" id="forgeRoot">
+        <div class="game-panel-head">
+          <span class="g-title">🔨 铁匠铺 · 克林特</span>
+          <span class="g-sub">工具按 铜 → 铁 → 钢 → 铱 逐级升级</span>
+          <span class="status-badge ok" id="forgeLevelTotal">0 / 16</span>
+        </div>
+        <div class="resource-bar" style="margin:6px 0 0;padding:0">
+          <div class="res-chip">💰 金币 <b id="forgeGold">500</b></div>
+          <div class="res-chip">📦 矿石仓库 <b id="forgeOreStock">0</b></div>
+        </div>
+        <div class="game-note">
+          <b>本店不出售工具。</b>四种工具（洒水壶 / 锄头 / 镐子 / 钓竿）只能在此按等级升级，
+          每次升级消耗<b>仓库中的指定矿石</b>和金币，且必须逐级进行。商店里不会出现任何工具商品。
+          升级后立即生效：浇水加速、收获增产、挖矿稀有率与钓鱼成功率都会随等级提升。
+        </div>
+        <div class="forge-grid" id="forgeToolList"></div>
+        <div class="game-log" id="forgeLog"></div>
+      </div>
+    </section>
+
+    <!-- ============ 玩法六：温室（金币 / 社区中心双条件解锁） ============ -->
+    <section id="page-greenhouse" class="page">
+      <div class="game-panel" id="greenRoot">
+        <div class="game-panel-head">
+          <span class="g-title">🏡 温室</span>
+          <span class="g-sub" id="greenStatus">🔒 未解锁</span>
+        </div>
+        <div class="green-unlock" id="greenUnlockBox">
+          <div style="flex:1 1 260px">
+            <h3>🔓 解锁条件（满足任一即可）</h3>
+            <p>① 支付 <b>2500g</b> 金币解锁；② 完成社区中心<b>全部收集包</b>免费解锁。
+               两种方式都未满足时，温室内所有操作不可用。社区中心当前进度：<b id="greenBundlePct">0%</b>。</p>
+          </div>
+          <button class="btn gold" id="greenUnlockGold">💰 支付 2500g 解锁</button>
+          <button class="btn" id="greenUnlockFree">🏠 社区中心免费解锁</button>
+        </div>
+        <div class="resource-bar" style="margin:6px 0 12px;padding:0">
+          <div class="res-chip">💰 金币 <b id="greenGold">500</b></div>
+          <div class="res-chip">🌱 温室田 <b id="greenPlanted">0 / 6</b></div>
+          <div class="res-chip">✨ 成熟待收 <b id="greenRipe">0</b></div>
+          <div class="res-chip">🔑 解锁方式 <b id="greenMethod">未解锁</b></div>
+        </div>
+        <div class="game-note">
+          温室解锁后可种植<b>全年任意季节</b>作物，且换季<b>不会枯萎</b>。6 块温室田独立管理，
+          种子仍需在商店购买；浇水可提前成熟，收获的产物统一进入仓库。
+        </div>
+        <div class="green-plot-grid" id="greenPlotGrid"></div>
+        <div class="game-actions">
+          <button class="btn blue" id="greenGoShop">🛒 去商店买种子</button>
+          <button class="btn" id="greenWaterAll">💧 一键浇水</button>
+          <button class="btn" id="greenHarvestAll">🧺 一键收获</button>
+        </div>
+        <div class="game-log" id="greenLog"></div>
+      </div>
+    </section>
+
+    <!-- ============ 玩法七：牧场（动物饲养 / 产物收集） ============ -->
+    <section id="page-ranch" class="page">
+      <div class="game-panel" id="ranchRoot">
+        <div class="game-panel-head">
+          <span class="g-title">🐔 牧场 · 动物饲养</span>
+          <span class="g-sub">购买动物 → 喂养饲料 → 等待产出 → 收集产物</span>
+        </div>
+        <div class="resource-bar" style="margin:6px 0 12px;padding:0">
+          <div class="res-chip">💰 金币 <b id="ranchGold">500</b></div>
+          <div class="res-chip">🌾 饲料 <b id="ranchFeed">0</b> 份</div>
+          <div class="res-chip">🐾 动物 <b id="ranchAnimalCount">0</b> 只</div>
+          <div class="res-chip">🧺 累计收集 <b id="ranchProduced">0</b> 件</div>
+        </div>
+        <div class="game-note">
+          小鸡产<b>鸡蛋</b>、鸭子产<b>鸭蛋</b>、奶牛产<b>牛奶</b>、绵羊产<b>羊毛</b>。
+          购买动物后需消耗 <b>1 份饲料</b>喂养才会开始产出一轮；产物成熟后点击收集，自动进入仓库与背包，
+          可在商店出售换金币或用于图鉴与社区中心。每只动物每轮产出一件，收集后可再次喂养。
+        </div>
+        <div class="game-actions" style="justify-content:flex-start;margin:0 0 12px">
+          <button class="btn" id="ranchBuyFeed1">🌾 买饲料 ×1（50g）</button>
+          <button class="btn" id="ranchBuyFeed5">🌾 买饲料 ×5（250g）</button>
+          <button class="btn ghost" id="ranchGoShop">🛒 出售产物</button>
+        </div>
+        <div class="section-title" style="margin-top:8px">🛒 牧场动物</div>
+        <div class="section-sub">动物只能在牧场购买，不会出现在杂货店；购买后需喂养才会产出。</div>
+        <div class="ranch-shop" id="ranchAnimalShop"></div>
+        <div class="section-title">🐾 我的动物</div>
+        <div class="section-sub">每轮产出完成后请及时收集；未喂养的动物不会产出，收集后可再次喂养。</div>
+        <div class="game-actions" style="justify-content:flex-start;margin:0 0 12px">
+          <button class="btn blue" id="ranchFeedAll">🌾 一键喂养</button>
+          <button class="btn" id="ranchCollectAll">🧺 一键收集</button>
+        </div>
+        <div class="ranch-grid" id="ranchAnimalList"></div>
+        <div class="game-log" id="ranchLog"></div>
+      </div>
+    </section>
   </main>
 
 
-  <footer class="footer">星露谷 · 首页 ｜ 四季农场 / 钓期钓鱼 / 商店 / 矿洞 ｜ 图鉴与收集包由后台管理系统维护 ｜ 玩法进度按账号保存在后端（浏览器本地作离线缓存）</footer>
+  <footer class="footer">星露谷 · 首页 ｜ 四季农场 / 钓期钓鱼 / 商店 / 矿洞 / 铁匠 / 温室 / 牧场 ｜ 图鉴与收集包由后台管理系统维护 ｜ 玩法进度按账号保存在后端（浏览器本地作离线缓存）</footer>
 
   <!-- 物品详情弹窗 -->
   <div class="modal-mask" id="modalMask">
@@ -1094,7 +1259,7 @@
   </div>
   <div class="toast" id="gameToast"></div>
 
-  <script src="/assets/stardew-catalog.js"></script>
-  <script src="/assets/stardew-game.js"></script>
+  <script src="/assets/stardew-catalog.js?v=20261118b"></script>
+  <script src="/assets/stardew-game.js?v=20261118b"></script>
 </body>
 </html>

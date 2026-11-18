@@ -1,2 +1,3 @@
-2026/11/11-09:55:54.142 20a4 Creating DB D:\workSpace\hong\log\e2e-chrome-profile\Default\Service Worker\Database since it was missing.
-2026/11/11-09:55:54.143 20a4 Reusing MANIFEST D:\workSpace\hong\log\e2e-chrome-profile\Default\Service Worker\Database/MANIFEST-000001
+2026/11/18-09:50:08.653 2cb0 Reusing MANIFEST D:\workSpace\hong\log\e2e-chrome-profile\Default\Service Worker\Database/MANIFEST-000001
+2026/11/18-09:50:08.660 2cb0 Recovering log #3
+2026/11/18-09:50:08.660 2cb0 Reusing old log D:\workSpace\hong\log\e2e-chrome-profile\Default\Service Worker\Database/000003.log 
