@@ -257,6 +257,22 @@
     .home-save-bar .btn-save { padding: 10px 22px; }
     .form-error { color: var(--red); font-size: 12px; min-height: 14px; margin-top: 4px; }
 
+    /* ===== 金币管理 ===== */
+    .coin-section { margin-top: 24px; padding: 16px; background: #fffdf6; border: 3px solid var(--line); border-radius: 12px; }
+    .coin-section-title { font-size: 16px; font-weight: 700; color: var(--brown); margin-bottom: 12px; }
+    .coin-sub { font-size: 12px; font-weight: 400; color: #9a7a4a; margin-left: 8px; }
+    .coin-selected { padding: 10px 12px; margin-bottom: 12px; background: var(--gold-2); border: 2px solid var(--line); border-radius: 8px; font-size: 13px; color: var(--brown); }
+    .coin-selected.picked { border-color: var(--green-deep); background: #eef7e2; }
+    .coin-selected b { font-size: 15px; }
+    .coin-selected .coin-now { color: var(--green-deep); font-weight: 700; }
+    .readonly-input { background: #f3ecd9 !important; color: var(--brown) !important; font-weight: 700; cursor: default; }
+    .coin-actions { display: flex; align-items: center; gap: 14px; margin-top: 8px; }
+    .coin-actions .btn-save { padding: 10px 22px; }
+    .coin-actions .tip { color: var(--red); font-size: 12px; }
+    .coin-picked-row { background: #fff6d8 !important; }
+    .dl-diff-pos { color: #1a7a2e; font-weight: 700; }
+    .dl-diff-neg { color: var(--red); font-weight: 700; }
+
     @media (max-width: 640px) {
       .brand { font-size: 10px; }
       .field-row { flex-direction: column; }
@@ -280,6 +296,7 @@
       <button class="tab-btn" data-tab="home">🖼️ 主页管理</button>
       <button class="tab-btn" data-tab="bundles">🏠 收集包</button>
       <button class="tab-btn" data-tab="users">🧑‍🌾 用户管理</button>
+      <button class="tab-btn" data-tab="coin">💰 金币管理</button>
     </div>
 
     <!-- ============ 图鉴条目管理（对应首页「物品图鉴」与「村民」模块） ============ -->
@@ -419,6 +436,94 @@
         </tbody>
       </table>
     </section>
+
+    <!-- ============ 玩家金币管理 ============ -->
+    <section class="panel" id="panel-coin">
+      <div class="tab-hint">搜索并选择玩家，查看当前金币余额，通过「增减」或「目标值」方式调整。每笔变更都必须填写修改原因并二次确认，操作全程记录日志，可追溯。</div>
+      <div class="stats">
+        <div class="stat"><div class="num" id="cStatPlayers">0</div><div class="label">玩家数</div></div>
+        <div class="stat"><div class="num" id="cStatTotalGold">0</div><div class="label">金币总量</div></div>
+        <div class="stat"><div class="num" id="cStatLogs">0</div><div class="label">变更记录</div></div>
+      </div>
+
+      <div class="toolbar">
+        <input class="search-input" id="cKwInput" type="text" placeholder="按账号 / 农夫名 / 邮箱搜索玩家…" />
+        <button class="btn-add" id="cRefreshBtn">🔄 刷新玩家</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:50px">ID</th>
+            <th>账号</th>
+            <th>农夫名</th>
+            <th>角色</th>
+            <th style="width:120px">当前金币</th>
+            <th style="width:100px">操作</th>
+          </tr>
+        </thead>
+        <tbody id="cTbody">
+          <tr><td colspan="6" class="empty-row">加载中…</td></tr>
+        </tbody>
+      </table>
+
+      <div class="coin-section">
+        <div class="coin-section-title">📝 金币调整 <span class="coin-sub">先在上表点击「调整」选择玩家</span></div>
+        <div class="coin-selected" id="cSelected">尚未选择玩家</div>
+        <div class="field-row">
+          <div class="field">
+            <label>调整方式</label>
+            <select id="cMode">
+              <option value="delta">➕ 增减（在现有金币上加/减）</option>
+              <option value="target">🎯 目标值（直接设为指定金币）</option>
+            </select>
+          </div>
+          <div class="field">
+            <label id="cValueLabel">增减数值（可为负数）</label>
+            <input type="number" id="cValue" step="1" placeholder="例如 500 或 -200" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>调整后金币（预览）</label>
+            <input type="text" id="cPreview" value="-" readonly class="readonly-input" />
+          </div>
+          <div class="field">
+            <label>修改原因（必填）</label>
+            <input type="text" id="cReason" maxlength="255" placeholder="例如：活动奖励补发 / 误操作扣回" />
+          </div>
+        </div>
+        <div class="coin-actions">
+          <button class="btn-save" id="cSubmitBtn">💾 确认调整</button>
+          <div class="tip" id="cError"></div>
+        </div>
+      </div>
+
+      <div class="coin-section">
+        <div class="coin-section-title">📜 操作日志 <span class="coin-sub">金币变更全程留痕</span></div>
+        <div class="toolbar">
+          <input class="search-input" id="cLogAccount" type="text" placeholder="按玩家账号过滤日志（留空看全部）…" />
+          <button class="btn-mini" id="cLogRefreshBtn">🔄 查询日志</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width:60px">ID</th>
+              <th>玩家</th>
+              <th>操作人</th>
+              <th>方式</th>
+              <th>变更前</th>
+              <th>变动</th>
+              <th>变更后</th>
+              <th>原因</th>
+              <th style="width:140px">时间</th>
+            </tr>
+          </thead>
+          <tbody id="cLogTbody">
+            <tr><td colspan="9" class="empty-row">加载中…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </div>
 
   <!-- 条目 / 收集包 / 用户 通用编辑弹窗 -->
@@ -487,7 +592,7 @@
     }
 
     // ===== 标签页路由 =====
-    const TABS = ["items", "home", "bundles", "users"];
+    const TABS = ["items", "home", "bundles", "users", "coin"];
     function switchTab(tab) {
       if (!TABS.includes(tab)) tab = "items";
       location.hash = tab;
@@ -497,6 +602,7 @@
       if (tab === "home") loadHomeConfig();
       if (tab === "bundles") loadBundles();
       if (tab === "users") loadUsers();
+      if (tab === "coin") loadCoinPlayers();
     }
     document.querySelectorAll(".tab-btn").forEach(b => {
       b.addEventListener("click", () => switchTab(b.dataset.tab));
@@ -1126,6 +1232,151 @@
     }
 
     /* ============================================================
+     * 模块五：玩家金币管理（查询 / 增减 / 目标值 / 原因 / 日志审计）
+     * ============================================================ */
+    let coinSelected = null; // 当前选中的玩家 { userId, account, farmerName, gold }
+
+    function loadCoinPlayers() {
+      const kw = document.getElementById("cKwInput").value.trim();
+      api("/admin/coin/players?keyword=" + encodeURIComponent(kw)).then(list => {
+        renderCoinPlayers(list);
+      }).catch(e => { if (e.message !== "unauthorized") toast("🚜 " + e.message); });
+      loadCoinLogs();
+    }
+
+    function renderCoinPlayers(list) {
+      const tbody = document.getElementById("cTbody");
+      if (!list.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="empty-row">💰 暂无匹配玩家</td></tr>';
+      } else {
+        tbody.innerHTML = list.map(u => {
+          const picked = coinSelected && Number(coinSelected.userId) === Number(u.userId);
+          return `
+          <tr class="${picked ? "coin-picked-row" : ""}">
+            <td>${u.userId}</td>
+            <td>${esc(u.account)}</td>
+            <td>${esc(u.farmerName || "-")}</td>
+            <td><span class="badge ${u.role === 0 ? "admin" : ""}">${u.role === 0 ? "管理员" : "普通用户"}</span></td>
+            <td><b style="color:var(--green-deep)">💰 ${Number(u.gold).toLocaleString()}</b></td>
+            <td><button class="btn-mini ${picked ? "warn" : ""}" onclick="pickCoinPlayer(${u.userId}, '${esc(u.account)}', '${esc(u.farmerName || "")}', ${u.gold})">${picked ? "已选中" : "调整"}</button></td>
+          </tr>`;
+        }).join("");
+      }
+      document.getElementById("cStatPlayers").textContent = list.length;
+      document.getElementById("cStatTotalGold").textContent =
+        list.reduce((s, u) => s + (Number(u.gold) || 0), 0).toLocaleString();
+    }
+
+    function pickCoinPlayer(userId, account, farmerName, gold) {
+      coinSelected = { userId, account, farmerName, gold: Number(gold) };
+      const el = document.getElementById("cSelected");
+      el.classList.add("picked");
+      el.innerHTML = `已选择玩家：<b>${esc(account)}</b>（${esc(farmerName || "农夫")}） · 当前金币 <span class="coin-now">💰 ${coinSelected.gold.toLocaleString()}</span>`;
+      document.getElementById("cError").textContent = "";
+      updateCoinPreview();
+      // 高亮选中行
+      document.querySelectorAll("#cTbody tr").forEach(tr => tr.classList.remove("coin-picked-row"));
+      const rows = document.querySelectorAll("#cTbody tr");
+      rows.forEach(tr => {
+        const first = tr.querySelector("td");
+        if (first && Number(first.textContent) === Number(userId)) tr.classList.add("coin-picked-row");
+      });
+    }
+
+    function updateCoinPreview() {
+      const preview = document.getElementById("cPreview");
+      const mode = document.getElementById("cMode").value;
+      const raw = document.getElementById("cValue").value.trim();
+      // 标签文案随模式切换
+      document.getElementById("cValueLabel").textContent =
+        mode === "delta" ? "增减数值（可为负数）" : "目标金币数（≥0）";
+      document.getElementById("cValue").placeholder =
+        mode === "delta" ? "例如 500 或 -200" : "例如 2000";
+      if (!coinSelected || raw === "" || isNaN(Number(raw))) {
+        preview.value = "-";
+        return;
+      }
+      const v = Number(raw);
+      const result = mode === "delta" ? coinSelected.gold + v : v;
+      preview.value = result + " g" + (result < 0 ? "（非法：不能为负）" : "");
+    }
+
+    async function submitCoinChange() {
+      const errEl = document.getElementById("cError");
+      errEl.textContent = "";
+      if (!coinSelected) { errEl.textContent = "请先选择玩家"; toast("✋ 请先选择玩家"); return; }
+      const mode = document.getElementById("cMode").value;
+      const raw = document.getElementById("cValue").value.trim();
+      const reason = document.getElementById("cReason").value.trim();
+      if (raw === "" || isNaN(Number(raw)) || !Number.isInteger(Number(raw))) {
+        errEl.textContent = "请输入整数数值"; toast("✋ 请输入整数数值"); return;
+      }
+      const value = Number(raw);
+      if (mode === "delta" && value === 0) {
+        errEl.textContent = "增减数值不能为 0"; toast("✋ 增减数值不能为 0"); return;
+      }
+      if (!reason) { errEl.textContent = "请填写修改原因"; toast("✋ 请填写修改原因"); return; }
+
+      const result = mode === "delta" ? coinSelected.gold + value : value;
+      if (result < 0) { errEl.textContent = "调整后金币不能为负"; toast("✋ 调整后金币不能为负"); return; }
+      const desc = mode === "delta"
+        ? (value > 0 ? "增加 " + value : "扣减 " + (-value))
+        : "设为 " + value;
+      if (!confirm(`确认调整玩家「${coinSelected.account}」的金币？\n\n当前：${coinSelected.gold.toLocaleString()} g\n操作：${desc}\n调整后：${result.toLocaleString()} g\n原因：${reason}\n\n此操作将记录到操作日志。`)) return;
+
+      const req = { mode, value, reason };
+      try {
+        const data = await api("/admin/coin/" + coinSelected.userId + "/change", {
+          method: "POST", body: JSON.stringify(req)
+        });
+        toast(`✅ 金币已更新：${data.beforeGold} → ${data.afterGold} g`);
+        document.getElementById("cValue").value = "";
+        document.getElementById("cReason").value = "";
+        document.getElementById("cPreview").value = "-";
+        // 刷新玩家列表与日志，保持选中
+        coinSelected.gold = data.afterGold;
+        loadCoinPlayers();
+        pickCoinPlayer(data.userId, data.account, data.farmerName, data.afterGold);
+      } catch (e) {
+        if (e.message !== "unauthorized") { errEl.textContent = e.message; toast("🚫 " + e.message); }
+      }
+    }
+
+    function loadCoinLogs() {
+      const account = document.getElementById("cLogAccount").value.trim();
+      api("/admin/coin/logs?account=" + encodeURIComponent(account) + "&limit=50").then(list => {
+        renderCoinLogs(list);
+        document.getElementById("cStatLogs").textContent = list.length;
+      }).catch(e => { if (e.message !== "unauthorized") toast("🚜 " + e.message); });
+    }
+
+    function renderCoinLogs(list) {
+      const tbody = document.getElementById("cLogTbody");
+      if (!list.length) {
+        tbody.innerHTML = '<tr><td colspan="9" class="empty-row">📜 暂无变更记录</td></tr>';
+        return;
+      }
+      tbody.innerHTML = list.map(l => {
+        const diff = Number(l.diff);
+        const diffCls = diff > 0 ? "dl-diff-pos" : diff < 0 ? "dl-diff-neg" : "";
+        const diffTxt = diff > 0 ? "+" + diff : String(diff);
+        const modeTxt = l.mode === "delta" ? "增减" : "目标值";
+        return `
+          <tr>
+            <td>${l.id}</td>
+            <td>${esc(l.account)}<div style="font-size:11px;color:#9a7a4a">${esc(l.farmerName || "")}</div></td>
+            <td>${esc(l.operator)}</td>
+            <td>${modeTxt}</td>
+            <td>${Number(l.beforeGold).toLocaleString()}</td>
+            <td class="${diffCls}">${diffTxt}</td>
+            <td><b>${Number(l.afterGold).toLocaleString()}</b></td>
+            <td class="desc-cell">${esc(l.reason)}</td>
+            <td class="time-cell">${fmtTime(l.createTime)}</td>
+          </tr>`;
+      }).join("");
+    }
+
+    /* ============================================================
      * 通用：弹窗 / 退出 / 事件绑定
      * ============================================================ */
     function closeModal() { document.getElementById("mask").classList.remove("open"); }
@@ -1149,11 +1400,20 @@
     document.getElementById("hcSave").addEventListener("click", saveHomeConfig);
     document.getElementById("bAddBtn").addEventListener("click", openAddBundle);
     document.getElementById("uRefreshBtn").addEventListener("click", loadUsers);
+    document.getElementById("cRefreshBtn").addEventListener("click", loadCoinPlayers);
+    document.getElementById("cLogRefreshBtn").addEventListener("click", loadCoinLogs);
+    document.getElementById("cSubmitBtn").addEventListener("click", submitCoinChange);
+    document.getElementById("cMode").addEventListener("change", updateCoinPreview);
+    document.getElementById("cValue").addEventListener("input", updateCoinPreview);
 
     document.getElementById("kwInput").addEventListener("input", loadItems);
     document.getElementById("catSelect").addEventListener("change", loadItems);
     document.getElementById("bKwInput").addEventListener("input", loadBundles);
     document.getElementById("uKwInput").addEventListener("input", loadUsers);
+    document.getElementById("cKwInput").addEventListener("input", loadCoinPlayers);
+    document.getElementById("cLogAccount").addEventListener("keydown", e => {
+      if (e.key === "Enter") loadCoinLogs();
+    });
 
     // 启动：按 hash 恢复标签页，默认图鉴条目
     switchTab((location.hash || "#items").replace("#", ""));

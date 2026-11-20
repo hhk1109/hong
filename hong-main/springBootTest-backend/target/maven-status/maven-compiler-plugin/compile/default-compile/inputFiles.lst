@@ -7,6 +7,7 @@ D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\spr
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\config\ProgressAuthInterceptor.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\controller\AdminAuthController.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\controller\AdminBundleController.java
+D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\controller\AdminCoinController.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\controller\AdminHomeController.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\controller\AdminItemController.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\controller\AdminUserController.java
@@ -17,6 +18,7 @@ D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\spr
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\controller\ProgressController.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\dto\AdminLoginRequest.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\dto\BundleRequest.java
+D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\dto\CoinChangeRequest.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\dto\HomeConfigVO.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\dto\ItemRequest.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\dto\LoginRequest.java
@@ -25,11 +27,13 @@ D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\spr
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\dto\UserAdminRequest.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\dto\UserVO.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\entity\Bundle.java
+D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\entity\CoinLog.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\entity\HomeConfig.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\entity\Item.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\entity\User.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\entity\UserProgress.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\mapper\BundleMapper.java
+D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\mapper\CoinLogMapper.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\mapper\HomeConfigMapper.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\mapper\ItemMapper.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\mapper\UserMapper.java
@@ -37,10 +41,12 @@ D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\spr
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\service\AdminService.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\service\AdminUserService.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\service\BundleService.java
+D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\service\CoinService.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\service\HomeConfigService.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\service\impl\AdminServiceImpl.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\service\impl\AdminUserServiceImpl.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\service\impl\BundleServiceImpl.java
+D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\service\impl\CoinServiceImpl.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\service\impl\HomeConfigServiceImpl.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\service\impl\ItemServiceImpl.java
 D:\workSpace\hong\hong-main\springBootTest-backend\src\main\java\com\fenglin\springboottest\service\impl\ProgressServiceImpl.java
