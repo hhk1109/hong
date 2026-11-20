@@ -15,6 +15,7 @@ com\fenglin\springboottest\service\impl\ProgressServiceImpl$1.class
 com\fenglin\springboottest\entity\User.class
 com\fenglin\springboottest\dto\AdminLoginRequest.class
 com\fenglin\springboottest\dto\ProgressRequest.class
+com\fenglin\springboottest\service\impl\CoinServiceImpl.class
 com\fenglin\springboottest\controller\BundlesController.class
 com\fenglin\springboottest\controller\AdminUserController.class
 com\fenglin\springboottest\service\impl\HomeConfigServiceImpl$1.class
@@ -31,6 +32,7 @@ com\fenglin\springboottest\dto\BundleRequest.class
 com\fenglin\springboottest\dto\ItemRequest.class
 com\fenglin\springboottest\mapper\BundleMapper.class
 com\fenglin\springboottest\service\AdminService.class
+com\fenglin\springboottest\service\CoinService.class
 com\fenglin\springboottest\service\impl\UserServiceImpl.class
 com\fenglin\springboottest\controller\ItemsController.class
 com\fenglin\springboottest\service\HomeConfigService.class
@@ -38,9 +40,11 @@ com\fenglin\springboottest\service\BundleService.class
 com\fenglin\springboottest\service\impl\HomeConfigServiceImpl$2.class
 com\fenglin\springboottest\SpringBootTestApplication.class
 com\fenglin\springboottest\common\GlobalExceptionHandler.class
+com\fenglin\springboottest\mapper\CoinLogMapper.class
 com\fenglin\springboottest\common\BizException.class
 com\fenglin\springboottest\config\ProgressAuthInterceptor.class
 com\fenglin\springboottest\controller\AdminHomeController.class
+com\fenglin\springboottest\dto\CoinChangeRequest.class
 com\fenglin\springboottest\service\impl\HomeConfigServiceImpl.class
 com\fenglin\springboottest\service\ProgressService.class
 com\fenglin\springboottest\controller\ProgressController.class
@@ -48,10 +52,13 @@ com\fenglin\springboottest\service\impl\BundleServiceImpl.class
 com\fenglin\springboottest\service\impl\ProgressServiceImpl.class
 com\fenglin\springboottest\UserController.class
 com\fenglin\springboottest\entity\UserProgress.class
+com\fenglin\springboottest\controller\AdminCoinController.class
 com\fenglin\springboottest\service\impl\ItemServiceImpl.class
 com\fenglin\springboottest\entity\Item.class
 com\fenglin\springboottest\mapper\ItemMapper.class
+com\fenglin\springboottest\service\impl\CoinServiceImpl$1.class
 com\fenglin\springboottest\service\impl\HomeConfigServiceImpl$3.class
+com\fenglin\springboottest\entity\CoinLog.class
 com\fenglin\springboottest\service\AdminUserService.class
 com\fenglin\springboottest\service\ItemService.class
 com\fenglin\springboottest\service\impl\ProgressServiceImpl$3.class
