@@ -315,3 +315,23 @@ SELECT
     )
 FROM DUAL
 WHERE NOT EXISTS (SELECT 1 FROM `home_config`);
+
+-- 玩家金币变更操作日志：记录每一笔管理员金币调整，便于审计追踪
+CREATE TABLE IF NOT EXISTS `coin_log` (
+    `id`            BIGINT       NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `account`       VARCHAR(64)  NOT NULL                COMMENT '目标玩家账号',
+    `farmer_name`   VARCHAR(64)  NOT NULL DEFAULT ''      COMMENT '目标玩家农夫名（冗余，便于审计）',
+    `operator`      VARCHAR(64)  NOT NULL                COMMENT '操作管理员账号',
+    `mode`          VARCHAR(16)  NOT NULL                COMMENT '调整模式：delta-增减 / target-目标值',
+    `change_value`  BIGINT       NOT NULL                COMMENT '输入值：delta 时为增减量，target 时为目标金币数',
+    `before_gold`   BIGINT       NOT NULL                COMMENT '变更前的金币余额',
+    `after_gold`    BIGINT       NOT NULL                COMMENT '变更后的金币余额',
+    `diff`          BIGINT       NOT NULL                COMMENT '实际变动量 = after - before',
+    `reason`        VARCHAR(255) NOT NULL DEFAULT ''      COMMENT '修改原因（必填）',
+    `create_time`   DATETIME     DEFAULT CURRENT_TIMESTAMP COMMENT '操作时间',
+    PRIMARY KEY (`id`),
+    KEY `idx_account` (`account`),
+    KEY `idx_create_time` (`create_time`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT = '玩家金币变更操作日志表';
