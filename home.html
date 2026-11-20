@@ -261,6 +261,48 @@
     }
     .welcome b { color: var(--green-dark); }
 
+    /* 首页轮播图（后台「主页管理」可编辑） */
+    .home-carousel {
+      position: relative; max-width: 1100px; margin: 12px auto 6px; padding: 0 18px;
+    }
+    .hc-slide {
+      position: relative; min-height: 150px; border-radius: 14px; overflow: hidden;
+      border: 4px solid var(--gold-deep); box-shadow: 0 6px 0 rgba(90,58,30,.28);
+      background: linear-gradient(120deg, #8fd6f2 0%, #bfe8f7 45%, #d8f2fc 100%);
+      display: flex; align-items: center; justify-content: center; text-align: center;
+    }
+    .hc-slide.has-img { background-position: center; background-size: cover; }
+    .hc-slide.has-img::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(40,30,15,.62), rgba(40,30,15,.28));
+    }
+    .hc-slide-inner { position: relative; z-index: 1; padding: 20px 26px; color: #fff8e8; text-shadow: 2px 2px 0 rgba(0,0,0,.35); }
+    .hc-slide:not(.has-img) .hc-slide-inner { color: var(--brown); text-shadow: 1px 1px 0 #fff6dd; }
+    .hc-slide h2 { margin: 0 0 8px; font-size: 22px; }
+    .hc-slide p { margin: 0; font-size: 13px; }
+    .hc-dots { position: absolute; bottom: 10px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; }
+    .hc-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--brown); background: #fff8e8; cursor: pointer; }
+    .hc-dot.active { background: var(--gold); }
+
+    /* 首页推荐商品（后台「主页管理」可编辑） */
+    .home-featured { max-width: 1100px; margin: 18px auto; padding: 0 18px; }
+    .home-featured .section-title { margin: 0 0 12px; }
+    .hf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+    .hf-card {
+      background: #fffdf6; border: 3px solid var(--line); border-radius: 12px;
+      padding: 14px 10px; text-align: center; cursor: pointer;
+      box-shadow: 0 4px 0 rgba(90,58,30,.18); transition: transform .12s ease;
+    }
+    .hf-card:hover { transform: translateY(-3px); }
+    .hf-img { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; border: 2px solid var(--line); }
+    .hf-icon { font-size: 44px; line-height: 64px; }
+    .hf-name { margin-top: 8px; font-size: 14px; font-weight: bold; color: var(--green-dark); }
+    .hf-price { margin-top: 4px; font-size: 13px; color: var(--gold-deep); font-weight: bold; }
+
+    /* 图鉴卡片：图片与价格 */
+    .card .c-img { width: 100%; height: 96px; object-fit: cover; border-radius: 8px; border: 2px solid var(--line); }
+    .card .c-price { margin-top: 6px; font-size: 12px; color: var(--gold-deep); font-weight: bold; }
+
     .stats {
       max-width: 1100px;
       margin: 20px auto;
@@ -884,6 +926,13 @@
     <!-- ============ 首页 Dashboard ============ -->
     <section id="page-home" class="page active">
       <div class="welcome" id="welcome">欢迎来到星露谷，<b>尊敬的农夫</b>！今天也要努力种田哦～ 🌞</div>
+
+      <div class="home-carousel" id="homeCarousel" style="display:none"></div>
+
+      <div class="home-featured" id="homeFeatured" style="display:none">
+        <div class="section-title">⭐ 推荐商品</div>
+        <div class="hf-grid" id="homeFeaturedGrid"></div>
+      </div>
 
       <div class="season-banner" id="seasonBanner"></div>
 

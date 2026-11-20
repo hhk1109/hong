@@ -491,7 +491,8 @@
       bag: loadBag(),
       bundles: loadBundles(),
       currentCat: "all",
-      searchQ: ""
+      searchQ: "",
+      homeConfig: null   // 主页展示配置（后台「主页管理」维护）
     };
 
     // 启动时从后端拉取该账号进度（后端优先），覆盖本地缓存
@@ -532,6 +533,105 @@
       } catch (e) {
         state.items = FALLBACK_ITEMS;
       }
+    }
+
+    /* ===== 主页展示配置（后台「主页管理」维护，公开读取） ===== */
+    async function loadHomeConfig() {
+      try {
+        const res = await fetch("/api/home/config");
+        const body = await res.json();
+        if (res.ok && body.code === 200 && body.data) {
+          state.homeConfig = body.data;
+        }
+      } catch (e) { /* 后端不可达，沿用页面默认内容 */ }
+      applyHomeConfig();
+    }
+
+    function applyHomeConfig() {
+      const cfg = state.homeConfig;
+      if (!cfg) return;
+      // 欢迎文案（可含 <b> 等简单标签；{name} 占位符替换为当前农夫名）
+      if (cfg.welcomeText) {
+        const farmerEl = document.getElementById("farmerName");
+        const name = farmerEl ? farmerEl.textContent : "农夫";
+        const welcome = document.getElementById("welcome");
+        if (welcome) welcome.innerHTML = String(cfg.welcomeText).replace(/\{name\}/g, name);
+      }
+      renderCarousel(cfg.slides);
+      renderFeatured(cfg.featuredIds);
+      applyCategories(cfg.categories);
+    }
+
+    let carouselTimer = null;
+    function renderCarousel(slides) {
+      const box = document.getElementById("homeCarousel");
+      if (!box) return;
+      const list = Array.isArray(slides) ? slides.filter(s => s && (s.title || s.subtitle || s.image)) : [];
+      if (!list.length) { box.style.display = "none"; box.innerHTML = ""; return; }
+      box.style.display = "";
+      box.innerHTML =
+        '<div class="hc-slide" id="hcSlide"></div>' +
+        '<div class="hc-dots">' + list.map((_, i) =>
+          '<span class="hc-dot' + (i === 0 ? " active" : "") + '" data-i="' + i + '"></span>').join("") + '</div>';
+      const slideEl = document.getElementById("hcSlide");
+      let idx = 0;
+      function show(i) {
+        idx = (i + list.length) % list.length;
+        const s = list[idx];
+        slideEl.classList.toggle("has-img", !!s.image);
+        slideEl.style.backgroundImage = s.image ? 'url("' + s.image + '")' : "";
+        slideEl.innerHTML =
+          '<div class="hc-slide-inner"><h2>' + (s.title || "") + '</h2>' +
+          (s.subtitle ? '<p>' + s.subtitle + '</p>' : '') + '</div>';
+        box.querySelectorAll(".hc-dot").forEach((d, j) => d.classList.toggle("active", j === idx));
+      }
+      show(0);
+      box.querySelectorAll(".hc-dot").forEach(d => {
+        d.addEventListener("click", () => { show(Number(d.dataset.i)); resetCarouselTimer(); });
+      });
+      function resetCarouselTimer() {
+        if (carouselTimer) clearInterval(carouselTimer);
+        if (list.length > 1) carouselTimer = setInterval(() => show(idx + 1), 5000);
+      }
+      resetCarouselTimer();
+    }
+
+    function renderFeatured(ids) {
+      const box = document.getElementById("homeFeatured");
+      const grid = document.getElementById("homeFeaturedGrid");
+      if (!box || !grid) return;
+      const list = (Array.isArray(ids) ? ids : [])
+        .map(id => state.items.find(it => Number(it.id) === Number(id)))
+        .filter(Boolean);
+      if (!list.length) { box.style.display = "none"; grid.innerHTML = ""; return; }
+      box.style.display = "";
+      grid.innerHTML = list.map(it => {
+        const media = it.image
+          ? '<img class="hf-img" src="' + it.image + '" alt="" onerror="this.style.display=\'none\'" />'
+          : '<div class="hf-icon">' + (it.icon || "🌾") + '</div>';
+        const price = (it.price != null && Number(it.price) > 0)
+          ? '<div class="hf-price">💰 ' + Number(it.price).toFixed(2) + ' g</div>' : '';
+        return '<div class="hf-card" data-name="' + (it.name || "") + '">' + media +
+          '<div class="hf-name">' + (it.name || "") + '</div>' + price + '</div>';
+      }).join("");
+    }
+
+    function applyCategories(categories) {
+      const chips = document.getElementById("chips");
+      if (!chips || !Array.isArray(categories) || !categories.length) return;
+      const list = categories.filter(c => c.enabled !== false)
+        .slice().sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+      let html = '<span class="chip active" data-cat="all">全部</span>';
+      html += list.map(c => '<span class="chip" data-cat="' + c.key + '">' + (c.label || c.key) + '</span>').join("");
+      chips.innerHTML = html;
+      chips.querySelectorAll(".chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          chips.querySelectorAll(".chip").forEach(x => x.classList.remove("active"));
+          chip.classList.add("active");
+          state.currentCat = chip.dataset.cat;
+          if (typeof renderCodex === "function") renderCodex();
+        });
+      });
     }
 
     function itemByName(name) {
@@ -1682,11 +1782,15 @@
       list.forEach(it => {
         const card = document.createElement("div");
         card.className = "card";
-        card.innerHTML =
-          '<div class="icon">' + it.icon + '</div>' +
+        const media = it.image
+          ? '<img class="c-img" src="' + it.image + '" alt="" onerror="this.style.display=\'none\'" />'
+          : '<div class="icon">' + it.icon + '</div>';
+        const price = (it.price != null && Number(it.price) > 0)
+          ? '<div class="c-price">💰 ' + Number(it.price).toFixed(2) + ' g</div>' : '';
+        card.innerHTML = media +
           '<div class="name">' + it.name + '</div>' +
           '<span class="tag">' + (CAT_LABEL[it.cat] || it.cat) + '</span>' +
-          '<div class="desc">' + (it.description || "") + '</div>';
+          '<div class="desc">' + (it.description || "") + '</div>' + price;
         card.addEventListener("click", () => openModal(it));
         grid.appendChild(card);
       });
@@ -2237,6 +2341,7 @@
       loadGame();              // 本地玩法状态（离线缓存）
       syncSeasonChange();      // 先按本地缓存处理换季
       await loadItems();       // 图鉴条目（后台维护）
+      await loadHomeConfig();  // 主页展示配置（欢迎文案 / 轮播 / 推荐 / 分类）
       await loadBundleDefs();  // 社区中心收集包
       await loadProgress();    // 后端优先：背包 / 捐赠 / 玩法状态
       syncSeasonChange();      // 后端状态覆盖后再次校验季节

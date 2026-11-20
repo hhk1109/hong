@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -31,6 +32,15 @@ public class Item implements Serializable {
 
     /** 描述 */
     private String description;
+
+    /** 商品图片URL（可空，空则用 icon 展示） */
+    private String image;
+
+    /** 商品价格（金币 g） */
+    private BigDecimal price;
+
+    /** 库存数量，-1 表示不限量 */
+    private Integer stock;
 
     /** 排序值，越小越靠前 */
     private Integer sortOrder;
@@ -84,6 +94,30 @@ public class Item implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public Integer getSortOrder() {

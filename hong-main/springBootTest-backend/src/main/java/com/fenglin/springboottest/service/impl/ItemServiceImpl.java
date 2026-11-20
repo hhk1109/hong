@@ -71,6 +71,9 @@ public class ItemServiceImpl implements ItemService {
         item.setName(req.getName());
         item.setCat(req.getCat());
         item.setDescription(req.getDescription() == null ? "" : req.getDescription());
+        item.setImage(req.getImage() == null || req.getImage().isBlank() ? null : req.getImage().trim());
+        item.setPrice(req.getPrice() == null ? java.math.BigDecimal.ZERO : req.getPrice());
+        item.setStock(req.getStock() == null ? 0 : req.getStock());
         item.setSortOrder(req.getSortOrder() == null ? 999 : req.getSortOrder());
         item.setEnabled(req.getEnabled() == null ? 1 : req.getEnabled());
     }

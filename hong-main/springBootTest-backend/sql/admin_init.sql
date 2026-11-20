@@ -259,3 +259,59 @@ ALTER TABLE `user`
 -- ============================================================
 ALTER TABLE `user_progress`
     ADD COLUMN `gameplay` TEXT NULL COMMENT '玩法状态 JSON：农场地块 / 钓鱼 / 挖矿 / 金币 / 体力';
+
+-- ============================================================
+-- item 表补充商品化字段：图片 / 价格 / 库存
+-- 重复执行报 Duplicate column 属预期行为（mysql --force 可容忍）
+-- ============================================================
+ALTER TABLE `item`
+    ADD COLUMN `image` VARCHAR(255) DEFAULT NULL COMMENT '商品图片URL（可空，空则用 icon 展示）' AFTER `description`;
+ALTER TABLE `item`
+    ADD COLUMN `price` DECIMAL(10,2) NOT NULL DEFAULT 0.00 COMMENT '商品价格（金币 g）' AFTER `image`;
+ALTER TABLE `item`
+    ADD COLUMN `stock` INT NOT NULL DEFAULT 0 COMMENT '库存数量，-1 表示不限量' AFTER `price`;
+
+-- ============================================================
+-- 主页配置表（单行 JSON 配置）：轮播图 / 文案 / 推荐商品 / 分类展示
+-- 后台「主页管理」编辑，主页展示端通过 /api/home/config 读取
+-- ============================================================
+CREATE TABLE IF NOT EXISTS `home_config` (
+    `id`           BIGINT       NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `config_key`   VARCHAR(64)  NOT NULL                COMMENT '配置标识，固定为 main',
+    `welcome_text` VARCHAR(255) NOT NULL DEFAULT ''      COMMENT '首页欢迎文案',
+    `slides`       JSON         DEFAULT NULL            COMMENT '轮播图：[{image,title,subtitle,link}]',
+    `featured_ids` JSON         DEFAULT NULL            COMMENT '推荐商品：item id 数组',
+    `categories`   JSON         DEFAULT NULL            COMMENT '分类展示：[{key,label,enabled,sortOrder}]',
+    `update_time`  DATETIME     DEFAULT CURRENT_TIMESTAMP
+                                ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uk_config_key` (`config_key`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COMMENT = '主页展示配置表';
+
+-- 幂等插入默认配置（仅在表为空时）
+INSERT INTO `home_config`
+    (`config_key`, `welcome_text`, `slides`, `featured_ids`, `categories`)
+SELECT
+    'main',
+    '欢迎来到星露谷，<b>尊敬的农夫</b>！今天也要努力种田哦～ 🌞',
+    JSON_ARRAY(
+        JSON_OBJECT('image', '', 'title', '🌾 欢迎来到星露谷', 'subtitle', '种田 · 钓鱼 · 挖矿 · 结交村民，开启你的农场生活', 'link', ''),
+        JSON_OBJECT('image', '', 'title', '🌸 四季轮转', 'subtitle', '按真实日历开放当季作物与钓期', 'link', ''),
+        JSON_OBJECT('image', '', 'title', '🏠 重建社区中心', 'subtitle', '收集捐赠包，唤醒沉睡的鹈鹕镇', 'link', '')
+    ),
+    JSON_ARRAY(),
+    JSON_ARRAY(
+        JSON_OBJECT('key', 'crop', 'label', '作物', 'enabled', 1, 'sortOrder', 1),
+        JSON_OBJECT('key', 'animal', 'label', '动物', 'enabled', 1, 'sortOrder', 2),
+        JSON_OBJECT('key', 'fish', 'label', '钓鱼', 'enabled', 1, 'sortOrder', 3),
+        JSON_OBJECT('key', 'ore', 'label', '矿石', 'enabled', 1, 'sortOrder', 4),
+        JSON_OBJECT('key', 'tool', 'label', '工具', 'enabled', 1, 'sortOrder', 5),
+        JSON_OBJECT('key', 'upgrade', 'label', '农场升级', 'enabled', 1, 'sortOrder', 6),
+        JSON_OBJECT('key', 'food', 'label', '食物', 'enabled', 1, 'sortOrder', 7),
+        JSON_OBJECT('key', 'furniture', 'label', '家具', 'enabled', 1, 'sortOrder', 8),
+        JSON_OBJECT('key', 'special', 'label', '特殊', 'enabled', 1, 'sortOrder', 9)
+    )
+FROM DUAL
+WHERE NOT EXISTS (SELECT 1 FROM `home_config`);

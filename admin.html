@@ -225,6 +225,38 @@
 
     .footer { text-align: center; padding: 22px; font-size: 12px; color: #9a7a4a; border-top: 3px dashed var(--line); line-height: 1.8; }
 
+    /* 主页管理编辑器 */
+    .home-editor { display: flex; flex-direction: column; gap: 18px; max-width: 960px; }
+    .home-block { background: var(--parchment-2); border: 3px solid var(--gold-deep); border-radius: 12px; padding: 16px; }
+    .home-block-title { font-size: 14px; font-weight: bold; color: var(--green-dark); margin-bottom: 10px; }
+    .home-block textarea {
+      width: 100%; min-height: 64px; resize: vertical; padding: 8px 10px;
+      font-family: inherit; font-size: 13px; color: var(--brown);
+      background: #fffdf6; border: 2px solid var(--line); border-radius: 8px;
+    }
+    .hc-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap; }
+    .hc-row input, .hc-row select {
+      padding: 7px 8px; font-family: inherit; font-size: 12px; color: var(--brown);
+      background: #fffdf6; border: 2px solid var(--line); border-radius: 6px;
+    }
+    .hc-row .hc-img { flex: 2 1 220px; }
+    .hc-row .hc-title { flex: 1 1 140px; }
+    .hc-row .hc-sub { flex: 2 1 200px; }
+    .hc-row .hc-link { flex: 1 1 120px; }
+    .hc-row .hc-key { width: 92px; }
+    .hc-row .hc-label { width: 110px; }
+    .hc-row .hc-sort { width: 66px; }
+    .hc-row .hc-enabled { display: flex; align-items: center; gap: 4px; white-space: nowrap; font-size: 12px; }
+    .hc-row .hc-enabled input { width: 16px; height: 16px; }
+    .hc-del { background: var(--red); color: #fff8e8; border: 2px solid var(--brown); border-radius: 6px; cursor: pointer; padding: 6px 10px; font-family: inherit; font-size: 12px; }
+    .featured-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; max-height: 260px; overflow: auto; }
+    .featured-item { display: flex; align-items: center; gap: 6px; padding: 7px 9px; background: #fffdf6; border: 2px solid var(--line); border-radius: 8px; font-size: 12px; cursor: pointer; }
+    .featured-item input { width: 16px; height: 16px; }
+    .featured-item .fi-icon { font-size: 16px; }
+    .home-save-bar { display: flex; justify-content: flex-end; }
+    .home-save-bar .btn-save { padding: 10px 22px; }
+    .form-error { color: var(--red); font-size: 12px; min-height: 14px; margin-top: 4px; }
+
     @media (max-width: 640px) {
       .brand { font-size: 10px; }
       .field-row { flex-direction: column; }
@@ -244,14 +276,15 @@
   <div class="container">
     <!-- 模块标签页 -->
     <div class="tabs" id="tabs">
-      <button class="tab-btn active" data-tab="items">📖 图鉴条目</button>
+      <button class="tab-btn active" data-tab="items">📖 商品 / 图鉴</button>
+      <button class="tab-btn" data-tab="home">🖼️ 主页管理</button>
       <button class="tab-btn" data-tab="bundles">🏠 收集包</button>
       <button class="tab-btn" data-tab="users">🧑‍🌾 用户管理</button>
     </div>
 
     <!-- ============ 图鉴条目管理（对应首页「物品图鉴」与「村民」模块） ============ -->
     <section class="panel active" id="panel-items">
-      <div class="tab-hint">管理首页「物品图鉴」与「村民」模块展示的全部条目（作物 / 动物 / 村民 / 鱼类 / 矿石），保存后首页即时同步。</div>
+      <div class="tab-hint">管理首页「物品图鉴」与「商店」展示的全部商品条目：可修改价格、库存、图片、分类、排序与上下架，支持新增商品，保存后首页即时同步。</div>
       <div class="stats">
         <div class="stat"><div class="num" id="statTotal">0</div><div class="label">条目总数</div></div>
         <div class="stat"><div class="num" id="statVisible">0</div><div class="label">首页可见</div></div>
@@ -268,24 +301,60 @@
           <option value="fish">鱼类</option>
           <option value="ore">矿石</option>
         </select>
-        <button class="btn-add" id="addBtn">＋ 新增条目</button>
+        <button class="btn-add" id="addBtn">＋ 新增商品</button>
       </div>
       <table>
         <thead>
           <tr>
-            <th style="width:60px">图标</th>
+            <th style="width:60px">图标/图片</th>
             <th>名称</th>
-            <th style="width:90px">分类</th>
+            <th style="width:80px">分类</th>
             <th>描述</th>
-            <th style="width:70px">售价/排序</th>
+            <th style="width:70px">价格</th>
+            <th style="width:60px">库存</th>
+            <th style="width:60px">排序</th>
             <th style="width:80px">状态</th>
-            <th style="width:230px">操作</th>
+            <th style="width:210px">操作</th>
           </tr>
         </thead>
         <tbody id="tbody">
-          <tr><td colspan="7" class="empty-row">加载中…</td></tr>
+          <tr><td colspan="9" class="empty-row">加载中…</td></tr>
         </tbody>
       </table>
+    </section>
+
+    <!-- ============ 主页管理（欢迎文案 / 轮播图 / 推荐商品 / 分类展示） ============ -->
+    <section class="panel" id="panel-home">
+      <div class="tab-hint">编辑首页展示内容：欢迎文案、轮播图、推荐商品、分类展示与排序，保存后主页即时同步。</div>
+      <div class="home-editor">
+        <div class="home-block">
+          <div class="home-block-title">📝 欢迎文案</div>
+          <div class="tab-hint" style="margin:0 0 8px">支持简单 HTML 标签（如 &lt;b&gt;加粗&lt;/b&gt;）。</div>
+          <textarea id="hcWelcome" maxlength="255" placeholder="欢迎来到星露谷…"></textarea>
+        </div>
+
+        <div class="home-block">
+          <div class="home-block-title">🖼️ 轮播图 <button class="btn-mini" id="hcSlideAdd" style="float:right">＋ 添加</button></div>
+          <div class="tab-hint" style="margin:0 0 8px">图片地址留空时，仅显示标题与副标题的渐变背景。</div>
+          <div id="hcSlides"></div>
+        </div>
+
+        <div class="home-block">
+          <div class="home-block-title">⭐ 推荐商品</div>
+          <div class="tab-hint" style="margin:0 0 8px">勾选的商品将在首页展示为推荐位。数据来自「商品 / 图鉴」。</div>
+          <div id="hcFeatured" class="featured-grid"></div>
+        </div>
+
+        <div class="home-block">
+          <div class="home-block-title">🧭 分类展示 <button class="btn-mini" id="hcCatAdd" style="float:right">＋ 添加</button></div>
+          <div class="tab-hint" style="margin:0 0 8px">控制首页图鉴分类筛选的显示项、名称、启用状态与排序。</div>
+          <div id="hcCats"></div>
+        </div>
+
+        <div class="home-save-bar">
+          <button class="btn-save" id="hcSave">💾 保存主页配置</button>
+        </div>
+      </div>
     </section>
 
     <!-- ============ 收集包管理（对应首页「社区中心」模块） ============ -->
@@ -368,7 +437,10 @@
     let token = localStorage.getItem(TOKEN_KEY);
     if (!token) { location.replace("/admin"); }
 
-    const CAT_LABEL = { crop: "作物", animal: "动物", villager: "村民", fish: "鱼类", ore: "矿石" };
+    const CAT_LABEL = {
+      crop: "作物", animal: "动物", villager: "村民", fish: "鱼类", ore: "矿石",
+      tool: "工具", upgrade: "农场升级", food: "食物", furniture: "家具", special: "特殊"
+    };
 
     let allItems = [];
     let allBundles = [];
@@ -415,13 +487,14 @@
     }
 
     // ===== 标签页路由 =====
-    const TABS = ["items", "bundles", "users"];
+    const TABS = ["items", "home", "bundles", "users"];
     function switchTab(tab) {
       if (!TABS.includes(tab)) tab = "items";
       location.hash = tab;
       document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
       document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === "panel-" + tab));
       if (tab === "items") loadItems();
+      if (tab === "home") loadHomeConfig();
       if (tab === "bundles") loadBundles();
       if (tab === "users") loadUsers();
     }
@@ -446,14 +519,16 @@
     function renderItems() {
       const tbody = document.getElementById("tbody");
       if (!allItems.length) {
-        tbody.innerHTML = '<tr><td colspan="7" class="empty-row">🌾 暂无条目，点击「新增条目」添加</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="9" class="empty-row">🌾 暂无商品，点击「新增商品」添加</td></tr>';
       } else {
         tbody.innerHTML = allItems.map(it => `
           <tr>
-            <td class="item-icon">${esc(it.icon)}</td>
+            <td class="item-icon">${it.image ? '<img src="' + esc(it.image) + '" alt="" style="width:26px;height:26px;object-fit:cover;border-radius:4px" onerror="this.style.display=\'none\'" />' : esc(it.icon)}</td>
             <td>${esc(it.name)}</td>
             <td><span class="tag ${esc(it.cat)}">${CAT_LABEL[it.cat] || it.cat}</span></td>
             <td class="desc-cell">${esc(it.description)}</td>
+            <td>💰 ${it.price != null ? Number(it.price).toFixed(2) : "0.00"}</td>
+            <td>${it.stock === -1 ? "∞" : (it.stock != null ? it.stock : 0)}</td>
             <td>${it.sortOrder}</td>
             <td><span class="badge ${it.enabled ? "" : "off"}">${it.enabled ? "首页可见" : "已隐藏"}</span></td>
             <td>
@@ -491,11 +566,7 @@
         <div class="field">
           <label>分类</label>
           <select id="fCat">
-            <option value="crop" ${it && it.cat === "crop" ? "selected" : ""}>作物</option>
-            <option value="animal" ${it && it.cat === "animal" ? "selected" : ""}>动物</option>
-            <option value="villager" ${it && it.cat === "villager" ? "selected" : ""}>村民</option>
-            <option value="fish" ${it && it.cat === "fish" ? "selected" : ""}>鱼类</option>
-            <option value="ore" ${it && it.cat === "ore" ? "selected" : ""}>矿石</option>
+            ${Object.keys(CAT_LABEL).map(k => `<option value="${k}" ${it && it.cat === k ? "selected" : ""}>${CAT_LABEL[k]}</option>`).join("")}
           </select>
         </div>
       </div>
@@ -503,9 +574,23 @@
         <label>描述（首页卡片展示文案）</label>
         <textarea id="fDesc" maxlength="200" placeholder="一句话介绍这个条目…">${it ? esc(it.description) : ""}</textarea>
       </div>
+      <div class="field">
+        <label>商品图片 URL（选填，留空则用上方 emoji 图标展示）</label>
+        <input type="text" id="fImage" maxlength="255" placeholder="例如 /assets/images/strawberry.png 或 https://…" value="${it && it.image ? esc(it.image) : ""}" />
+      </div>
       <div class="field-row">
         <div class="field">
-          <label>售价 / 排序（越小越靠前）</label>
+          <label>价格（金币 g，≥0）</label>
+          <input type="number" id="fPrice" min="0" step="0.01" placeholder="0.00" value="${it && it.price != null ? it.price : 0}" />
+        </div>
+        <div class="field">
+          <label>库存（-1 表示不限量）</label>
+          <input type="number" id="fStock" min="-1" step="1" placeholder="0" value="${it && it.stock != null ? it.stock : 0}" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>排序值（越小越靠前）</label>
           <input type="number" id="fSort" min="0" max="9999" value="${it ? it.sortOrder : 999}" />
         </div>
         <div class="field">
@@ -513,6 +598,7 @@
           <div class="check" style="padding:10px 0"><input type="checkbox" id="fEnabled" ${(!it || it.enabled) ? "checked" : ""} /> 在首页展示</div>
         </div>
       </div>
+      <div class="form-error" id="fError"></div>
       <div class="modal-actions">
         <button class="btn-cancel" onclick="closeModal()">取消</button>
         <button class="btn-save" id="fSave">保 存</button>
@@ -536,16 +622,34 @@
     }
 
     async function saveItem() {
+      const errEl = document.getElementById("fError");
+      const fail = msg => { if (errEl) errEl.textContent = msg; toast(msg); };
+      const icon = document.getElementById("fIcon").value.trim();
+      const name = document.getElementById("fName").value.trim();
+      const image = document.getElementById("fImage").value.trim();
+      const priceRaw = document.getElementById("fPrice").value.trim();
+      const stockRaw = document.getElementById("fStock").value.trim();
+      const price = priceRaw === "" ? 0 : Number(priceRaw);
+      const stock = stockRaw === "" ? 0 : Number(stockRaw);
+
+      if (!icon) { fail("✋ 图标不能为空"); return; }
+      if (!name) { fail("✋ 名称不能为空"); return; }
+      if (isNaN(price) || price < 0) { fail("✋ 价格必须是 ≥0 的数字"); return; }
+      if (isNaN(stock) || stock < -1 || !Number.isInteger(stock)) { fail("✋ 库存必须是 ≥-1 的整数"); return; }
+      if (image && !/^(https?:\/\/|\/|data:image\/)/i.test(image)) { fail("✋ 图片地址需以 http(s):// 或 / 开头"); return; }
+      if (errEl) errEl.textContent = "";
+
       const req = {
-        icon: document.getElementById("fIcon").value.trim(),
-        name: document.getElementById("fName").value.trim(),
+        icon: icon,
+        name: name,
         cat: document.getElementById("fCat").value,
         description: document.getElementById("fDesc").value.trim(),
+        image: image,
+        price: price,
+        stock: stock,
         sortOrder: parseInt(document.getElementById("fSort").value, 10) || 999,
         enabled: document.getElementById("fEnabled").checked ? 1 : 0
       };
-      if (!req.icon) { toast("✋ 图标不能为空"); return; }
-      if (!req.name) { toast("✋ 名称不能为空"); return; }
       try {
         if (editingId == null) {
           await api("/admin/items", { method: "POST", body: JSON.stringify(req) });
@@ -559,6 +663,121 @@
       } catch (e) { if (e.message !== "unauthorized") toast("🚫 " + e.message); }
     }
 
+    /* ============================================================
+     * 模块二：主页管理（欢迎文案 / 轮播图 / 推荐商品 / 分类展示）
+     * ============================================================ */
+    let homeCfg = null;           // 当前编辑中的配置
+    let homeItems = [];           // 用于推荐商品勾选的商品列表
+
+    function slideRowHtml(s, i) {
+      s = s || {};
+      return `<div class="hc-row" data-slide="${i}">
+        <input class="hc-img" type="text" placeholder="图片URL（可空）" value="${esc(s.image || '')}" />
+        <input class="hc-title" type="text" maxlength="40" placeholder="标题" value="${esc(s.title || '')}" />
+        <input class="hc-sub" type="text" maxlength="80" placeholder="副标题" value="${esc(s.subtitle || '')}" />
+        <input class="hc-link" type="text" maxlength="120" placeholder="跳转链接（可空）" value="${esc(s.link || '')}" />
+        <button class="hc-del" type="button" onclick="this.parentNode.remove()">删除</button>
+      </div>`;
+    }
+
+    function catRowHtml(c, i) {
+      c = c || {};
+      const key = c.key || "";
+      const label = c.label || CAT_LABEL[key] || key;
+      return `<div class="hc-row" data-cat="${i}">
+        <select class="hc-key">
+          ${Object.keys(CAT_LABEL).map(k => `<option value="${k}" ${key === k ? "selected" : ""}>${CAT_LABEL[k]}</option>`).join("")}
+        </select>
+        <input class="hc-label" type="text" maxlength="16" placeholder="显示名称" value="${esc(label)}" />
+        <label class="hc-enabled"><input type="checkbox" ${c.enabled !== false ? "checked" : ""} /> 显示</label>
+        <input class="hc-sort" type="number" min="0" max="999" value="${c.sortOrder != null ? c.sortOrder : (i + 1)}" />
+        <button class="hc-del" type="button" onclick="this.parentNode.remove()">删除</button>
+      </div>`;
+    }
+
+    function renderHomeEditor() {
+      if (!homeCfg) return;
+      document.getElementById("hcWelcome").value = homeCfg.welcomeText || "";
+      const slides = Array.isArray(homeCfg.slides) ? homeCfg.slides : [];
+      document.getElementById("hcSlides").innerHTML = slides.length
+        ? slides.map(slideRowHtml).join("")
+        : slideRowHtml({}, 0);
+      const cats = Array.isArray(homeCfg.categories) ? homeCfg.categories : [];
+      document.getElementById("hcCats").innerHTML = cats.map(catRowHtml).join("");
+
+      const featured = Array.isArray(homeCfg.featuredIds) ? homeCfg.featuredIds.map(Number) : [];
+      const grid = document.getElementById("hcFeatured");
+      if (!homeItems.length) {
+        grid.innerHTML = '<div class="tab-hint">暂无商品，请先在「商品 / 图鉴」中添加。</div>';
+        return;
+      }
+      grid.innerHTML = homeItems.map(it => `
+        <label class="featured-item" title="${esc(it.name)}">
+          <input type="checkbox" value="${it.id}" ${featured.includes(Number(it.id)) ? "checked" : ""} />
+          <span class="fi-icon">${it.image ? '🖼️' : esc(it.icon)}</span>
+          <span>${esc(it.name)}</span>
+        </label>`).join("");
+    }
+
+    async function loadHomeConfig() {
+      try {
+        const [cfg, items] = await Promise.all([
+          api("/admin/home/config"),
+          api("/admin/items")
+        ]);
+        homeCfg = cfg || {};
+        homeItems = items || [];
+        renderHomeEditor();
+      } catch (e) { if (e.message !== "unauthorized") toast("🚜 " + e.message); }
+    }
+
+    function addSlideRow() {
+      const box = document.getElementById("hcSlides");
+      box.insertAdjacentHTML("beforeend", slideRowHtml({}, box.children.length));
+    }
+    function addCatRow() {
+      const box = document.getElementById("hcCats");
+      box.insertAdjacentHTML("beforeend", catRowHtml({ enabled: true, sortOrder: box.children.length + 1 }, box.children.length));
+    }
+
+    async function saveHomeConfig() {
+      const welcome = document.getElementById("hcWelcome").value.trim();
+      const slides = [];
+      document.querySelectorAll("#hcSlides .hc-row").forEach(row => {
+        const inp = row.querySelectorAll("input");
+        const s = {
+          image: inp[0].value.trim(),
+          title: inp[1].value.trim(),
+          subtitle: inp[2].value.trim(),
+          link: inp[3].value.trim()
+        };
+        if (s.image && !/^(https?:\/\/|\/|data:image\/)/i.test(s.image)) {
+          toast("✋ 轮播图地址需以 http(s):// 或 / 开头"); throw new Error("invalid");
+        }
+        if (s.title || s.subtitle || s.image) slides.push(s);
+      });
+      const featuredIds = [];
+      document.querySelectorAll("#hcFeatured input:checked").forEach(cb => featuredIds.push(Number(cb.value)));
+      const categories = [];
+      document.querySelectorAll("#hcCats .hc-row").forEach(row => {
+        categories.push({
+          key: row.querySelector(".hc-key").value,
+          label: row.querySelector(".hc-label").value.trim(),
+          enabled: row.querySelector(".hc-enabled input").checked,
+          sortOrder: parseInt(row.querySelector(".hc-sort").value, 10) || 0
+        });
+      });
+      const req = { welcomeText: welcome, slides, featuredIds, categories };
+      try {
+        await api("/admin/home/config", { method: "PUT", body: JSON.stringify(req) });
+        toast("✅ 主页配置已保存并同步");
+        loadHomeConfig();
+      } catch (e) {
+        if (e.message === "invalid") return;
+        if (e.message !== "unauthorized") toast("🚫 " + e.message);
+      }
+    }
+
     async function toggleItemEnabled(id, current) {
       const item = allItems.find(i => i.id === id);
       if (!item) return;
@@ -568,6 +787,7 @@
           body: JSON.stringify({
             icon: item.icon, name: item.name, cat: item.cat,
             description: item.description, sortOrder: item.sortOrder,
+            image: item.image, price: item.price, stock: item.stock,
             enabled: current ? 0 : 1
           })
         });
@@ -924,6 +1144,9 @@
     });
 
     document.getElementById("addBtn").addEventListener("click", openAddItem);
+    document.getElementById("hcSlideAdd").addEventListener("click", addSlideRow);
+    document.getElementById("hcCatAdd").addEventListener("click", addCatRow);
+    document.getElementById("hcSave").addEventListener("click", saveHomeConfig);
     document.getElementById("bAddBtn").addEventListener("click", openAddBundle);
     document.getElementById("uRefreshBtn").addEventListener("click", loadUsers);
 
