@@ -48,16 +48,16 @@ netstat -ano | findstr ":5173" | findstr "LISTENING" >nul
 if not errorlevel 1 (
     echo   Frontend already running on 5173, skip.
 ) else (
-    set "API_TARGET=http://192.168.68.21:8081" && set "FRONTEND_PORT=5173" && start "stardew-frontend" /min cmd /c ""%NODE%" "%FRONTEND_DIR%\server.js""
+    set "API_TARGET=http://192.168.68.5:8081" && set "FRONTEND_PORT=5173" && start "stardew-frontend" /min cmd /c ""%NODE%" "%FRONTEND_DIR%\server.js""
     echo   Frontend starting...
 )
 
 timeout /t 12 /nobreak >nul
 netstat -ano | findstr ":8081" | findstr "LISTENING" >nul
-if errorlevel 1 (echo   [FAIL] Backend is DOWN on 8081) else (echo   [ OK ] Backend  : http://192.168.68.21:8081)
+if errorlevel 1 (echo   [FAIL] Backend is DOWN on 8081) else (echo   [ OK ] Backend  : http://192.168.68.5:8081)
 netstat -ano | findstr ":5173" | findstr "LISTENING" >nul
-if errorlevel 1 (echo   [FAIL] Frontend is DOWN on 5173) else (echo   [ OK ] Frontend : http://192.168.68.21:5173)
+if errorlevel 1 (echo   [FAIL] Frontend is DOWN on 5173) else (echo   [ OK ] Frontend : http://192.168.68.5:5173)
 
-start "" http://192.168.68.21:5173
+start "" http://192.168.68.5:5173
 echo Done.
 endlocal
